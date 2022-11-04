@@ -9,12 +9,11 @@ import { Welcome } from "../pages/Welcome/Welcome";
 export const commonRoutes = [
   {title: 'Welcome', path: '/', element: <Welcome />},
   {title: 'About', path: '/about', element: <About />},
-  {title: 'Authentication', path: '/auth', element: <Auth />},
 ]
 
 export const userRoutes = [
-  {title: 'User', path: '/user/cabinet', element: <User />},
   {title: 'Dashboard', path: '/user/dashboard', element: <Dashboard />},
+  {title: 'User', path: '/user/cabinet', element: <User />},
 ]
 
 const taskRoutes = [
@@ -25,5 +24,6 @@ export const appRoutes = [
   ...commonRoutes,
   ...userRoutes,
   ...taskRoutes,
+  {title: 'Auth', path: '/auth', element: <Auth />},
   {title: 'UFO', path: '/*', element: <UFO />},
 ]
