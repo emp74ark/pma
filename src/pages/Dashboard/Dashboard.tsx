@@ -9,13 +9,13 @@ export const Dashboard: FC = () => {
     navigate(`/user/board/${boardId}`)
   }
 
-  const {data, isFetching} = useBoardsAllQuery();
+  const {data: boards, isFetching: boardsFetching} = useBoardsAllQuery();
 
   return(
     <>
       <h2>Dashboard</h2>
-      {isFetching && <h2>Loading</h2>}
-      {data && data.map((board) => (
+      {boardsFetching && <h3>Loading</h3>}
+      {boards && boards.map((board) => (
         <Card key={board.id} onClick={() => openBoard(board.id!)}>
           <Card.Body>
             <Card.Title>{board.title}</Card.Title>
