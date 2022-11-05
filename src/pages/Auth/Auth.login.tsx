@@ -3,7 +3,7 @@ import { Alert } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../redux/api';
+import { useLoginMutation } from '../../redux/authApi';
 import { logIn } from '../../redux/authSlice';
 import { User } from '../../shared/interfaces';
 
@@ -21,7 +21,7 @@ export const AuthLogin: FC = () => {
 
   async function formData(form: User) { // TODO: error handling
     const user = await login(form).unwrap()
-    dispatch(logIn({login: form.login, token: user.token}));
+    dispatch(logIn({login: form.login, token: user.token, mode: 'login'}));
     reset();
     navigate('/user/dashboard');
   }

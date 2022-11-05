@@ -1,9 +1,17 @@
 import { FC } from 'react';
-import { User } from '../../shared/interfaces';
-import { useForm } from 'react-hook-form';
 import { Alert } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSignupMutation } from '../../redux/authApi';
+import { mode } from '../../redux/authSlice';
+import { User } from '../../shared/interfaces';
 
 export const AuthRegister: FC = () => {
+  const dispatch = useDispatch();
+  const [signup, {isLoading}] = useSignupMutation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -11,14 +19,18 @@ export const AuthRegister: FC = () => {
     formState: { errors, isDirty, isValid }
   } = useForm<User>({ mode: 'all' });
 
-  const formData = (data: User) => {
-    console.log('from data: ', data, errors);
+  async function formData(form: User) { // TODO: error handling
+    const user = await signup(form).unwrap()
+    console.log(user);
+    dispatch(mode('login'));
     reset();
+    navigate('/auth');
   }
 
   return (
     <>
       <h2>Registration</h2>
+      {isLoading && <h2>Loading</h2>}
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
