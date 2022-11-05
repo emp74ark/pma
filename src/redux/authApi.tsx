@@ -18,7 +18,7 @@ interface signupResponse {
 }
 
 export const authApi = createApi({
-  reducerPath: 'kanban',
+  reducerPath: 'user',
   baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
   endpoints: (builder) => ({
     login: builder.mutation<authResponse, User>({

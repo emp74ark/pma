@@ -1,11 +1,25 @@
 import { FC } from "react";
-import { Task } from "../../shared/interfaces";
+import { ListGroup } from "react-bootstrap";
+import { fakeTasks } from "./Task.props";
 
-export const TaskCard: FC<Task> = (task) => {
+export const TasksList: FC = () => {
+  // async function getTasks(columnId: string) {
+  //   const response = await axios.get<Task[]>(
+  //     `${BASE_URL}/boards/${params.boardId!}/columns/${columnId}`,
+  //     {headers: {'authorization': `Bearer ${token}`}
+  //   })
+  //   return response.data;
+  // }
   return(
     <>
-      <h5>{task.title}</h5>
-      <span>{task.description}</span>
+      <ListGroup>
+          {fakeTasks.map((task) => (
+            <ListGroup.Item key={task.id}>
+              <h5>{task.title}</h5>
+              <span>{task.description}</span>
+            </ListGroup.Item>
+          ))}
+      </ListGroup>
     </>
   )
 }

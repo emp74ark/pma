@@ -1,9 +1,13 @@
 import { FC } from 'react';
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useColumnsAllQuery } from '../../redux/columnsApi';
-import { TaskCard } from '../Task/Task';
-import { fakeTasks } from '../Task/Task.props';
+import { TasksList } from '../Task/Task';
+
+interface ColumnData {
+  boardId: string,
+  columnId: string
+}
 
 export const Board: FC = () => {
   const params = useParams();
@@ -15,14 +19,8 @@ export const Board: FC = () => {
       {columnsFetching && <h2>Loading</h2>}
       {columns && columns.map((column) => (
         <Card key={column.id}>
-          <Card.Header>{column.title}</Card.Header>
-          <ListGroup>
-              {fakeTasks.map((task) => (
-                <ListGroup.Item key={task.id}>
-                  {TaskCard(task)}
-                </ListGroup.Item>
-              ))}
-          </ListGroup>
+          <Card.Header>{column.title}{column.id}</Card.Header>
+            <TasksList />
         </Card>
       ))}
     </>

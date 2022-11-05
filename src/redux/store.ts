@@ -4,6 +4,7 @@ import { authApi } from "./authApi";
 import authSlice from "./authSlice";
 import { boardsApi } from "./boardsApi";
 import { columnsApi } from "./columnsApi";
+import { tasksApi } from "./tasksApi";
 
 export const store = configureStore({
   reducer: {
@@ -11,12 +12,14 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [boardsApi.reducerPath]: boardsApi.reducer,
     [columnsApi.reducerPath]: columnsApi.reducer,
+    [tasksApi.reducerPath]: tasksApi.reducer
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware()
       .concat(authApi.middleware)
       .concat(boardsApi.middleware)
-      .concat(columnsApi.middleware),
+      .concat(columnsApi.middleware)
+      .concat(tasksApi.middleware),
 })
 
 setupListeners(store.dispatch);

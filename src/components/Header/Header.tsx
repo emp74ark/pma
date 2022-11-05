@@ -12,7 +12,7 @@ export const Header: FC = () => {
   const { login } = useSelector((state: RootState) => state.auth);
 
   return (
-    <nav className="row bg-light">
+    <nav className="row bg-light align-items-center">
       <h2 className="col">Header</h2>
       <ul className="nav col-6">
         {!login && <NavCommon />}
