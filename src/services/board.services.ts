@@ -18,4 +18,29 @@ function getBoardById(id: string) {
   return response;
 }
 
-export { getAllBoards, getBoardById };
+function createBoard(board: Board) {
+  const response = axios.post<Board>(
+    `${BASE_URL}/boards`,
+    { title: board.title, description: board.description },
+    { headers: { authorization: `Bearer ${token}` } }
+  );
+  return response;
+}
+
+function deleteBoard(board: Board) {
+  const response = axios.delete<Board>(`${BASE_URL}/boards/${board.id}`, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+  return response;
+}
+
+function editBoard(board: Board) {
+  const response = axios.put<Board>(
+    `${BASE_URL}/boards`,
+    { board },
+    { headers: { authorization: `Bearer ${token}` } }
+  );
+  return response;
+}
+
+export { getAllBoards, getBoardById, createBoard, deleteBoard, editBoard };
