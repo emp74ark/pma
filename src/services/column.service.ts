@@ -11,4 +11,36 @@ function getAllColums(boardId: string) {
   return response;
 }
 
-export { getAllColums };
+function getColumnById(boardId: string, columnId: string) {
+  const response = axios.get<Column>(`${BASE_URL}/boards/${boardId}/${columnId}`, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+  return response;
+}
+
+function createColumn(boardId: string, title: string) {
+  const response = axios.post(
+    `${BASE_URL}/boards/${boardId}/columns`,
+    { title: title },
+    { headers: { authorization: `Bearer ${token}` } }
+  );
+  return response;
+}
+
+function deleteColumn(boardId: string, columnId: string) {
+  const response = axios.delete(`${BASE_URL}/boards/${boardId}/columns/${columnId}`, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+  return response;
+}
+
+function editColumn(boardId: string, column: Column) {
+  const response = axios.put<Column>(
+    `${BASE_URL}/boards`,
+    { title: column.title, order: column.order },
+    { headers: { authorization: `Bearer ${token}` } }
+  );
+  return response;
+}
+
+export { getAllColums, getColumnById, createColumn, deleteColumn, editColumn };

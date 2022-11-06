@@ -19,7 +19,7 @@ function getBoardById(id: string) {
 }
 
 function createBoard(board: Board) {
-  const response = axios.post<Board>(
+  const response = axios.post(
     `${BASE_URL}/boards`,
     { title: board.title, description: board.description },
     { headers: { authorization: `Bearer ${token}` } }
@@ -28,7 +28,7 @@ function createBoard(board: Board) {
 }
 
 function deleteBoard(board: Board) {
-  const response = axios.delete<Board>(`${BASE_URL}/boards/${board.id}`, {
+  const response = axios.delete(`${BASE_URL}/boards/${board.id}`, {
     headers: { authorization: `Bearer ${token}` },
   });
   return response;
