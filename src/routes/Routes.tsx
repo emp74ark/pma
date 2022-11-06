@@ -1,6 +1,6 @@
 import { About } from "../pages/About/About";
 import { Auth } from "../pages/Auth/Auth";
-import { Board } from "../pages/Board/Board";
+import { BoardComonent } from "../pages/Board/Board";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { UFO } from "../pages/UFO/UFO";
 import { User } from "../pages/User/User";
@@ -17,7 +17,7 @@ export const userRoutes = [
 ]
 
 const taskRoutes = [
-  {title: 'Board', path: '/user/board/:boardId', element: <Board />},
+  {title: 'Board', path: '/user/board/:boardId', element: <BoardComonent />},
 ]
 
 export const appRoutes = [

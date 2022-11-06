@@ -1,38 +1,36 @@
 import { FC, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { getAllColums } from '../../services/column.service';
-import { Column, Task } from '../../shared/interfaces';
 import { TasksList } from '../../components/Task/Task';
+import { getBoardById } from '../../services/board.services';
+import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
+import { Board, Column, ColumnData } from '../../shared/interfaces';
 
-export interface ColumnData {
-  columnId: string,
-  tasks: Task[],
-}
-
-export const Board: FC = () => {
+export const BoardComonent: FC = () => {
   const params = useParams();
+  const boardId = params.boardId;
+  const [boardData, setBoardData] = useState<Board>()
   const [columns, setColumns] = useState<Column[]>([]);
   const [columnData, setColumnData] = useState<ColumnData[]>([])
 
   useEffect(() => {
-    getAllColums(params.boardId!)
+    getAllColums(boardId!)
       .then(
         response => {
           setColumns(response.data);
           response.data.map(column => {
-            getAllTasks(params.boardId!, column.id!)
+            getAllTasks(boardId!, column.id!)
               .then(response => setColumnData([...columnData, {columnId: column.id!, tasks: response.data}]))
           })
         });
-
-    setTimeout(() => {console.log(columnData)}, 3000)
+    getBoardById(boardId!).then(response => setBoardData(response.data))
   }, []);
 
   return(
     <>
-      <h2>Board</h2>
+      <h2>{boardData?.title}</h2>
+      <h3>{boardData?.description}</h3>
       {columns && columns.map((column) => (
         <Card key={column.id}>
           <Card.Header>{column.title}</Card.Header>

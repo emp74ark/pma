@@ -12,4 +12,12 @@ function getAllBoards() {
   return response;
 }
 
-export {getAllBoards};
+function getBoardById(id: string) {
+  const response = axios.get<Board>(
+    `${BASE_URL}/boards/${id}`,
+    {headers: {'authorization': `Bearer ${token}`}}
+  )
+  return response;
+}
+
+export {getAllBoards, getBoardById};

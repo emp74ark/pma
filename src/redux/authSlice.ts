@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../shared/interfaces";
+import { AuthState, User } from "../shared/interfaces";
 import { signin, signout, signup } from "../services/user.service";
-
-interface AuthState {
-  login: string | undefined,
-  token: string | undefined,
-  mode: 'login' | 'registration'
-}
 
 const initialState: AuthState = {
   login: undefined,

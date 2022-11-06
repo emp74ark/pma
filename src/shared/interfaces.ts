@@ -11,6 +11,11 @@ export interface Board {
   description: string
 }
 
+export interface ColumnData {
+  columnId: string,
+  tasks: Task[],
+}
+
 export interface Column {
   id?: string,
   order?: number,
@@ -25,4 +30,10 @@ export interface Task {
   userId: string,
   boardId?: string,
   columnId?: string,
+}
+
+export interface AuthState {
+  login: string | undefined,
+  token: string | undefined,
+  mode: 'login' | 'registration'
 }

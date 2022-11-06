@@ -13,7 +13,7 @@ export const Header: FC = () => {
 
   return (
     <nav className="row bg-light align-items-center">
-      <h2 className="col">Header</h2>
+      <h2 className="col">PMA</h2>
       <ul className="nav col-6">
         {!login && <NavCommon />}
         {login && <NavUser />}
