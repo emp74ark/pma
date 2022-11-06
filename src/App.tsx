@@ -1,20 +1,28 @@
 import { FC } from 'react';
-import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
-import { store } from './redux/store';
+import { RootState } from './redux/store';
+import { appRoutes, protectedRoutes } from './routes/Routes';
 
-interface AppProps {
-  children: JSX.Element;
-}
-
-const App: FC<AppProps> = (props) => {
+const App: FC = () => {
+  const { login } = useSelector((state: RootState) => state.auth);
   return (
-    <Provider store={store}>
+    <BrowserRouter>
+      <h1>{login}</h1>
       <Header />
-      {props.children}
+      <Routes>
+        {appRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
+        {login &&
+          protectedRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+      </Routes>
       <Footer />
-    </Provider>
+    </BrowserRouter>
   );
 };
 

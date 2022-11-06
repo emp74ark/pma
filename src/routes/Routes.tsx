@@ -20,8 +20,8 @@ const taskRoutes = [{ title: 'Board', path: '/user/board/:boardId', element: <Bo
 
 export const appRoutes = [
   ...commonRoutes,
-  ...userRoutes,
-  ...taskRoutes,
   { title: 'Auth', path: '/auth', element: <Auth /> },
   { title: 'UFO', path: '/*', element: <UFO /> },
 ];
+
+export const protectedRoutes = [...userRoutes, ...taskRoutes];
