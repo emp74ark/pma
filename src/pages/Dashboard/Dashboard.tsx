@@ -1,20 +1,25 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useBoardsAllQuery } from '../../redux/boardsApi';
+import { getAllBoards } from '../../services/board.services';
+import { Board } from '../../shared/interfaces';
 
 export const Dashboard: FC = () => {
   const navigate = useNavigate()
+  const [boards, setBoards] = useState<Board[]>([])
+  
   const openBoard = (boardId: string) => {
     navigate(`/user/board/${boardId}`)
   }
 
-  const {data: boards, isFetching: boardsFetching} = useBoardsAllQuery();
+  useEffect(() => {
+    getAllBoards()
+      .then(response => setBoards(response.data));
+  }, []);
 
   return(
     <>
       <h2>Dashboard</h2>
-      {boardsFetching && <h3>Loading</h3>}
       {boards && boards.map((board) => (
         <Card key={board.id} onClick={() => openBoard(board.id!)}>
           <Card.Body>

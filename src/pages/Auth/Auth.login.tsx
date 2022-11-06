@@ -3,13 +3,11 @@ import { Alert } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../redux/authApi';
 import { logIn } from '../../redux/authSlice';
 import { User } from '../../shared/interfaces';
 
 export const AuthLogin: FC = () => {
   const dispatch = useDispatch();
-  const [login, {isLoading}] = useLoginMutation();
   const navigate = useNavigate();
 
   const {
@@ -19,9 +17,8 @@ export const AuthLogin: FC = () => {
     formState: { errors, isDirty, isValid }
   } = useForm<User>({ mode: 'all' });
 
-  async function formData(form: User) { // TODO: error handling
-    const user = await login(form).unwrap()
-    dispatch(logIn({login: form.login, token: user.token, mode: 'login'}));
+  function formData(form: User) { // TODO: error handling
+    dispatch(logIn(form));
     reset();
     navigate('/user/dashboard');
   }
@@ -29,7 +26,6 @@ export const AuthLogin: FC = () => {
   return (
     <>
       <h2>Login</h2>
-      {isLoading && <h2>Loading</h2>}
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
           <label htmlFor="login">Email</label>
