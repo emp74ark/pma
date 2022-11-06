@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthState, User } from "../shared/interfaces";
-import { signin, signout, signup } from "../services/user.service";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthState, User } from '../shared/interfaces';
+import { signin, signout, signup } from '../services/user.service';
 
 const initialState: AuthState = {
   login: undefined,
   token: undefined,
   mode: 'login',
-}
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -24,9 +24,9 @@ const authSlice = createSlice({
     signUp: (state, action: PayloadAction<User>) => {
       signup(action.payload);
       state.mode = 'login';
-    } 
+    },
   },
 });
 
-export const {logIn, logOut, signUp, mode} = authSlice.actions;
+export const { logIn, logOut, signUp, mode } = authSlice.actions;
 export default authSlice.reducer;

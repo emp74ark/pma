@@ -1,26 +1,28 @@
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { commonRoutes } from "../../routes/Routes";
+import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import { commonRoutes } from '../../routes/Routes';
 
 export const NavCommon: FC = () => {
-  return(
+  return (
     <>
       {commonRoutes.map(({ title, path }) => (
-        <li key={path} className='nav-item'>
+        <li key={path} className="nav-item">
           <NavLink
             className='nav-link {({ isActive }) => (isActive ? "active" : undefined)}'
             to={path}
-          >{title}
+          >
+            {title}
           </NavLink>
         </li>
       ))}
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
           className='nav-link {({ isActive }) => (isActive ? "active" : undefined)}'
-          to='/auth'
-        >Login
+          to="/auth"
+        >
+          Login
         </NavLink>
       </li>
     </>
-  )
-}
+  );
+};

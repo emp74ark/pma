@@ -14,10 +14,11 @@ export const AuthRegister: FC = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isDirty, isValid }
+    formState: { errors, isDirty, isValid },
   } = useForm<User>({ mode: 'all' });
 
-  function formData(form: User) { // TODO: error handling
+  function formData(form: User) {
+    // TODO: error handling
     dispatch(signUp(form));
     reset();
     navigate('/auth');
@@ -29,46 +30,46 @@ export const AuthRegister: FC = () => {
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input 
-            {...register('name', {required: true, minLength: 2})}
+          <input
+            {...register('name', { required: true, minLength: 2 })}
             type="text"
             name="name"
             id="name"
             className="form-control"
-            placeholder='User name'
+            placeholder="User name"
           />
-          {errors.name?.type === 'required' && <Alert variant='warning'>Name is required</Alert>}
-          {errors.name?.type === 'minLength' && <Alert variant='warning'>Name is too short</Alert>}
+          {errors.name?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
+          {errors.name?.type === 'minLength' && <Alert variant="warning">Name is too short</Alert>}
         </div>
         <div className="form-group">
           <label htmlFor="login">Email</label>
-          <input 
-            {...register('login', {required: true})}
+          <input
+            {...register('login', { required: true })}
             type="text"
             name="login"
             id="login"
             className="form-control"
-            placeholder='user@address.mail'
+            placeholder="user@address.mail"
           />
-          {errors.login?.type === 'required' && <Alert variant='warning'>Name is required</Alert>}
+          {errors.login?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
-            {...register('password', {required: true, minLength: 6})}
+            {...register('password', { required: true, minLength: 6 })}
             type="password"
             name="password"
             id="password"
             className="form-control"
           />
-          {errors.password?.type === 'required' && <Alert variant='warning'>Password is required</Alert>}
-          {errors.password?.type === 'minLength' && <Alert variant='warning'>Password is too short</Alert>}
+          {errors.password?.type === 'required' && (
+            <Alert variant="warning">Password is required</Alert>
+          )}
+          {errors.password?.type === 'minLength' && (
+            <Alert variant="warning">Password is too short</Alert>
+          )}
         </div>
-        <button
-          type="submit"
-          className="btn btn-success"
-          disabled={!isDirty || !isValid}
-        >
+        <button type="submit" className="btn btn-success" disabled={!isDirty || !isValid}>
           Submit
         </button>
       </form>

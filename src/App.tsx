@@ -5,11 +5,10 @@ import { Header } from './components/Header/Header';
 import { store } from './redux/store';
 
 interface AppProps {
-  children: JSX.Element
+  children: JSX.Element;
 }
 
 const App: FC<AppProps> = (props) => {
-
   return (
     <Provider store={store}>
       <Header />
@@ -17,6 +16,6 @@ const App: FC<AppProps> = (props) => {
       <Footer />
     </Provider>
   );
-}
+};
 
 export default App;

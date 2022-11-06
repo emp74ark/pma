@@ -1,39 +1,39 @@
 export interface User {
-  id?: string,
-  name?: string,
-  login: string,
-  password: string
+  id?: string;
+  name?: string;
+  login: string;
+  password: string;
 }
 
 export interface Board {
-  id?: string,
-  title: string,
-  description: string
+  id?: string;
+  title: string;
+  description: string;
 }
 
 export interface ColumnData {
-  columnId: string,
-  tasks: Task[],
+  columnId: string;
+  tasks: Task[];
 }
 
 export interface Column {
-  id?: string,
-  order?: number,
-  title: string,
+  id?: string;
+  order?: number;
+  title: string;
 }
 
 export interface Task {
-  id?: string,
-  order?: number,
-  title: string,
-  description: string,
-  userId: string,
-  boardId?: string,
-  columnId?: string,
+  id?: string;
+  order?: number;
+  title: string;
+  description: string;
+  userId: string;
+  boardId?: string;
+  columnId?: string;
 }
 
 export interface AuthState {
-  login: string | undefined,
-  token: string | undefined,
-  mode: 'login' | 'registration'
+  login: string | undefined;
+  token: string | undefined;
+  mode: 'login' | 'registration';
 }

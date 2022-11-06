@@ -1,8 +1,8 @@
-import { FC } from "react";
-import ufo from '../../assets/images/ufo.png'
+import { FC } from 'react';
+import ufo from '../../assets/images/ufo.png';
 
 export const UFO: FC = () => {
-  return(
+  return (
     <>
       <div className="row">
         <h2 className="col">Page not found</h2>
@@ -11,5 +11,5 @@ export const UFO: FC = () => {
         <img src={ufo} alt="Page not found" className="w-50" />
       </div>
     </>
-  )
-}
+  );
+};

@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { userRoutes } from "../../routes/Routes";
+import { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { userRoutes } from '../../routes/Routes';
 import { logOut } from '../../redux/authSlice';
 
 export const NavUser: FC = () => {
@@ -11,9 +11,9 @@ export const NavUser: FC = () => {
   const logoutHandler = () => {
     dispatch(logOut());
     navigate('/auth');
-  }
+  };
 
-  return(
+  return (
     <>
       {userRoutes.map(({ title, path }) => (
         <li key={path} className="nav-item">
@@ -25,13 +25,11 @@ export const NavUser: FC = () => {
           </NavLink>
         </li>
       ))}
-      <li className='nav-item'>
-        <span
-          onClick={() => logoutHandler()}
-          className='nav-link'>
+      <li className="nav-item">
+        <span onClick={() => logoutHandler()} className="nav-link">
           Log out
         </span>
       </li>
     </>
-  )
-}
+  );
+};

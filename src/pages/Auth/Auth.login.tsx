@@ -14,10 +14,11 @@ export const AuthLogin: FC = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isDirty, isValid }
+    formState: { errors, isDirty, isValid },
   } = useForm<User>({ mode: 'all' });
 
-  function formData(form: User) { // TODO: error handling
+  function formData(form: User) {
+    // TODO: error handling
     dispatch(logIn(form));
     reset();
     navigate('/user/dashboard');
@@ -29,32 +30,30 @@ export const AuthLogin: FC = () => {
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
           <label htmlFor="login">Email</label>
-          <input 
-            {...register('login', {required: true})}
+          <input
+            {...register('login', { required: true })}
             type="text"
             name="login"
             id="login"
             className="form-control"
-            placeholder='user@address.mail'
+            placeholder="user@address.mail"
           />
-          {errors.login?.type === 'required' && <Alert variant='warning'>Login is required</Alert>}
+          {errors.login?.type === 'required' && <Alert variant="warning">Login is required</Alert>}
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
-            {...register('password', {required: true})}
+            {...register('password', { required: true })}
             type="password"
             name="password"
             id="password"
             className="form-control"
           />
-          {errors.password?.type === 'required' && <Alert variant='warning'>Password is required</Alert>}
+          {errors.password?.type === 'required' && (
+            <Alert variant="warning">Password is required</Alert>
+          )}
         </div>
-        <button
-          type="submit"
-          className="btn btn-success"
-          disabled={!isDirty || !isValid}
-        >
+        <button type="submit" className="btn btn-success" disabled={!isDirty || !isValid}>
           Submit
         </button>
       </form>

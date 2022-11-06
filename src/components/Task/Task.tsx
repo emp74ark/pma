@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { ListGroup } from "react-bootstrap";
-import { ColumnData } from "../../shared/interfaces";
+import { FC } from 'react';
+import { ListGroup } from 'react-bootstrap';
+import { ColumnData } from '../../shared/interfaces';
 
 export const TasksList: FC<ColumnData> = (data) => {
   return (
