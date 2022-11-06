@@ -1,11 +1,8 @@
-import axios from 'axios';
 import { User } from '../shared/interfaces';
-import { BASE_URL } from '../shared/environment';
-
-const token = localStorage.getItem('token'); // TODO: move to interceptor
+import { http } from './interceptor.service';
 
 function signin(user: User) {
-  axios.post(`${BASE_URL}/signin`, user).then((response) => {
+  http.post('/signin', user).then((response) => {
     localStorage.setItem('token', response.data.token);
     const exp = Date.now() + 86400000; // today + 24h
     localStorage.setItem('exp', exp.toString());
@@ -13,7 +10,7 @@ function signin(user: User) {
 }
 
 function signup(user: User) {
-  axios.post(`${BASE_URL}/signup`, user);
+  http.post('/signup', user);
 }
 
 function signout() {
@@ -21,33 +18,27 @@ function signout() {
 }
 
 function getAllUsers() {
-  const response = axios.get<User[]>(`${BASE_URL}/users`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
+  const response = http.get<User[]>('/users');
   return response;
 }
 
 function getUserById(id: string) {
-  const response = axios.get<User>(`${BASE_URL}/users/${id}`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
+  const response = http.get<User>(`/users/${id}`);
   return response;
 }
 
 function deleteUser(user: User) {
-  const response = axios.delete(`${BASE_URL}/users/${user.id}`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
+  const response = http.delete(`/users/${user.id}`);
   return response;
 }
 
 function editUser(user: User) {
-  const response = axios.put<User>(
-    `${BASE_URL}/users/${user.id}`,
-    { name: user.name, login: user.login, password: user.password },
-    { headers: { authorization: `Bearer ${token}` } }
-  );
+  const response = http.put<User>(`/users/${user.id}`, {
+    name: user.name,
+    login: user.login,
+    password: user.password,
+  });
   return response;
 }
 
-export { signin, signup, signout };
+export { signin, signup, signout, getAllUsers, getUserById, deleteUser, editUser };

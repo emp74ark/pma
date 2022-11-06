@@ -1,45 +1,31 @@
-import axios from 'axios';
-import { BASE_URL } from '../shared/environment';
 import { Board } from '../shared/interfaces';
-
-const token = localStorage.getItem('token'); // TODO: move to interceptor
+import { http } from './interceptor.service';
 
 function getAllBoards() {
-  const response = axios.get<Board[]>(`${BASE_URL}/boards`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
+  const response = http.get<Board[]>('/boards');
   return response;
 }
 
 function getBoardById(id: string) {
-  const response = axios.get<Board>(`${BASE_URL}/boards/${id}`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
+  const response = http.get<Board>(`/boards/${id}`);
   return response;
 }
 
 function createBoard(board: Board) {
-  const response = axios.post(
-    `${BASE_URL}/boards`,
-    { title: board.title, description: board.description },
-    { headers: { authorization: `Bearer ${token}` } }
-  );
-  return response;
-}
-
-function deleteBoard(board: Board) {
-  const response = axios.delete(`${BASE_URL}/boards/${board.id}`, {
-    headers: { authorization: `Bearer ${token}` },
+  const response = http.post('/boards', {
+    title: board.title,
+    description: board.description,
   });
   return response;
 }
 
+function deleteBoard(board: Board) {
+  const response = http.delete(`/boards/${board.id}`);
+  return response;
+}
+
 function editBoard(board: Board) {
-  const response = axios.put<Board>(
-    `${BASE_URL}/boards`,
-    { board },
-    { headers: { authorization: `Bearer ${token}` } }
-  );
+  const response = http.put<Board>(`/boards`, { board });
   return response;
 }
 
