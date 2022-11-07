@@ -1,7 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { TasksList } from '../../components/Task/Task';
+import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
@@ -9,18 +11,21 @@ import { Board, Column, ColumnData } from '../../shared/interfaces';
 
 export const BoardComonent: FC = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   const boardId = params.boardId;
   const [boardData, setBoardData] = useState<Board>();
   const [columns, setColumns] = useState<Column[]>([]);
   const [columnData, setColumnData] = useState<ColumnData[]>([]);
 
   useEffect(() => {
+    dispatch(toggleLoading(true));
     getAllColums(boardId!).then((response) => {
       setColumns(response.data);
       response.data.map((column) => {
-        getAllTasks(boardId!, column.id!).then((response) =>
-          setColumnData([...columnData, { columnId: column.id!, tasks: response.data }])
-        );
+        getAllTasks(boardId!, column.id!).then((response) => {
+          setColumnData([...columnData, { columnId: column.id!, tasks: response.data }]);
+          dispatch(toggleLoading(false));
+        });
       });
     });
     getBoardById(boardId!).then((response) => setBoardData(response.data));

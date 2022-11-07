@@ -4,6 +4,7 @@ import { SettingsState } from '../shared/interfaces';
 const initialState: SettingsState = {
   locale: 'en',
   theme: 'light',
+  loading: false,
 };
 
 const localeSlice = createSlice({
@@ -16,8 +17,11 @@ const localeSlice = createSlice({
     toggleTheme: (state, action: PayloadAction<string>) => {
       state.theme = action.payload;
     },
+    toggleLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
   },
 });
 
-export const { toggleLocale, toggleTheme } = localeSlice.actions;
+export const { toggleLocale, toggleTheme, toggleLoading } = localeSlice.actions;
 export default localeSlice.reducer;

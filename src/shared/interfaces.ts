@@ -41,4 +41,5 @@ export interface AuthState {
 export interface SettingsState {
   locale: string;
   theme: string;
+  loading: boolean;
 }

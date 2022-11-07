@@ -3,6 +3,7 @@ import { Alert, Card } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toggleLoading } from '../../redux/settingsSlice';
 import { createBoard, getAllBoards } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
 
@@ -30,7 +31,11 @@ export const Dashboard: FC = () => {
   }
 
   useEffect(() => {
-    getAllBoards().then((response) => setBoards(response.data));
+    dispatch(toggleLoading(true));
+    getAllBoards().then((response) => {
+      setBoards(response.data);
+      dispatch(toggleLoading(false));
+    });
   }, []);
 
   return (
