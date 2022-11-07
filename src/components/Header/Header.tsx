@@ -1,15 +1,25 @@
 import { FC } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
-import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleLocale, toggleTheme } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { NavCommon } from './Header.common';
 import { NavUser } from './Header.user';
 
 export const Header: FC = () => {
   const { login } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
+  const selectLocaleHandler = (key: string | null) => {
+    const value = key ? key : 'en';
+    dispatch(toggleLocale(value));
+  };
+
+  const selectThemeHandler = (key: string | null) => {
+    const value = key ? key : 'light';
+    dispatch(toggleTheme(value));
+  };
 
   return (
     <nav className="row bg-light align-items-center">
@@ -18,15 +28,24 @@ export const Header: FC = () => {
         {!login && <NavCommon />}
         {login && <NavUser />}
       </ul>
-      <Dropdown className="col">
-        <DropdownToggle variant="secondary" id="locale">
-          Language
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>English</DropdownItem>
-          <DropdownItem>Russian</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
+      <DropdownButton
+        className="col"
+        id="locale"
+        onSelect={(key) => selectLocaleHandler(key)}
+        title="Language"
+      >
+        <DropdownItem eventKey={'en'}>English</DropdownItem>
+        <DropdownItem eventKey={'ru'}>Russian</DropdownItem>
+      </DropdownButton>
+      <DropdownButton
+        className="col"
+        id="theme"
+        onSelect={(key) => selectThemeHandler(key)}
+        title="Theme"
+      >
+        <DropdownItem eventKey={'light'}>Light</DropdownItem>
+        <DropdownItem eventKey={'dark'}>Dark</DropdownItem>
+      </DropdownButton>
     </nav>
   );
 };

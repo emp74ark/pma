@@ -37,3 +37,8 @@ export interface AuthState {
   token: string | undefined;
   mode: 'login' | 'registration';
 }
+
+export interface SettingsState {
+  locale: string;
+  theme: string;
+}
