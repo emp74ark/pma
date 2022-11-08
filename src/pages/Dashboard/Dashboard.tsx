@@ -1,9 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { Alert, Button, Card } from 'react-bootstrap';
+import { Alert, Card } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import DeleteButton from '../../components/DeleteButton/DeleteButton';
+import EditButton from '../../components/EditButton/EditButton';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { createBoard, getAllBoards } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
@@ -81,14 +84,9 @@ export const Dashboard: FC = () => {
             >
               <Card.Body>
                 <Stack direction="horizontal" gap={3}>
-                  <Button className="ms-auto" variant="outline-primary" size="sm">
-                    <i className="bi-pencil-square" style={{ fontSize: '15px', color: 'blue' }}></i>
-                  </Button>
-                  <Button variant="outline-danger" size="sm">
-                    <i className="bi-trash" style={{ fontSize: '15px', color: 'red' }}></i>
-                  </Button>
+                  <EditButton className="ms-auto" onClick={() => console.log('click')} />
+                  <DeleteButton className="" onClick={() => console.log('click')} />
                 </Stack>
-
                 <Card.Title>{board.title}</Card.Title>
                 <Card.Text>{board.description}</Card.Text>
               </Card.Body>
