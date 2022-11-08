@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Alert, Card } from 'react-bootstrap';
+import { Alert, Button, Card } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -80,6 +80,15 @@ export const Dashboard: FC = () => {
               onClick={() => openBoard(board.id!)}
             >
               <Card.Body>
+                <Stack direction="horizontal" gap={3}>
+                  <Button className="ms-auto" variant="outline-primary" size="sm">
+                    <i className="bi-pencil-square" style={{ fontSize: '15px', color: 'blue' }}></i>
+                  </Button>
+                  <Button variant="outline-danger" size="sm">
+                    <i className="bi-trash" style={{ fontSize: '15px', color: 'red' }}></i>
+                  </Button>
+                </Stack>
+
                 <Card.Title>{board.title}</Card.Title>
                 <Card.Text>{board.description}</Card.Text>
               </Card.Body>
