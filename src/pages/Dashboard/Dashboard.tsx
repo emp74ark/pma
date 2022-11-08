@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Alert, Card } from 'react-bootstrap';
+import Stack from 'react-bootstrap/Stack';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -70,15 +71,21 @@ export const Dashboard: FC = () => {
           Submit
         </button>
       </form>
-      {boards &&
-        boards.map((board) => (
-          <Card key={board.id} onClick={() => openBoard(board.id!)}>
-            <Card.Body>
-              <Card.Title>{board.title}</Card.Title>
-              <Card.Text>{board.description}</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
+      <div className="w-100 h-100 d-flex gap-5 overflow-auto ">
+        {boards &&
+          boards.map((board) => (
+            <Card
+              style={{ width: '300px', height: '400px', flex: '0 0 300px' }}
+              key={board.id}
+              onClick={() => openBoard(board.id!)}
+            >
+              <Card.Body>
+                <Card.Title>{board.title}</Card.Title>
+                <Card.Text>{board.description}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+      </div>
     </>
   );
 };
