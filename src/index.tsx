@@ -6,8 +6,6 @@ import './index.scss';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
