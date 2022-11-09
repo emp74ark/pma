@@ -1,10 +1,11 @@
+import { sessionLifetime } from '../shared/environment';
 import { User } from '../shared/interfaces';
 import { http } from './interceptor.service';
 
 function signin(user: User) {
   http.post('/signin', user).then((response) => {
     localStorage.setItem('token', response.data.token);
-    const exp = Date.now() + 86400000; // today + 24h
+    const exp = Date.now() + sessionLifetime;
     localStorage.setItem('exp', exp.toString());
   });
 }
