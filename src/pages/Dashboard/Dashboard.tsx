@@ -74,7 +74,7 @@ export const Dashboard: FC = () => {
           Submit
         </button>
       </form>
-      <div className="w-100 h-100 d-flex gap-5 overflow-auto ">
+      <div className="w-100 h-auto d-flex gap-5 overflow-auto ">
         {boards &&
           boards.map((board) => (
             <Card
