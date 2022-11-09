@@ -7,7 +7,7 @@ export const TasksList: FC<ColumnData> = (data) => {
     <>
       <ListGroup>
         {data.tasks.map((task) => (
-          <ListGroup.Item key={task.id}>
+          <ListGroup.Item className="w-100" key={task.id}>
             <div className="d-flex align-items-center">
               <h5>{task.title}</h5>
               <Button className="ms-auto" variant="link" size="sm">

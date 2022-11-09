@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CreateButton from '../../components/CreateButton/CreateButton';
@@ -36,9 +36,13 @@ export const BoardComonent: FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="d-flex flex-column gap-2">
       <h2>{boardData?.title}</h2>
       <h3>{boardData?.description}</h3>
+      <Button className="d-flex gap-3 align-self-start" variant="success" size="lg">
+        <i className="bi-plus-circle" style={{ fontSize: '20px', color: 'white' }}></i>
+        <span>Add column</span>
+      </Button>
       <div className="w-100 h-100 d-flex gap-5">
         {columns &&
           columns.map((column) => (
@@ -51,13 +55,15 @@ export const BoardComonent: FC = () => {
               </Card.Header>
               <Card.Body
                 className="d-flex flex-column gap-3 overflow-auto"
-                style={{ width: '250px', height: '600px', flex: '0 0 600px' }}
+                style={{ width: '100%', height: '600px', flex: '0 0 600px' }}
               >
-                {columnData.map((column) => TasksList(column))}
+                {columnData.map((column, i) => (
+                  <div key={i}>{TasksList(column)}</div>
+                ))}
               </Card.Body>
             </Card>
           ))}
       </div>
-    </>
+    </div>
   );
 };
