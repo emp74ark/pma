@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, ButtonGroup, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import { TasksList } from '../../components/Task/Task';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
@@ -32,16 +33,56 @@ export const BoardComonent: FC = () => {
   }, []);
 
   return (
-    <>
-      <h2>{boardData?.title}</h2>
-      <h3>{boardData?.description}</h3>
-      {columns &&
-        columns.map((column) => (
-          <Card key={column.id}>
-            <Card.Header>{column.title}</Card.Header>
-            {columnData.map((column) => TasksList(column))}
-          </Card>
-        ))}
-    </>
+    <div>
+      <div className="row d-flex justify-content-between m-3">
+        <h2 className="col-auto">{boardData?.title}</h2>
+        <Button className="col-auto" variant="success">
+          <i className="bi-plus-circle">
+            <span className="m-2">Add column</span>
+          </i>
+        </Button>
+      </div>
+      <div className="row m-3">
+        <h3 className="col text-center text-secondary">{boardData?.description}</h3>
+      </div>
+      <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
+        {columns &&
+          columns.map((column) => (
+            <Card
+              key={column.id}
+              className="h-auto flex-grow-0 flex-shrink-0"
+              style={{ width: '20rem' }}
+            >
+              <Card.Header className="gap-3">
+                <div className="row">
+                  <Card.Title className="col">{column.title}</Card.Title>
+                  <ButtonGroup className="col float-right" size="sm">
+                    <Button
+                      className="bi-plus-circle text-primary"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                    <Button
+                      className="bi-pencil text-success"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                    <Button
+                      className="bi-trash text-danger"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                  </ButtonGroup>
+                </div>
+              </Card.Header>
+              <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
+                {columnData.map((column, i) => (
+                  <div key={i}>{TasksList(column)}</div>
+                ))}
+              </Card.Body>
+            </Card>
+          ))}
+      </div>
+    </div>
   );
 };

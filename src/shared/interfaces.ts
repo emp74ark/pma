@@ -43,3 +43,9 @@ export interface SettingsState {
   theme: string;
   loading: boolean;
 }
+
+
+export type CustomButtonProps = {
+  onClick: (e: React.MouseEvent) => void;
+  className: string;
+}

@@ -1,6 +1,13 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 // used for icons in footer
 .icon {
   height: 1em;
   margin: 1em;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
 }

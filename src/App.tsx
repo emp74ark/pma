@@ -1,4 +1,5 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
@@ -24,18 +25,19 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       {setting.loading && <SpinnerComponent />}
-      <ModalSession />
-      <Header />
-      <Routes>
-        {appRoutes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-        {auth.login &&
-          protectedRoutes.map(({ path, element }) => (
+      <Container fluid className="h-100 d-flex flex-column">
+        <Header />
+        <Routes>
+          {appRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
-      </Routes>
-      <Footer />
+          {auth.login &&
+            protectedRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+        </Routes>
+        <Footer />
+      </Container>
     </BrowserRouter>
   );
 };
