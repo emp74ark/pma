@@ -34,7 +34,7 @@ export interface Task {
 
 export interface AuthState {
   login: string | undefined;
-  token: string | undefined;
+  exp: boolean;
   mode: 'login' | 'registration';
 }
 
