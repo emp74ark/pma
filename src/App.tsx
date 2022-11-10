@@ -25,6 +25,7 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       {setting.loading && <SpinnerComponent />}
+      <ModalSession />
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Routes>
