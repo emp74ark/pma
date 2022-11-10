@@ -1,11 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, ButtonGroup, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import CreateButton from '../../components/CreateButton/CreateButton';
 
-import DeleteButton from '../../components/DeleteButton/DeleteButton';
-import EditButton from '../../components/EditButton/EditButton';
 import { TasksList } from '../../components/Task/Task';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
@@ -36,14 +33,19 @@ export const BoardComonent: FC = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-column gap-2">
-      <h2>{boardData?.title}</h2>
-      <h3>{boardData?.description}</h3>
-      <Button className="d-flex gap-3 align-self-start" variant="success" size="lg">
-        <i className="bi-plus-circle" style={{ fontSize: '20px', color: 'white' }}></i>
-        <span>Add column</span>
-      </Button>
-      <div className="w-100 h-100 d-flex gap-5 overflow-auto">
+    <div>
+      <div className="row d-flex justify-content-between m-3">
+        <h2 className="col-auto">{boardData?.title}</h2>
+        <Button className="col-auto" variant="success">
+          <i className="bi-plus-circle">
+            <span className="m-2">Add column</span>
+          </i>
+        </Button>
+      </div>
+      <div className="row m-3">
+        <h3 className="col text-center text-secondary">{boardData?.description}</h3>
+      </div>
+      <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
         {columns &&
           columns.map((column) => (
             <Card
@@ -51,11 +53,27 @@ export const BoardComonent: FC = () => {
               className="h-auto flex-grow-0 flex-shrink-0"
               style={{ width: '20rem' }}
             >
-              <Card.Header className="d-flex gap-3">
-                <span>{column.title}</span>
-                <CreateButton className="ms-auto" onClick={() => console.log('click')} />
-                <EditButton className="" onClick={() => console.log('click')} />
-                <DeleteButton className="" onClick={() => console.log('click')} />
+              <Card.Header className="gap-3">
+                <div className="row">
+                  <Card.Title className="col">{column.title}</Card.Title>
+                  <ButtonGroup className="col float-right" size="sm">
+                    <Button
+                      className="bi-plus-circle text-primary"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                    <Button
+                      className="bi-pencil text-success"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                    <Button
+                      className="bi-trash text-danger"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                  </ButtonGroup>
+                </div>
               </Card.Header>
               <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
                 {columnData.map((column, i) => (
