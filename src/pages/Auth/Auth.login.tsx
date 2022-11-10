@@ -25,7 +25,7 @@ export const AuthLogin: FC = () => {
   }
 
   return (
-    <>
+    <div className="col-4 m-2">
       <h2>Login</h2>
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
@@ -53,10 +53,10 @@ export const AuthLogin: FC = () => {
             <Alert variant="warning">Password is required</Alert>
           )}
         </div>
-        <button type="submit" className="btn btn-success" disabled={!isDirty || !isValid}>
+        <button type="submit" className="btn btn-success m-2" disabled={!isDirty || !isValid}>
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };

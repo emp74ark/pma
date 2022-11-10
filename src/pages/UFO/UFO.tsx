@@ -1,15 +1,16 @@
 import { FC } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import ufo from '../../assets/images/ufo.png';
 
 export const UFO: FC = () => {
   return (
-    <>
-      <div className="row">
+    <Container>
+      <Row>
         <h2 className="col">Page not found</h2>
-      </div>
-      <div className="row">
+      </Row>
+      <Row className="b-fle justify-content-center">
         <img src={ufo} alt="Page not found" className="w-50" />
-      </div>
-    </>
+      </Row>
+    </Container>
   );
 };

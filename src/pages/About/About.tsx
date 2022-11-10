@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { Container } from 'react-bootstrap';
 import board from '../../assets/images/board.png';
 import toyota from '../../assets/images/toyota.jpeg';
 
 export const About: FC = () => {
   return (
-    <>
+    <Container>
       <h2>About</h2>
       <img src={board} alt="Kanban board" />
       <p>
@@ -17,6 +18,6 @@ export const About: FC = () => {
         ullam dolore id harum? Quo vel beatae velit sed deserunt nemo aperiam maxime veniam
         voluptatibus expedita, sunt odit!
       </p>
-    </>
+    </Container>
   );
 };

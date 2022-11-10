@@ -6,7 +6,7 @@ const EditButton = (props: CustomButtonProps) => {
   const { onClick, className } = props;
   return (
     <Button onClick={onClick} className={className} variant="outline-primary" size="sm">
-      <i className="bi-pencil-square" style={{ fontSize: '15px', color: 'blue' }}></i>
+      <i className="bi-pencil"></i>
     </Button>
   );
 };
