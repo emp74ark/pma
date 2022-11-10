@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { commonRoutes } from '../../routes/Routes';
 
@@ -6,23 +7,20 @@ export const NavCommon: FC = () => {
   return (
     <>
       {commonRoutes.map(({ title, path }) => (
-        <li key={path} className="nav-item">
-          <NavLink
-            className='nav-link {({ isActive }) => (isActive ? "active" : undefined)}'
-            to={path}
-          >
-            {title}
-          </NavLink>
-        </li>
-      ))}
-      <li className="nav-item">
         <NavLink
-          className='nav-link {({ isActive }) => (isActive ? "active" : undefined)}'
-          to="/auth"
+          key={path}
+          className={({ isActive }) => (isActive ? 'nav-link text-decoration-none' : 'nav-link')}
+          to={path}
         >
-          Login
+          {title}
         </NavLink>
-      </li>
+      ))}
+      <NavLink
+        className={({ isActive }) => (isActive ? 'nav-link text-decoration-none' : 'nav-link')}
+        to="/auth"
+      >
+        Login
+      </NavLink>
     </>
   );
 };
