@@ -46,17 +46,18 @@ export const BoardComonent: FC = () => {
       <div className="w-100 h-100 d-flex gap-5">
         {columns &&
           columns.map((column) => (
-            <Card key={column.id} style={{ width: '300px', height: 'auto', flex: '0 0 300px' }}>
+            <Card
+              key={column.id}
+              className="h-auto flex-grow-0 flex-shrink-0"
+              style={{ width: '20rem' }}
+            >
               <Card.Header className="d-flex gap-3">
                 <span>{column.title}</span>
                 <CreateButton className="ms-auto" onClick={() => console.log('click')} />
                 <EditButton className="" onClick={() => console.log('click')} />
                 <DeleteButton className="" onClick={() => console.log('click')} />
               </Card.Header>
-              <Card.Body
-                className="d-flex flex-column gap-3 overflow-auto"
-                style={{ width: '100%', height: '600px', flex: '0 0 600px' }}
-              >
+              <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
                 {columnData.map((column, i) => (
                   <div key={i}>{TasksList(column)}</div>
                 ))}

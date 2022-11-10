@@ -78,7 +78,8 @@ export const Dashboard: FC = () => {
         {boards &&
           boards.map((board) => (
             <Card
-              style={{ width: '300px', height: '400px', flex: '0 0 300px' }}
+              className="h-auto flex-grow-0 flex-shrink-0"
+              style={{ width: '20rem' }}
               key={board.id}
               onClick={() => openBoard(board.id!)}
             >
