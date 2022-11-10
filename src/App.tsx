@@ -13,7 +13,7 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       {setting.loading && <SpinnerComponent />}
-      <Container fluid className="h-100">
+      <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Routes>
           {appRoutes.map(({ path, element }) => (
