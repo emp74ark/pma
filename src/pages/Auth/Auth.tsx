@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { mode } from '../../redux/authSlice';
 import { RootState } from '../../redux/store';
@@ -11,25 +11,29 @@ export const Auth: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <ButtonGroup>
-        <Button
-          variant={authMode === 'login' ? 'primary' : 'secondary'}
-          onClick={() => dispatch(mode('login'))}
-        >
-          Login
-        </Button>
-        <Button
-          variant={authMode === 'registration' ? 'primary' : 'secondary'}
-          onClick={() => dispatch(mode('registration'))}
-        >
-          Registration
-        </Button>
-      </ButtonGroup>
-      <div className="row">
+    <Container>
+      <Row className="d-flex justify-content-center">
+        <ButtonGroup className="col-4 m-2">
+          <Button
+            className="w-50"
+            variant={authMode === 'login' ? 'primary' : 'secondary'}
+            onClick={() => dispatch(mode('login'))}
+          >
+            Login
+          </Button>
+          <Button
+            className="w-50"
+            variant={authMode === 'registration' ? 'primary' : 'secondary'}
+            onClick={() => dispatch(mode('registration'))}
+          >
+            Registration
+          </Button>
+        </ButtonGroup>
+      </Row>
+      <Row className="d-flex justify-content-center">
         {authMode === 'login' && <AuthLogin />}
         {authMode === 'registration' && <AuthRegister />}
-      </div>
-    </>
+      </Row>
+    </Container>
   );
 };

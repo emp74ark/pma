@@ -1,14 +1,10 @@
 import { FC, useEffect, useState } from 'react';
-import { Alert, Card } from 'react-bootstrap';
-import Stack from 'react-bootstrap/Stack';
-import { useForm } from 'react-hook-form';
+import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import DeleteButton from '../../components/DeleteButton/DeleteButton';
-import EditButton from '../../components/EditButton/EditButton';
 import { toggleLoading } from '../../redux/settingsSlice';
-import { createBoard, getAllBoards } from '../../services/board.services';
+import { getAllBoards } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
 
 export const Dashboard: FC = () => {
@@ -16,23 +12,9 @@ export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid },
-  } = useForm<Board>();
-
   const openBoard = (boardId: string) => {
     navigate(`/user/board/${boardId}`);
   };
-
-  function boardData(board: Board) {
-    createBoard(board).then((response) => {
-      setBoards([...boards, response.data]);
-    });
-    reset();
-  }
 
   useEffect(() => {
     dispatch(toggleLoading(true));
@@ -43,57 +25,42 @@ export const Dashboard: FC = () => {
   }, []);
 
   return (
-    <>
-      <h2>Dashboard</h2>
-      <form onSubmit={handleSubmit(boardData)}>
-        <div className="form-group">
-          <label htmlFor="title">Board name</label>
-          <input
-            className="form-control"
-            {...register('title', { required: true })}
-            type="text"
-            name="title"
-            id="title"
-          />
-          {errors.title?.type === 'required' && <Alert variant="warning">Title is required</Alert>}
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Board description</label>
-          <input
-            className="form-control"
-            {...register('description', { required: true })}
-            type="text"
-            name="description"
-            id="description"
-          />
-          {errors.description?.type === 'required' && (
-            <Alert variant="warning">Description is required</Alert>
-          )}
-        </div>
-        <button type="submit" className="btn btn-success" disabled={!isValid}>
-          Submit
-        </button>
-      </form>
-      <div className="w-100 h-auto d-flex gap-5 overflow-auto ">
+    <Container>
+      <div className="row d-flex justify-content-between m-3">
+        <h2 className="col-auto">Dashboard</h2>
+        <Button className="col-auto" variant="success">
+          <i className="bi-plus-circle">
+            <span className="m-2">Add board</span>
+          </i>
+        </Button>
+      </div>
+      <div className="row d-flex flex-wrap justify-content-center gap-3">
         {boards &&
           boards.map((board) => (
-            <Card
-              className="h-auto flex-grow-0 flex-shrink-0"
-              style={{ width: '20rem' }}
-              key={board.id}
-              onClick={() => openBoard(board.id!)}
-            >
+            <Card className="col-2 p-0" key={board.id} onClick={() => openBoard(board.id!)}>
+              <Card.Header>
+                <div className="row">
+                  <Card.Title className="col">{board.title}</Card.Title>
+                  <ButtonGroup className="col float-right" size="sm">
+                    <Button
+                      className="bi-pencil text-success"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                    <Button
+                      className="bi-trash text-danger"
+                      variant="link"
+                      onClick={() => console.log('click')}
+                    />
+                  </ButtonGroup>
+                </div>
+              </Card.Header>
               <Card.Body>
-                <Stack direction="horizontal" gap={3}>
-                  <EditButton className="ms-auto" onClick={() => console.log('click')} />
-                  <DeleteButton className="" onClick={() => console.log('click')} />
-                </Stack>
-                <Card.Title>{board.title}</Card.Title>
                 <Card.Text>{board.description}</Card.Text>
               </Card.Body>
             </Card>
           ))}
       </div>
-    </>
+    </Container>
   );
 };

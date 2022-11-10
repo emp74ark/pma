@@ -5,7 +5,7 @@ const DeleteButton = (props: CustomButtonProps) => {
   const { onClick, className } = props;
   return (
     <Button onClick={onClick} className={className} variant="outline-danger" size="sm">
-      <i className="bi-trash" style={{ fontSize: '15px', color: 'red' }}></i>
+      <i className="bi-trash"></i>
     </Button>
   );
 };

@@ -25,7 +25,7 @@ export const AuthRegister: FC = () => {
   }
 
   return (
-    <>
+    <div className="col-4 m-2">
       <h2>Registration</h2>
       <form onSubmit={handleSubmit(formData)}>
         <div className="form-group">
@@ -69,10 +69,10 @@ export const AuthRegister: FC = () => {
             <Alert variant="warning">Password is too short</Alert>
           )}
         </div>
-        <button type="submit" className="btn btn-success" disabled={!isDirty || !isValid}>
+        <button type="submit" className="btn btn-success m-2" disabled={!isDirty || !isValid}>
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };

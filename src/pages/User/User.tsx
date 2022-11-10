@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { fakeUser } from './User.props';
 import { UserForm } from './UserForm';
 
@@ -7,7 +8,7 @@ export const User: FC = () => {
   const [formVisibility, setFormVisibility] = useState(false);
 
   return (
-    <>
+    <Container>
       {!formVisibility && (
         <>
           <h2>{name}</h2>
@@ -25,6 +26,6 @@ export const User: FC = () => {
           </button>
         </>
       )}
-    </>
+    </Container>
   );
 };

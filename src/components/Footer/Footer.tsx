@@ -3,7 +3,7 @@ import { contacts } from './Footer.props';
 
 export const Footer: FC = () => {
   return (
-    <footer className="bg-light d-flex justify-content-center fixed-bottom">
+    <footer className="bg-light d-flex justify-content-center">
       <ul className="nav">
         {contacts.map((contact) => (
           <li key={contact.title} className="nav-item">

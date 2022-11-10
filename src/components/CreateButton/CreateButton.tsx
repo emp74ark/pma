@@ -5,7 +5,7 @@ const CreateButton = (props: CustomButtonProps) => {
   const { onClick, className } = props;
   return (
     <Button className={className} onClick={onClick} variant="outline-success" size="sm">
-      <i className="bi-bookmark-plus" style={{ fontSize: '15px', color: 'green' }}></i>
+      <i className="bi-plus-lg"></i>
     </Button>
   );
 };
