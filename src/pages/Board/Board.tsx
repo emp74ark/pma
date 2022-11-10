@@ -43,7 +43,7 @@ export const BoardComonent: FC = () => {
         <i className="bi-plus-circle" style={{ fontSize: '20px', color: 'white' }}></i>
         <span>Add column</span>
       </Button>
-      <div className="w-100 h-100 d-flex gap-5">
+      <div className="w-100 h-100 d-flex gap-5 overflow-auto">
         {columns &&
           columns.map((column) => (
             <Card
