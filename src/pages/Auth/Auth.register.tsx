@@ -25,54 +25,91 @@ export const AuthRegister: FC = () => {
   }
 
   return (
-    <div className="col-4 m-2">
-      <h2>Registration</h2>
-      <form onSubmit={handleSubmit(formData)}>
+    <>
+      <h2 className="mb-3 text-center">Registration</h2>
+      <form className="row justify-content-center" onSubmit={handleSubmit(formData)}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            {...register('name', { required: true, minLength: 2 })}
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            placeholder="User name"
-          />
-          {errors.name?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
-          {errors.name?.type === 'minLength' && <Alert variant="warning">Name is too short</Alert>}
+          <div className="row mb-2 justify-content-center">
+            <label className="col-md-5 d-flex flex-column justify-content-center" htmlFor="name">
+              Name
+            </label>
+          </div>
+          <div className="row mb-3 justify-content-center">
+            <div className="col-md-5 d-flex flex-column justify-content-center">
+              <input
+                {...register('name', { required: true, minLength: 2 })}
+                type="text"
+                name="name"
+                id="name"
+                className="form-control"
+                placeholder="User name"
+              />
+              {errors.name?.type === 'required' && (
+                <Alert variant="warning">Name is required</Alert>
+              )}
+              {errors.name?.type === 'minLength' && (
+                <Alert variant="warning">Name is too short</Alert>
+              )}
+            </div>
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="login">Email</label>
-          <input
-            {...register('login', { required: true })}
-            type="text"
-            name="login"
-            id="login"
-            className="form-control"
-            placeholder="user@address.mail"
-          />
-          {errors.login?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
+          <div className="row mb-2 justify-content-center">
+            <label className="col-md-5 d-flex flex-column justify-content-center" htmlFor="login">
+              Email
+            </label>
+          </div>
+          <div className="row mb-3 justify-content-center">
+            <div className="col-md-5 d-flex flex-column justify-content-center">
+              <input
+                {...register('login', { required: true })}
+                type="text"
+                name="login"
+                id="login"
+                className="form-control"
+                placeholder="user@address.mail"
+              />
+              {errors.login?.type === 'required' && (
+                <Alert variant="warning">Name is required</Alert>
+              )}
+            </div>
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            {...register('password', { required: true, minLength: 6 })}
-            type="password"
-            name="password"
-            id="password"
-            className="form-control"
-          />
-          {errors.password?.type === 'required' && (
-            <Alert variant="warning">Password is required</Alert>
-          )}
-          {errors.password?.type === 'minLength' && (
-            <Alert variant="warning">Password is too short</Alert>
-          )}
+          <div className="row mb-2 justify-content-center">
+            <label
+              className="col-md-5 d-flex flex-column justify-content-center"
+              htmlFor="password"
+            >
+              Password
+            </label>
+          </div>
+          <div className="row mb-3 justify-content-center">
+            <div className="col-md-5">
+              <input
+                {...register('password', { required: true, minLength: 6 })}
+                type="password"
+                name="password"
+                id="password"
+                className="form-control"
+              />
+              {errors.password?.type === 'required' && (
+                <Alert variant="warning">Password is required</Alert>
+              )}
+              {errors.password?.type === 'minLength' && (
+                <Alert variant="warning">Password is too short</Alert>
+              )}
+            </div>
+          </div>
         </div>
-        <button type="submit" className="btn btn-success m-2" disabled={!isDirty || !isValid}>
-          Submit
-        </button>
+        <div className="row mb-3 justify-content-center">
+          <div className="col-md-5">
+            <button type="submit" className="btn btn-success m-2" disabled={!isDirty || !isValid}>
+              Submit
+            </button>
+          </div>
+        </div>
       </form>
-    </div>
+    </>
   );
 };

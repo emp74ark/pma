@@ -25,38 +25,63 @@ export const AuthLogin: FC = () => {
   }
 
   return (
-    <div className="col-4 m-2">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit(formData)}>
-        <div className="form-group">
-          <label htmlFor="login">Email</label>
-          <input
-            {...register('login', { required: true })}
-            type="text"
-            name="login"
-            id="login"
-            className="form-control"
-            placeholder="user@address.mail"
-          />
-          {errors.login?.type === 'required' && <Alert variant="warning">Login is required</Alert>}
+    <>
+      <h2 className="mb-3 text-center">Login</h2>
+      <form className="row justify-content-center" onSubmit={handleSubmit(formData)}>
+        <div className="row mb-2 justify-content-center">
+          <label
+            className="col-md-5 d-flex flex-column justify-content-center"
+            htmlFor="autoSizingInput"
+          >
+            Email
+          </label>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            {...register('password', { required: true })}
-            type="password"
-            name="password"
-            id="password"
-            className="form-control"
-          />
-          {errors.password?.type === 'required' && (
-            <Alert variant="warning">Password is required</Alert>
-          )}
+        <div className="row mb-3 justify-content-center">
+          <div className="col-md-5 d-flex flex-column justify-content-center">
+            <input
+              {...register('login', { required: true })}
+              type="text"
+              name="login"
+              id="autoSizingInput"
+              className="form-control"
+              placeholder="user@address.mail"
+            />
+            {errors.login?.type === 'required' && (
+              <Alert variant="warning">Login is required</Alert>
+            )}
+          </div>
         </div>
-        <button type="submit" className="btn btn-success m-2" disabled={!isDirty || !isValid}>
-          Submit
-        </button>
+        <div className="row mb-2 justify-content-center">
+          <label className="col-md-5 d-flex flex-column justify-content-center" htmlFor="password">
+            Password
+          </label>
+        </div>
+        <div className="row mb-3 justify-content-center">
+          <div className="col-md-5">
+            <input
+              {...register('password', { required: true })}
+              type="password"
+              name="password"
+              id="password"
+              className="form-control"
+            />
+            {errors.password?.type === 'required' && (
+              <Alert variant="warning">Password is required</Alert>
+            )}
+          </div>
+        </div>
+        <div className="row mb-3 justify-content-center">
+          <div className="col-md-5">
+            <button
+              type="submit"
+              className="btn btn-success m-2 col-md-5"
+              disabled={!isDirty || !isValid}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </form>
-    </div>
+    </>
   );
 };
