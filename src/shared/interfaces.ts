@@ -34,7 +34,7 @@ export interface Task {
 
 export interface AuthState {
   login: string | undefined;
-  token: string | undefined;
+  exp: boolean;
   mode: 'login' | 'registration';
 }
 
@@ -42,10 +42,4 @@ export interface SettingsState {
   locale: string;
   theme: string;
   loading: boolean;
-}
-
-
-export type CustomButtonProps = {
-  onClick: (e: React.MouseEvent) => void;
-  className: string;
 }

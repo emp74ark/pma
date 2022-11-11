@@ -25,7 +25,7 @@ export const Dashboard: FC = () => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">Dashboard</h2>
         <Button className="col-auto" variant="success">
@@ -34,7 +34,7 @@ export const Dashboard: FC = () => {
           </i>
         </Button>
       </div>
-      <div className="row d-flex flex-wrap justify-content-center gap-3">
+      <div className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1">
         {boards &&
           boards.map((board) => (
             <Card className="col-2 p-0" key={board.id} onClick={() => openBoard(board.id!)}>
