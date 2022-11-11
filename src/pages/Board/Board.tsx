@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, ButtonGroup, Card } from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ export const BoardComonent: FC = () => {
   }, []);
 
   return (
-    <div>
+    <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{boardData?.title}</h2>
         <Button className="col-auto" variant="success">
@@ -83,6 +83,6 @@ export const BoardComonent: FC = () => {
             </Card>
           ))}
       </div>
-    </div>
+    </Container>
   );
 };

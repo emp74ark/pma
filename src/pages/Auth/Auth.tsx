@@ -11,7 +11,7 @@ export const Auth: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <Container>
+    <Container className="flex-fill">
       <Row className="d-flex justify-content-center">
         <ButtonGroup className="col-4 m-2">
           <Button

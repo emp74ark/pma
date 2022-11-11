@@ -4,7 +4,7 @@ import ufo from '../../assets/images/ufo.png';
 
 export const UFO: FC = () => {
   return (
-    <Container>
+    <Container className="flex-fill">
       <Row>
         <h2 className="col">Page not found</h2>
       </Row>
