@@ -25,7 +25,6 @@ export const EditBoard: FC = () => {
       title: board.title,
       description: board.description,
     };
-    console.log(newData);
     editBoard(newData).then(() => {
       dispatch(resetModal());
     });
