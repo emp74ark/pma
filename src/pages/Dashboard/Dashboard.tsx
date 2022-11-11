@@ -27,14 +27,14 @@ export const Dashboard: FC = () => {
     });
   }, [modal]);
 
-  const removeHandler = (e: React.MouseEvent, boardId: string) => {
+  const removeHandler = (e: React.MouseEvent, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'remove', id: boardId }));
+    dispatch(openModal({ name: 'remove', data: board }));
   };
 
-  const editHandler = (e: React.MouseEvent, boardId: string) => {
+  const editHandler = (e: React.MouseEvent, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'editBoard', id: boardId }));
+    dispatch(openModal({ name: 'editBoard', data: board }));
   };
 
   return (
@@ -44,7 +44,7 @@ export const Dashboard: FC = () => {
         <Button
           className="col-auto"
           variant="success"
-          onClick={() => dispatch(openModal({ name: 'addBoard', id: null }))}
+          onClick={() => dispatch(openModal({ name: 'addBoard', data: null }))}
         >
           <i className="bi-plus-circle">
             <span className="m-2">Add board</span>
@@ -62,12 +62,12 @@ export const Dashboard: FC = () => {
                     <Button
                       className="bi-pencil text-success"
                       variant="link"
-                      onClick={(e) => editHandler(e, board.id!)}
+                      onClick={(e) => editHandler(e, board)}
                     />
                     <Button
                       className="bi-trash text-danger"
                       variant="link"
-                      onClick={(e) => removeHandler(e, board.id!)}
+                      onClick={(e) => removeHandler(e, board)}
                     />
                   </ButtonGroup>
                 </div>

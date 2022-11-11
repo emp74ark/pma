@@ -46,5 +46,5 @@ export interface SettingsState {
 
 export interface ModalState {
   visible: Record<string, boolean>;
-  id: string | null;
+  data: Board | Column | Task | null;
 }

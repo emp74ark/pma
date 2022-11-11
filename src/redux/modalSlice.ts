@@ -4,7 +4,7 @@
  */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModalState } from '../shared/interfaces';
+import { Board, Column, ModalState } from '../shared/interfaces';
 
 const initialState: ModalState = {
   visible: {
@@ -12,16 +12,16 @@ const initialState: ModalState = {
     editBoard: false,
     remove: false,
   },
-  id: null,
+  data: null,
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<{ name: string; id: string | null }>) => {
+    openModal: (state, action: PayloadAction<{ name: string; data: Board | Column | null }>) => {
       state.visible[action.payload.name] = true;
-      state.id = action.payload.id;
+      state.data = action.payload.data;
     },
     closeModal: (state, action: PayloadAction<string>) => {
       state.visible[action.payload] = false;

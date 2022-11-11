@@ -25,7 +25,10 @@ function deleteBoard(id: string) {
 }
 
 function editBoard(board: Board) {
-  const response = http.put<Board>(`/boards`, { board });
+  const response = http.put<Board>(`/boards/${board.id}`, {
+    title: board.title,
+    description: board.description,
+  });
   return response;
 }
 

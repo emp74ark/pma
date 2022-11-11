@@ -56,16 +56,14 @@ export const AddBoard: FC = () => {
               <Alert variant="warning">Description is required</Alert>
             )}
           </div>
+          <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
+            Submit
+          </Button>
+          <Button variant="warning" onClick={() => dispatch(closeModal('addBoard'))}>
+            Cancel
+          </Button>
         </form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-          Submit
-        </Button>
-        <Button variant="warning" onClick={() => dispatch(closeModal('addBoard'))}>
-          Cancel
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 };

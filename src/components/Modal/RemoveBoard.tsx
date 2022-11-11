@@ -10,8 +10,8 @@ export const RemoveBoard: FC = () => {
   const { modal } = useSelector((state: RootState) => state);
 
   const removeHandler = () => {
-    if (modal.id)
-      deleteBoard(modal.id).then(() => {
+    if (modal.data?.id)
+      deleteBoard(modal.data.id).then(() => {
         dispatch(resetModal());
       });
   };
