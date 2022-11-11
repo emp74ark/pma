@@ -1,9 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
+import { RootState } from '../../redux/store';
 import { getAllBoards } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
 
@@ -11,6 +13,7 @@ export const Dashboard: FC = () => {
   const navigate = useNavigate();
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
+  const { modal } = useSelector((state: RootState) => state);
 
   const openBoard = (boardId: string) => {
     navigate(`/user/board/${boardId}`);
@@ -22,13 +25,17 @@ export const Dashboard: FC = () => {
       setBoards(response.data);
       dispatch(toggleLoading(false));
     });
-  }, []);
+  }, [modal]);
 
   return (
     <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">Dashboard</h2>
-        <Button className="col-auto" variant="success">
+        <Button
+          className="col-auto"
+          variant="success"
+          onClick={() => dispatch(openModal('addBoard'))}
+        >
           <i className="bi-plus-circle">
             <span className="m-2">Add board</span>
           </i>
