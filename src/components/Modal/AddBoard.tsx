@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../redux/modalSlice';
+import { closeModal, resetModal } from '../../redux/modalSlice';
 import { createBoard } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
 
@@ -17,11 +17,9 @@ export const AddBoard: FC = () => {
   } = useForm<Board>();
 
   function boardData(board: Board) {
-    createBoard(board).then((response) => {
-      dispatch(closeModal('addBoard'));
-      // setBoards([...boards, response.data]);
+    createBoard(board).then(() => {
+      dispatch(resetModal());
     });
-    // createBoard(board);
     reset();
   }
 
@@ -58,14 +56,16 @@ export const AddBoard: FC = () => {
               <Alert variant="warning">Description is required</Alert>
             )}
           </div>
-          <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
-          </Button>
-          <Button variant="warning" onClick={() => dispatch(closeModal('addBoard'))}>
-            Cancel
-          </Button>
         </form>
       </Modal.Body>
+      <Modal.Footer>
+        <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
+          Submit
+        </Button>
+        <Button variant="warning" onClick={() => dispatch(closeModal('addBoard'))}>
+          Cancel
+        </Button>
+      </Modal.Footer>
     </Modal>
   );
 };

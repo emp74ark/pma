@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +27,16 @@ export const Dashboard: FC = () => {
     });
   }, [modal]);
 
+  const removeHandler = (e: React.MouseEvent, boardId: string) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'remove', id: boardId }));
+  };
+
+  const editHandler = (e: React.MouseEvent, boardId: string) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'editBoard', id: boardId }));
+  };
+
   return (
     <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
@@ -34,7 +44,7 @@ export const Dashboard: FC = () => {
         <Button
           className="col-auto"
           variant="success"
-          onClick={() => dispatch(openModal('addBoard'))}
+          onClick={() => dispatch(openModal({ name: 'addBoard', id: null }))}
         >
           <i className="bi-plus-circle">
             <span className="m-2">Add board</span>
@@ -52,12 +62,12 @@ export const Dashboard: FC = () => {
                     <Button
                       className="bi-pencil text-success"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => editHandler(e, board.id!)}
                     />
                     <Button
                       className="bi-trash text-danger"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => removeHandler(e, board.id!)}
                     />
                   </ButtonGroup>
                 </div>
