@@ -1,18 +1,27 @@
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../redux/modalSlice';
+import { useParams } from 'react-router-dom';
+import { closeModal, resetModal } from '../../redux/modalSlice';
+import { createColumn } from '../../services/column.service';
 import { Column } from '../../shared/interfaces';
 
 const AddColumn = () => {
   const dispatch = useDispatch();
-
+  const { boardId } = useParams();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm<Column>();
+
+  function columnData(column: Column) {
+    createColumn(boardId as string, column.title).then(() => {
+      dispatch(resetModal());
+    });
+    reset();
+  }
 
   return (
     <>
@@ -21,7 +30,7 @@ const AddColumn = () => {
           <Modal.Title>Create new column</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={() => {}}>
+          <form onSubmit={handleSubmit(columnData)}>
             <div className="form-group">
               <label htmlFor="title">Column name</label>
               <input

@@ -1,3 +1,4 @@
+import { ModalColumn } from '../components/Modal/ModalColumn';
 import { About } from '../pages/About/About';
 import { Auth } from '../pages/Auth/Auth';
 import { BoardComonent } from '../pages/Board/Board';
@@ -16,7 +17,18 @@ export const userRoutes = [
   { title: 'User', path: '/user/cabinet', element: <User /> },
 ];
 
-const taskRoutes = [{ title: 'Board', path: '/user/board/:boardId', element: <BoardComonent /> }];
+const taskRoutes = [
+  {
+    title: 'Board',
+    path: '/user/board/:boardId',
+    element: (
+      <>
+        <BoardComonent />
+        <ModalColumn />
+      </>
+    ),
+  },
+];
 
 export const appRoutes = [
   ...commonRoutes,
