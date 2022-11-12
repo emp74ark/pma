@@ -21,8 +21,8 @@ function deleteColumn(boardId: string, columnId: string) {
   return response;
 }
 
-function editColumn(boardId: string, column: Column) {
-  const response = http.put<Column>('/boards', {
+function editColumn(boardId: string, columnId: string, column: Column) {
+  const response = http.put<Column>(`/boards/${boardId}/columns/${columnId}`, {
     title: column.title,
     order: column.order,
   });

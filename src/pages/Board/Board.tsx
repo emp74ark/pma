@@ -1,14 +1,15 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, ButtonGroup, Card } from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { TasksList } from '../../components/Task/Task';
+import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
-import { Board, Column, ColumnData } from '../../shared/interfaces';
+import { Board, Column, ColumnData, Task } from '../../shared/interfaces';
 
 export const BoardComonent: FC = () => {
   const params = useParams();
@@ -22,21 +23,63 @@ export const BoardComonent: FC = () => {
     dispatch(toggleLoading(true));
     getAllColums(boardId!).then((response) => {
       setColumns(response.data);
-      response.data.map((column) => {
-        getAllTasks(boardId!, column.id!).then((response) => {
-          setColumnData([...columnData, { columnId: column.id!, tasks: response.data }]);
-          dispatch(toggleLoading(false));
+      // response.data.map((column) => {
+      //   getAllTasks(boardId!, column.id!).then((response) => {
+      //     setColumnData((columnData) => [
+      //       ...columnData,
+      //       { columnId: column.id!, tasks: response.data },
+      //     ]);
+      //     // UserId
+      //     localStorage.setItem('userId', response.data[0].userId);
+      //     dispatch(toggleLoading(false));
+      //   });
+      // });
+
+      Promise.all(
+        response.data.map((column) => {
+          return getAllTasks(boardId!, column.id!);
+        })
+      ).then((r) => {
+        const columnsData = r.map((a) => {
+          if (a.data.length) return { columnId: a.data[0].id!, tasks: a.data };
+          return { columnId: '', tasks: [] };
         });
+
+        setColumnData(columnsData);
+        dispatch(toggleLoading(false));
       });
     });
+
     getBoardById(boardId!).then((response) => setBoardData(response.data));
   }, []);
 
+  useEffect(() => console.log('columnData', columnData), [columnData]);
+
+  const editHandler = (e: React.MouseEvent, column: Column) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'editColumn', data: column }));
+  };
+
+  const removeHandler = (e: React.MouseEvent, column: Column) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'removeColumn', data: column }));
+  };
+
+  const addTaskHandler = (e: React.MouseEvent, column: Column) => {
+    e.stopPropagation();
+    console.log('column', column);
+    dispatch(openModal({ name: 'addTask', data: column }));
+  };
+
   return (
-    <div>
+    <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{boardData?.title}</h2>
-        <Button className="col-auto" variant="success">
+        <Button
+          className="col-auto"
+          variant="success"
+          onClick={() => dispatch(openModal({ name: 'addColumn', data: null }))}
+        >
           <i className="bi-plus-circle">
             <span className="m-2">Add column</span>
           </i>
@@ -47,7 +90,7 @@ export const BoardComonent: FC = () => {
       </div>
       <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
         {columns &&
-          columns.map((column) => (
+          columns.map((column, i) => (
             <Card
               key={column.id}
               className="h-auto flex-grow-0 flex-shrink-0"
@@ -60,29 +103,34 @@ export const BoardComonent: FC = () => {
                     <Button
                       className="bi-plus-circle text-primary"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => addTaskHandler(e, column)}
                     />
                     <Button
                       className="bi-pencil text-success"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => editHandler(e, column)}
                     />
                     <Button
                       className="bi-trash text-danger"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => removeHandler(e, column)}
                     />
                   </ButtonGroup>
                 </div>
               </Card.Header>
               <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
-                {columnData.map((column, i) => (
-                  <div key={i}>{TasksList(column)}</div>
-                ))}
+                {/* {columnData.map((column, i) => (
+                  <div key={i}>{<TasksList data={column} />}</div>
+                ))} */}
+                {columnData.length ? (
+                  <div>
+                    <TasksList data={columnData[i]} />
+                  </div>
+                ) : null}
               </Card.Body>
             </Card>
           ))}
       </div>
-    </div>
+    </Container>
   );
 };

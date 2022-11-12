@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DropdownButton } from 'react-bootstrap';
+import { Container, DropdownButton, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLocale, toggleTheme } from '../../redux/settingsSlice';
@@ -22,30 +22,44 @@ export const Header: FC = () => {
   };
 
   return (
-    <nav className="row bg-light align-items-center">
-      <h2 className="col">PMA</h2>
-      <ul className="nav col-6">
-        {!login && <NavCommon />}
-        {login && <NavUser />}
-      </ul>
-      <DropdownButton
-        className="col"
-        id="locale"
-        onSelect={(key) => selectLocaleHandler(key)}
-        title="Language"
-      >
-        <DropdownItem eventKey={'en'}>English</DropdownItem>
-        <DropdownItem eventKey={'ru'}>Russian</DropdownItem>
-      </DropdownButton>
-      <DropdownButton
-        className="col"
-        id="theme"
-        onSelect={(key) => selectThemeHandler(key)}
-        title="Theme"
-      >
-        <DropdownItem eventKey={'light'}>Light</DropdownItem>
-        <DropdownItem eventKey={'dark'}>Dark</DropdownItem>
-      </DropdownButton>
-    </nav>
+    <Navbar collapseOnSelect expand="lg" bg="light">
+      <Container fluid>
+        <Navbar.Brand>PMA</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Offcanvas
+          id="offcanvasNavbar-expand-lg"
+          aria-labelledby="offcanvasNavbarLabel-expand"
+          placement="end"
+        >
+          <Offcanvas.Header closeButton></Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav>
+              {!login && <NavCommon />}
+              {login && <NavUser />}
+            </Nav>
+            <Nav className="d-flex gap-2 ms-auto">
+              <DropdownButton
+                className="col"
+                id="locale"
+                onSelect={(key) => selectLocaleHandler(key)}
+                title="Language"
+              >
+                <DropdownItem eventKey={'en'}>English</DropdownItem>
+                <DropdownItem eventKey={'ru'}>Russian</DropdownItem>
+              </DropdownButton>
+              <DropdownButton
+                className="col"
+                id="theme"
+                onSelect={(key) => selectThemeHandler(key)}
+                title="Theme"
+              >
+                <DropdownItem eventKey={'light'}>Light</DropdownItem>
+                <DropdownItem eventKey={'dark'}>Dark</DropdownItem>
+              </DropdownButton>
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   );
 };

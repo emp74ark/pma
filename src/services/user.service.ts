@@ -5,6 +5,7 @@ import { http } from './interceptor.service';
 function signin(user: User) {
   http.post('/signin', user).then((response) => {
     localStorage.setItem('token', response.data.token);
+    console.log('response', response);
     const exp = Date.now() + sessionLifetime;
     localStorage.setItem('exp', exp.toString());
   });

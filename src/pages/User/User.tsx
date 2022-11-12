@@ -8,7 +8,7 @@ export const User: FC = () => {
   const [formVisibility, setFormVisibility] = useState(false);
 
   return (
-    <Container>
+    <Container className="flex-fill">
       {!formVisibility && (
         <>
           <h2>{name}</h2>
