@@ -20,8 +20,8 @@ function createTask(boardId: string, columnId: string, userId: string, task: Tas
   return response;
 }
 
-function deleteTask(boardId: string, columnId: string, task: Task) {
-  const response = http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${task.id}`);
+function deleteTask(boardId: string, columnId: string, taskId: string) {
+  const response = http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   return response;
 }
 
