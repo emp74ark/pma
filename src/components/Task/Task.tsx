@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +16,7 @@ export const TasksList = (props: { data: ColumnData }) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'removeTask', data: task }));
   };
+
   return (
     <>
       <ListGroup>

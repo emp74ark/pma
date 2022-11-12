@@ -12,7 +12,6 @@ import { Task } from '../../shared/interfaces';
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
-  const { login } = useSelector((state: RootState) => state.auth);
   const { boardId } = useParams();
   const {
     register,
@@ -22,10 +21,13 @@ export const AddTask: FC = () => {
   } = useForm<Task>();
 
   function taskData(task: Task) {
-    createTask(boardId as string, login as string, data?.id as string, task).then(() => {
-      dispatch(resetModal());
-    });
-    reset();
+    const userId = localStorage.getItem('userId');
+    if (userId && data?.id) {
+      createTask(boardId as string, data?.id, userId, task).then(() => {
+        dispatch(resetModal());
+      });
+      reset();
+    }
   }
 
   return (
@@ -34,7 +36,7 @@ export const AddTask: FC = () => {
         <Modal.Title>Create new task</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit(taskData)}>
           <div className="form-group">
             <label htmlFor="title">Task name</label>
             <input

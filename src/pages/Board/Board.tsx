@@ -26,6 +26,8 @@ export const BoardComonent: FC = () => {
       response.data.map((column) => {
         getAllTasks(boardId!, column.id!).then((response) => {
           setColumnData([...columnData, { columnId: column.id!, tasks: response.data }]);
+          // UserId
+          localStorage.setItem('userId', response.data[0].userId);
           dispatch(toggleLoading(false));
         });
       });
@@ -45,6 +47,7 @@ export const BoardComonent: FC = () => {
 
   const addTaskHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
+    console.log('column', column);
     dispatch(openModal({ name: 'addTask', data: column }));
   };
 

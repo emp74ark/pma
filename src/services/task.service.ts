@@ -12,7 +12,7 @@ function getTaskById(boardId: string, columnId: string, task: Task) {
 }
 
 function createTask(boardId: string, columnId: string, userId: string, task: Task) {
-  const response = http.post(`/boards/${boardId}/columns/${columnId}/tasks/`, {
+  const response = http.post(`/boards/${boardId}/columns/${columnId}/tasks`, {
     title: task.title,
     description: task.description,
     userId: userId,
