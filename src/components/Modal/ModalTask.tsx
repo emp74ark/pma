@@ -6,6 +6,7 @@ import { SpinnerComponent } from '../Spinner/Spinner';
 import { AddTask } from './AddTask';
 import { EditTask } from './EditTask';
 import { ModalSession } from './ModalSession';
+import { RemoveTask } from './RemoveTask';
 
 export const ModalTask: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
@@ -15,6 +16,7 @@ export const ModalTask: FC = () => {
       <ModalSession />
       {modal.visible.addTask && <AddTask />}
       {modal.visible.editTask && <EditTask />}
+      {modal.visible.removeTask && <RemoveTask />}
     </>
   );
 };

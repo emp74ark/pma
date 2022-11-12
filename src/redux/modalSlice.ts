@@ -16,6 +16,7 @@ const initialState: ModalState = {
     removeColumn: false,
     addTask: false,
     editTask: false,
+    removeTask: false,
   },
   data: null,
 };
