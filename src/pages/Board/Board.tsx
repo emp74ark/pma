@@ -39,10 +39,14 @@ export const BoardComonent: FC = () => {
           return getAllTasks(boardId!, column.id!);
         })
       ).then((r) => {
-        const arr = r.map((a) => {
-          return { columnId: a.data[0].id!, tasks: a.data };
-        });
-        setColumnData(arr);
+        let columnsData: ColumnData[] = [];
+        console.log('r', r);
+        if (r[0].data.length) {
+          columnsData = r.map((a) => {
+            return { columnId: a.data[0].id!, tasks: a.data };
+          });
+        }
+        setColumnData(columnsData);
         dispatch(toggleLoading(false));
       });
     });
@@ -119,9 +123,11 @@ export const BoardComonent: FC = () => {
                 {/* {columnData.map((column, i) => (
                   <div key={i}>{<TasksList data={column} />}</div>
                 ))} */}
-                <div>
-                  <TasksList data={columnData[i]} />
-                </div>
+                {columnData.length ? (
+                  <div>
+                    <TasksList data={columnData[i]} />
+                  </div>
+                ) : null}
               </Card.Body>
             </Card>
           ))}

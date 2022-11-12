@@ -4,28 +4,43 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
-import { editBoard } from '../../services/board.services';
-import { Board } from '../../shared/interfaces';
+import { editTask } from '../../services/task.service';
+import { Board, Task } from '../../shared/interfaces';
 
 export const EditTask: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
-  const { id, title, description } = data as Board;
+  const { id, title, description, order, userId, columnId, boardId } = data as Task;
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Board>();
+  } = useForm<Task>();
 
   const dispatch = useDispatch();
-
+  function taskData(task: Task) {
+    const newData = {
+      title: task.title,
+      order,
+      userId,
+      description: task.description,
+      columnId,
+      boardId,
+      id,
+    };
+    if (boardId && columnId) {
+      editTask(boardId, columnId, newData, userId).then(() => {
+        dispatch(resetModal());
+      });
+    }
+  }
   return (
     <Modal size="lg" centered show={true}>
       <Modal.Header>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit(taskData)}>
           <div className="form-group">
             <label htmlFor="title">Task name</label>
             <input
