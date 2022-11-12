@@ -3,6 +3,7 @@ import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
 import { ColumnData } from '../../shared/interfaces';
 
 export const TasksList: FC<ColumnData> = (data) => {
+  console.log('data', data);
   return (
     <>
       <ListGroup>

@@ -1,4 +1,5 @@
 import { ModalColumn } from '../components/Modal/ModalColumn';
+import { ModalTask } from '../components/Modal/ModalTask';
 import { About } from '../pages/About/About';
 import { Auth } from '../pages/Auth/Auth';
 import { BoardComonent } from '../pages/Board/Board';
@@ -25,6 +26,7 @@ const taskRoutes = [
       <>
         <BoardComonent />
         <ModalColumn />
+        <ModalTask />
       </>
     ),
   },

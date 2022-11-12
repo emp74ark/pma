@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
-import { deleteBoard } from '../../services/board.services';
 import { deleteColumn } from '../../services/column.service';
 
 export const RemoveColumn: FC = () => {

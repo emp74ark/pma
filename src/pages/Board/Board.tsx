@@ -9,7 +9,7 @@ import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
-import { Board, Column, ColumnData } from '../../shared/interfaces';
+import { Board, Column, ColumnData, Task } from '../../shared/interfaces';
 
 export const BoardComonent: FC = () => {
   const params = useParams();
@@ -41,6 +41,11 @@ export const BoardComonent: FC = () => {
   const removeHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'removeColumn', data: column }));
+  };
+
+  const addTaskHandler = (e: React.MouseEvent, column: Column) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'addTask', data: column }));
   };
 
   return (
@@ -75,7 +80,7 @@ export const BoardComonent: FC = () => {
                     <Button
                       className="bi-plus-circle text-primary"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => addTaskHandler(e, column)}
                     />
                     <Button
                       className="bi-pencil text-success"
