@@ -97,7 +97,7 @@ export const BoardComonent: FC = () => {
               </Card.Header>
               <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
                 {columnData.map((column, i) => (
-                  <div key={i}>{TasksList(column)}</div>
+                  <div key={i}>{<TasksList data={column} />}</div>
                 ))}
               </Card.Body>
             </Card>
