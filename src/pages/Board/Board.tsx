@@ -23,17 +23,34 @@ export const BoardComonent: FC = () => {
     dispatch(toggleLoading(true));
     getAllColums(boardId!).then((response) => {
       setColumns(response.data);
-      response.data.map((column) => {
-        getAllTasks(boardId!, column.id!).then((response) => {
-          setColumnData([...columnData, { columnId: column.id!, tasks: response.data }]);
-          // UserId
-          localStorage.setItem('userId', response.data[0].userId);
-          dispatch(toggleLoading(false));
+      // response.data.map((column) => {
+      //   getAllTasks(boardId!, column.id!).then((response) => {
+      //     setColumnData((columnData) => [
+      //       ...columnData,
+      //       { columnId: column.id!, tasks: response.data },
+      //     ]);
+      //     // UserId
+      //     localStorage.setItem('userId', response.data[0].userId);
+      //     dispatch(toggleLoading(false));
+      //   });
+      // });
+      Promise.all(
+        response.data.map((column) => {
+          return getAllTasks(boardId!, column.id!);
+        })
+      ).then((r) => {
+        const arr = r.map((a) => {
+          return { columnId: a.data[0].id!, tasks: a.data };
         });
+        setColumnData(arr);
+        dispatch(toggleLoading(false));
       });
     });
+
     getBoardById(boardId!).then((response) => setBoardData(response.data));
   }, []);
+
+  useEffect(() => console.log('columnData', columnData), [columnData]);
 
   const editHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
@@ -70,7 +87,7 @@ export const BoardComonent: FC = () => {
       </div>
       <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
         {columns &&
-          columns.map((column) => (
+          columns.map((column, i) => (
             <Card
               key={column.id}
               className="h-auto flex-grow-0 flex-shrink-0"
@@ -99,9 +116,12 @@ export const BoardComonent: FC = () => {
                 </div>
               </Card.Header>
               <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
-                {columnData.map((column, i) => (
+                {/* {columnData.map((column, i) => (
                   <div key={i}>{<TasksList data={column} />}</div>
-                ))}
+                ))} */}
+                <div>
+                  <TasksList data={columnData[i]} />
+                </div>
               </Card.Body>
             </Card>
           ))}
