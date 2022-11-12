@@ -6,11 +6,12 @@ import { useParams } from 'react-router-dom';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editBoard } from '../../services/board.services';
-import { Board } from '../../shared/interfaces';
+import { editColumn } from '../../services/column.service';
+import { Board, Column } from '../../shared/interfaces';
 
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
-  const { id, title, description } = data as Board;
+  const { id, title, order } = data as Column;
   const { boardId } = useParams();
   const {
     register,
@@ -20,13 +21,25 @@ export const EditColumn: FC = () => {
 
   const dispatch = useDispatch();
 
+  function columnData(column: Column) {
+    const newData = {
+      title: column.title,
+      order: order,
+    };
+    if (boardId && id) {
+      editColumn(boardId, id, newData).then(() => {
+        dispatch(resetModal());
+      });
+    }
+  }
+
   return (
     <Modal size="lg" centered show={true}>
       <Modal.Header>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit(columnData)}>
           <div className="form-group">
             <label htmlFor="title">Column name</label>
             <input
