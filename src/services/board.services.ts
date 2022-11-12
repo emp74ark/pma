@@ -19,13 +19,16 @@ function createBoard(board: Board) {
   return response;
 }
 
-function deleteBoard(board: Board) {
-  const response = http.delete(`/boards/${board.id}`);
+function deleteBoard(id: string) {
+  const response = http.delete(`/boards/${id}`);
   return response;
 }
 
 function editBoard(board: Board) {
-  const response = http.put<Board>(`/boards`, { board });
+  const response = http.put<Board>(`/boards/${board.id}`, {
+    title: board.title,
+    description: board.description,
+  });
   return response;
 }
 

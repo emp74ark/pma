@@ -20,6 +20,7 @@ export interface Column {
   id?: string;
   order?: number;
   title: string;
+  boardId?: string;
 }
 
 export interface Task {
@@ -42,4 +43,9 @@ export interface SettingsState {
   locale: string;
   theme: string;
   loading: boolean;
+}
+
+export interface ModalState {
+  visible: Record<string, boolean>;
+  data: Board | Column | Task | null;
 }

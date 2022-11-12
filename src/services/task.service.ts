@@ -11,17 +11,17 @@ function getTaskById(boardId: string, columnId: string, task: Task) {
   return response;
 }
 
-function createTask(boardId: string, columnId: string, userId: string, task: Task) {
-  const response = http.post(`/boards/${boardId}/columns/${columnId}/tasks/`, {
+function createTask(task: Task) {
+  const response = http.post(`/boards/${task.boardId}/columns/${task.columnId}/tasks`, {
     title: task.title,
     description: task.description,
-    userId: userId,
+    userId: task.userId,
   });
   return response;
 }
 
-function deleteTask(boardId: string, columnId: string, task: Task) {
-  const response = http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${task.id}`);
+function deleteTask(boardId: string, columnId: string, taskId: string) {
+  const response = http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   return response;
 }
 

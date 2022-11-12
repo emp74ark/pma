@@ -16,7 +16,13 @@ export const userRoutes = [
   { title: 'User', path: '/user/cabinet', element: <User /> },
 ];
 
-const taskRoutes = [{ title: 'Board', path: '/user/board/:boardId', element: <BoardComonent /> }];
+const taskRoutes = [
+  {
+    title: 'Board',
+    path: '/user/board/:boardId',
+    element: <BoardComonent />,
+  },
+];
 
 export const appRoutes = [
   ...commonRoutes,
