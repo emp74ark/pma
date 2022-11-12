@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { SpinnerComponent } from '../Spinner/Spinner';
 import AddColumn from './AddColumn';
+import { EditColumn } from './EditColumn';
 import { ModalSession } from './ModalSession';
 
 export const ModalColumn: FC = () => {
@@ -13,6 +14,7 @@ export const ModalColumn: FC = () => {
       {setting.loading && <SpinnerComponent />}
       <ModalSession />
       {modal.visible.addColumn && <AddColumn />}
+      {modal.visible.editColumn && <EditColumn />}
     </>
   );
 };

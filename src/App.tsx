@@ -25,7 +25,6 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <ModalCommon />
-      <ModalColumn />
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Routes>
