@@ -13,6 +13,7 @@ const initialState: ModalState = {
     remove: false,
     addColumn: false,
     editColumn: false,
+    removeColumn: false,
   },
   data: null,
 };

@@ -6,6 +6,7 @@ import { SpinnerComponent } from '../Spinner/Spinner';
 import AddColumn from './AddColumn';
 import { EditColumn } from './EditColumn';
 import { ModalSession } from './ModalSession';
+import { RemoveColumn } from './RemoveColumn';
 
 export const ModalColumn: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
@@ -15,6 +16,7 @@ export const ModalColumn: FC = () => {
       <ModalSession />
       {modal.visible.addColumn && <AddColumn />}
       {modal.visible.editColumn && <EditColumn />}
+      {modal.visible.removeColumn && <RemoveColumn />}
     </>
   );
 };

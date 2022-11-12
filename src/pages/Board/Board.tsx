@@ -38,6 +38,11 @@ export const BoardComonent: FC = () => {
     dispatch(openModal({ name: 'editColumn', data: column }));
   };
 
+  const removeHandler = (e: React.MouseEvent, column: Column) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'removeColumn', data: column }));
+  };
+
   return (
     <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
@@ -80,7 +85,7 @@ export const BoardComonent: FC = () => {
                     <Button
                       className="bi-trash text-danger"
                       variant="link"
-                      onClick={() => console.log('click')}
+                      onClick={(e) => removeHandler(e, column)}
                     />
                   </ButtonGroup>
                 </div>
