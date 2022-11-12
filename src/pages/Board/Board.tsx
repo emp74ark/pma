@@ -39,13 +39,12 @@ export const BoardComonent: FC = () => {
           return getAllTasks(boardId!, column.id!);
         })
       ).then((r) => {
-        let columnsData: ColumnData[] = [];
         console.log('r', r);
-        if (r[0].data.length) {
-          columnsData = r.map((a) => {
-            return { columnId: a.data[0].id!, tasks: a.data };
-          });
-        }
+        const columnsData = r.map((a) => {
+          if (a.data.length) return { columnId: a.data[0].id!, tasks: a.data };
+          return { columnId: '', tasks: [] };
+        });
+
         setColumnData(columnsData);
         dispatch(toggleLoading(false));
       });
