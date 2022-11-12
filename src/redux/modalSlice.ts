@@ -11,6 +11,7 @@ const initialState: ModalState = {
     addBoard: false,
     editBoard: false,
     remove: false,
+    addColumn: false,
   },
   data: null,
 };

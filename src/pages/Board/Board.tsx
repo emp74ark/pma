@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { TasksList } from '../../components/Task/Task';
+import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
@@ -36,7 +37,11 @@ export const BoardComonent: FC = () => {
     <Container fluid className="flex-fill">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{boardData?.title}</h2>
-        <Button className="col-auto" variant="success">
+        <Button
+          className="col-auto"
+          variant="success"
+          onClick={() => dispatch(openModal({ name: 'addColumn', data: null }))}
+        >
           <i className="bi-plus-circle">
             <span className="m-2">Add column</span>
           </i>

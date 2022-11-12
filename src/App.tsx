@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
+import { ModalColumn } from './components/Modal/ModalColumn';
 import { ModalCommon } from './components/Modal/ModalCommon';
 import { RootState } from './redux/store';
 import { appRoutes, protectedRoutes } from './routes/Routes';
@@ -24,6 +25,7 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <ModalCommon />
+      <ModalColumn />
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Routes>
