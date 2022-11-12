@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
-import { editBoard } from '../../services/board.services';
 import { editColumn } from '../../services/column.service';
 import { Board, Column } from '../../shared/interfaces';
 
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order } = data as Column;
-  const { boardId } = useParams();
   const {
     register,
     handleSubmit,
@@ -22,12 +20,13 @@ export const EditColumn: FC = () => {
   const dispatch = useDispatch();
 
   function columnData(column: Column) {
-    const newData = {
+    const newData: Column = {
+      ...data,
       title: column.title,
       order: order,
     };
-    if (boardId && id) {
-      editColumn(boardId, id, newData).then(() => {
+    if (id) {
+      editColumn(newData).then(() => {
         dispatch(resetModal());
       });
     }

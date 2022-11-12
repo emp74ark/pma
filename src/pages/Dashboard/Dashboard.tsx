@@ -29,7 +29,7 @@ export const Dashboard: FC = () => {
 
   const removeHandler = (e: React.MouseEvent, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'remove', data: board }));
+    dispatch(openModal({ name: 'removeBoard', data: board }));
   };
 
   const editHandler = (e: React.MouseEvent, board: Board) => {

@@ -9,7 +9,7 @@ import { toggleLoading } from '../../redux/settingsSlice';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
-import { Board, Column, ColumnData, Task } from '../../shared/interfaces';
+import { Board, Column, ColumnData } from '../../shared/interfaces';
 
 export const BoardComonent: FC = () => {
   const params = useParams();
@@ -57,18 +57,22 @@ export const BoardComonent: FC = () => {
 
   const editHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'editColumn', data: column }));
+    dispatch(openModal({ name: 'editColumn', data: { ...column, boardId: boardId! } }));
   };
 
   const removeHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'removeColumn', data: column }));
+    dispatch(openModal({ name: 'removeColumn', data: { ...column, boardId: boardId! } }));
   };
 
   const addTaskHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
-    console.log('column', column);
-    dispatch(openModal({ name: 'addTask', data: column }));
+    dispatch(
+      openModal({
+        name: 'addTask',
+        data: { boardId: boardId!, columnId: column.id, title: '' },
+      })
+    );
   };
 
   return (
@@ -78,7 +82,9 @@ export const BoardComonent: FC = () => {
         <Button
           className="col-auto"
           variant="success"
-          onClick={() => dispatch(openModal({ name: 'addColumn', data: null }))}
+          onClick={() =>
+            dispatch(openModal({ name: 'addColumn', data: { id: boardId, title: '' } }))
+          }
         >
           <i className="bi-plus-circle">
             <span className="m-2">Add column</span>

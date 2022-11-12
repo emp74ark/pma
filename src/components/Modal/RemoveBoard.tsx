@@ -26,7 +26,7 @@ export const RemoveBoard: FC = () => {
         <Button variant="danger" onClick={() => removeHandler()}>
           Yes
         </Button>
-        <Button variant="warning" onClick={() => dispatch(closeModal('remove'))}>
+        <Button variant="warning" onClick={() => dispatch(closeModal('removeBoard'))}>
           No
         </Button>
       </Modal.Footer>

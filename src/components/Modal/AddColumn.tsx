@@ -1,14 +1,14 @@
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, resetModal } from '../../redux/modalSlice';
+import { RootState } from '../../redux/store';
 import { createColumn } from '../../services/column.service';
 import { Column } from '../../shared/interfaces';
 
 const AddColumn = () => {
   const dispatch = useDispatch();
-  const { boardId } = useParams();
+  const { data } = useSelector((state: RootState) => state.modal);
   const {
     register,
     handleSubmit,
@@ -17,7 +17,7 @@ const AddColumn = () => {
   } = useForm<Column>();
 
   function columnData(column: Column) {
-    createColumn(boardId as string, column.title).then(() => {
+    createColumn(data?.id as string, column.title).then(() => {
       dispatch(resetModal());
     });
     reset();

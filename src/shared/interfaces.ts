@@ -20,6 +20,7 @@ export interface Column {
   id?: string;
   order?: number;
   title: string;
+  boardId?: string;
 }
 
 export interface Task {

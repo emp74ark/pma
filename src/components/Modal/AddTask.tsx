@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
@@ -19,7 +18,6 @@ type DecodedToken = {
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
-  const { boardId } = useParams();
   const {
     register,
     handleSubmit,
@@ -29,12 +27,18 @@ export const AddTask: FC = () => {
   const token = localStorage.getItem('token') as string;
   const { decodedToken } = useJwt<DecodedToken>(token);
   function taskData(task: Task) {
-    if (data?.id && decodedToken?.userId) {
-      createTask(boardId as string, data?.id, decodedToken?.userId, task).then(() => {
+    if (data && decodedToken?.userId) {
+      const newData: Task = {
+        ...data,
+        ...task,
+        userId: decodedToken?.userId,
+      };
+      console.log(newData);
+      createTask(newData).then(() => {
         dispatch(resetModal());
       });
-      reset();
     }
+    reset();
   }
 
   return (

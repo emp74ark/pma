@@ -16,13 +16,13 @@ function createColumn(boardId: string, title: string) {
   return response;
 }
 
-function deleteColumn(boardId: string, columnId: string) {
-  const response = http.delete(`/boards/${boardId}/columns/${columnId}`);
+function deleteColumn(column: Column) {
+  const response = http.delete(`/boards/${column.boardId}/columns/${column.id}`);
   return response;
 }
 
-function editColumn(boardId: string, columnId: string, column: Column) {
-  const response = http.put<Column>(`/boards/${boardId}/columns/${columnId}`, {
+function editColumn(column: Column) {
+  const response = http.put<Column>(`/boards/${column.boardId}/columns/${column.id}`, {
     title: column.title,
     order: column.order,
   });
