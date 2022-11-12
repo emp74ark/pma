@@ -34,12 +34,12 @@ export const BoardComonent: FC = () => {
       //     dispatch(toggleLoading(false));
       //   });
       // });
+
       Promise.all(
         response.data.map((column) => {
           return getAllTasks(boardId!, column.id!);
         })
       ).then((r) => {
-        console.log('r', r);
         const columnsData = r.map((a) => {
           if (a.data.length) return { columnId: a.data[0].id!, tasks: a.data };
           return { columnId: '', tasks: [] };

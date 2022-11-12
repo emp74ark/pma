@@ -3,11 +3,18 @@ import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useJwt } from 'react-jwt';
 
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { createTask } from '../../services/task.service';
 import { Task } from '../../shared/interfaces';
+
+type DecodedToken = {
+  iat: number;
+  login: string;
+  userId: string;
+};
 
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
@@ -19,11 +26,11 @@ export const AddTask: FC = () => {
     reset,
     formState: { errors, isValid },
   } = useForm<Task>();
-
+  const token = localStorage.getItem('token') as string;
+  const { decodedToken } = useJwt<DecodedToken>(token);
   function taskData(task: Task) {
-    const userId = localStorage.getItem('userId');
-    if (userId && data?.id) {
-      createTask(boardId as string, data?.id, userId, task).then(() => {
+    if (data?.id && decodedToken?.userId) {
+      createTask(boardId as string, data?.id, decodedToken?.userId, task).then(() => {
         dispatch(resetModal());
       });
       reset();
