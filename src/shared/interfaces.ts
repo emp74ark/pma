@@ -43,3 +43,8 @@ export interface SettingsState {
   theme: string;
   loading: boolean;
 }
+
+export interface ModalState {
+  visible: Record<string, boolean>;
+  data: Board | Column | Task | null;
+}
