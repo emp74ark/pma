@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Container, DropdownButton, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { NavUser } from './Header.user';
 
 export const Header: FC = () => {
   const { login } = useSelector((state: RootState) => state.auth);
+  const { theme } = useSelector((state: RootState) => state.setting);
   const dispatch = useDispatch();
 
   const selectLocaleHandler = (key: string | null) => {
@@ -21,8 +22,12 @@ export const Header: FC = () => {
     dispatch(toggleTheme(value));
   };
 
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light">
+    <Navbar collapseOnSelect expand="lg" variant={theme}>
       <Container fluid>
         <Navbar.Brand>PMA</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -14,7 +14,7 @@ export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
   const { modal } = useSelector((state: RootState) => state);
-
+  const { theme } = useSelector((state: RootState) => state.setting);
   const openBoard = (boardId: string) => {
     navigate(`/user/board/${boardId}`);
   };
@@ -59,6 +59,8 @@ export const Dashboard: FC = () => {
               className="col-2 p-0"
               key={board.id}
               onClick={() => openBoard(board.id!)}
+              bg={theme}
+              text={theme === 'dark' ? 'white' : 'dark'}
             >
               <Card.Header>
                 <div className="row">
