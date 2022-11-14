@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editTask } from '../../services/task.service';
-import { Board, Task } from '../../shared/interfaces';
+import { Task } from '../../shared/interfaces';
 
 export const EditTask: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
-  const { id, title, description, order, userId, columnId, boardId } = data as Task;
+  const { id, title, order, description, userId, boardId, columnId } = data as Task;
 
   const {
     register,
@@ -20,16 +20,16 @@ export const EditTask: FC = () => {
   const dispatch = useDispatch();
   function taskData(task: Task) {
     const newData = {
-      title: task.title,
+      id,
       order,
       userId,
-      description: task.description,
-      columnId,
       boardId,
-      id,
+      columnId,
+      title: task.title,
+      description: task.description,
     };
-    if (boardId && columnId) {
-      editTask(boardId, columnId, newData, userId).then(() => {
+    if (data?.id) {
+      editTask(newData).then(() => {
         dispatch(resetModal());
       });
     }

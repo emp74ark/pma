@@ -10,10 +10,12 @@ export const TasksList = (props: { data: ColumnData }) => {
   const { data } = props;
   const editHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();
+    console.log(task);
     dispatch(openModal({ name: 'editTask', data: task }));
   };
   const deleteHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();
+    console.log(task);
     dispatch(openModal({ name: 'removeTask', data: task }));
   };
 
