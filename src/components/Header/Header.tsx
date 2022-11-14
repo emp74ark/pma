@@ -38,7 +38,7 @@ export const Header: FC = () => {
         >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav>
+            <Nav className="ms-auto">
               {!login && <NavCommon />}
               {login && <NavUser />}
             </Nav>
