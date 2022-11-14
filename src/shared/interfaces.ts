@@ -12,7 +12,7 @@ export interface Board {
 }
 
 export interface ColumnData {
-  columnId: string;
+  column: Column;
   tasks: Task[];
 }
 

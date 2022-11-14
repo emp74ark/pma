@@ -35,7 +35,6 @@ export const AddTask: FC = () => {
         ...task,
         userId: decodedToken?.userId,
       };
-      console.log(newData);
       createTask(newData).then(() => {
         dispatch(resetModal());
       });

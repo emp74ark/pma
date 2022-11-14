@@ -12,7 +12,7 @@ export const EditTask: FC = () => {
   const { id, title, order, description, userId, boardId, columnId } = data as Task;
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
-  
+
   const {
     register,
     handleSubmit,

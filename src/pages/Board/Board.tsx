@@ -17,52 +17,36 @@ export const BoardComonent: FC = () => {
   const dispatch = useDispatch();
   const boardId = params.boardId;
   const [boardData, setBoardData] = useState<Board>();
-  const [columns, setColumns] = useState<Column[]>([]);
   const [columnData, setColumnData] = useState<ColumnData[]>([]);
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { modal } = useSelector((state: RootState) => state);
 
   useEffect(() => {
+    setColumnData([]);
     dispatch(toggleLoading(true));
-    getAllColums(boardId!).then((response) => {
-      setColumns(response.data);
-      // response.data.map((column) => {
-      //   getAllTasks(boardId!, column.id!).then((response) => {
-      //     setColumnData((columnData) => [
-      //       ...columnData,
-      //       { columnId: column.id!, tasks: response.data },
-      //     ]);
-      //     // UserId
-      //     localStorage.setItem('userId', response.data[0].userId);
-      //     dispatch(toggleLoading(false));
-      //   });
-      // });
-
-      Promise.all(
-        response.data.map((column) => {
-          return getAllTasks(boardId!, column.id!);
-        })
-      ).then((r) => {
-        const columnsData = r.map((a) => {
-          if (a.data.length) return { columnId: a.data[0].id!, tasks: a.data };
-          return { columnId: '', tasks: [] };
-        });
-
-        setColumnData(columnsData);
+    getAllColums(boardId!).then((reposnse) => {
+      if (reposnse.status === 200) {
         dispatch(toggleLoading(false));
+      }
+      reposnse.data.map((column) => {
+        getAllTasks(boardId!, column.id!).then((tasks) => {
+          const data: ColumnData = {
+            column,
+            tasks: tasks.data,
+          };
+          setColumnData((prev) => [...prev, data]);
+        });
       });
     });
-
     getBoardById(boardId!).then((response) => setBoardData(response.data));
-  }, []);
+  }, [modal]);
 
-  useEffect(() => console.log('columnData', columnData), [columnData]);
-
-  const editHandler = (e: React.MouseEvent, column: Column) => {
+  const editColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'editColumn', data: { ...column, boardId: boardId! } }));
   };
 
-  const removeHandler = (e: React.MouseEvent, column: Column) => {
+  const removeColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'removeColumn', data: { ...column, boardId: boardId! } }));
   };
@@ -97,49 +81,41 @@ export const BoardComonent: FC = () => {
         <h3 className="col text-center text-secondary">{boardData?.description}</h3>
       </div>
       <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
-        {columns &&
-          columns.map((column, i) => (
-            <Card
-              key={column.id}
-              className="h-auto flex-grow-0 flex-shrink-0"
-              style={{ width: '20rem' }}
-              bg={theme}
-              text={theme === 'dark' ? 'white' : 'dark'}
-            >
-              <Card.Header className="gap-3">
-                <div className="row">
-                  <Card.Title className="col">{column.title}</Card.Title>
-                  <ButtonGroup className="col float-right" size="sm">
-                    <Button
-                      className="bi-plus-circle text-primary"
-                      variant="link"
-                      onClick={(e) => addTaskHandler(e, column)}
-                    />
-                    <Button
-                      className="bi-pencil text-success"
-                      variant="link"
-                      onClick={(e) => editHandler(e, column)}
-                    />
-                    <Button
-                      className="bi-trash text-danger"
-                      variant="link"
-                      onClick={(e) => removeHandler(e, column)}
-                    />
-                  </ButtonGroup>
-                </div>
-              </Card.Header>
-              <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
-                {/* {columnData.map((column, i) => (
-                  <div key={i}>{<TasksList data={column} />}</div>
-                ))} */}
-                {columnData.length ? (
-                  <div>
-                    <TasksList data={columnData[i]} />
-                  </div>
-                ) : null}
-              </Card.Body>
-            </Card>
-          ))}
+        {columnData.map((data) => (
+          <Card
+            key={data.column.id}
+            className="h-auto flex-grow-0 flex-shrink-0"
+            style={{ width: '20rem' }}
+            bg={theme}
+            text={theme === 'dark' ? 'white' : 'dark'}
+          >
+            <Card.Header className="gap-3">
+              <div className="row">
+                <Card.Title className="col">{data.column.title}</Card.Title>
+                <ButtonGroup className="col float-right" size="sm">
+                  <Button
+                    className="bi-plus-circle text-primary"
+                    variant="link"
+                    onClick={(e) => addTaskHandler(e, data.column)}
+                  />
+                  <Button
+                    className="bi-pencil text-success"
+                    variant="link"
+                    onClick={(e) => editColumnHandler(e, data.column)}
+                  />
+                  <Button
+                    className="bi-trash text-danger"
+                    variant="link"
+                    onClick={(e) => removeColumnHandler(e, data.column)}
+                  />
+                </ButtonGroup>
+              </div>
+            </Card.Header>
+            <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
+              {<TasksList data={data} />}
+            </Card.Body>
+          </Card>
+        ))}
       </div>
     </Container>
   );
