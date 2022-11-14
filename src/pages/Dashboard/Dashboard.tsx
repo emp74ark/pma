@@ -6,7 +6,9 @@ import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
+import { allUsers } from '../../redux/usersSlice';
 import { getAllBoards } from '../../services/board.services';
+import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
 
 export const Dashboard: FC = () => {
@@ -24,6 +26,9 @@ export const Dashboard: FC = () => {
     getAllBoards().then((response) => {
       setBoards(response.data);
       dispatch(toggleLoading(false));
+    });
+    getAllUsers().then((response) => {
+      dispatch(allUsers(response.data));
     });
   }, [modal]);
 
