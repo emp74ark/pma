@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editColumn } from '../../services/column.service';
@@ -11,6 +10,8 @@ import { Board, Column } from '../../shared/interfaces';
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order } = data as Column;
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
@@ -33,11 +34,11 @@ export const EditColumn: FC = () => {
   }
 
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(columnData)}>
           <div className="form-group">
             <label htmlFor="title">Column name</label>

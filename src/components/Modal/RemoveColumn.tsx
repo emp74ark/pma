@@ -9,7 +9,8 @@ import { Column } from '../../shared/interfaces';
 export const RemoveColumn: FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
-
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const removeHandler = () => {
     if (data?.id)
       deleteColumn(data as Column).then(() => {
@@ -18,12 +19,12 @@ export const RemoveColumn: FC = () => {
   };
 
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Remove column</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Do you really want to do this?</Modal.Body>
-      <Modal.Footer>
+      <Modal.Body className={`bg-${theme}`}>Do you really want to do this?</Modal.Body>
+      <Modal.Footer className={`bg-${theme}`}>
         <Button variant="danger" onClick={() => removeHandler()}>
           Yes
         </Button>

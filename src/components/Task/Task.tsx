@@ -1,13 +1,15 @@
-import { FC, useEffect } from 'react';
 import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { openModal } from '../../redux/modalSlice';
+import { RootState } from '../../redux/store';
 import { ColumnData, Task } from '../../shared/interfaces';
 
 export const TasksList = (props: { data: ColumnData }) => {
   const dispatch = useDispatch();
   const { data } = props;
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'dark';
   const editHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'editTask', data: task }));
@@ -21,7 +23,7 @@ export const TasksList = (props: { data: ColumnData }) => {
     <>
       <ListGroup>
         {data.tasks.map((task) => (
-          <ListGroup.Item className="w-100" key={task.id}>
+          <ListGroup.Item variant={theme} className="w-100" key={task.id}>
             <div className="row align-middle">
               <h6 className="col">{task.title}</h6>
               <ButtonGroup className="col float-right">

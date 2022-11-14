@@ -1,6 +1,7 @@
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { createColumn } from '../../services/column.service';
@@ -9,6 +10,8 @@ import { Column } from '../../shared/interfaces';
 const AddColumn = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
@@ -25,11 +28,11 @@ const AddColumn = () => {
 
   return (
     <>
-      <Modal size="lg" centered show={true}>
-        <Modal.Header>
+      <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+        <Modal.Header className={`bg-${theme}`}>
           <Modal.Title>Create new column</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={`bg-${theme}`}>
           <form onSubmit={handleSubmit(columnData)}>
             <div className="form-group">
               <label htmlFor="title">Column name</label>
