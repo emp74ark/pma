@@ -10,7 +10,8 @@ import { Board } from '../../shared/interfaces';
 export const EditBoard: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, description } = data as Board;
-
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
@@ -31,11 +32,11 @@ export const EditBoard: FC = () => {
   }
 
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(boardData)}>
           <div className="form-group">
             <label htmlFor="title">Board name</label>

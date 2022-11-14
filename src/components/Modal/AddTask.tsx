@@ -18,6 +18,8 @@ type DecodedToken = {
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
@@ -42,11 +44,11 @@ export const AddTask: FC = () => {
   }
 
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Create new task</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(taskData)}>
           <div className="form-group">
             <label htmlFor="title">Task name</label>

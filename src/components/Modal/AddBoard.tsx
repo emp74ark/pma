@@ -1,21 +1,23 @@
 import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { closeModal, resetModal } from '../../redux/modalSlice';
+import { RootState } from '../../redux/store';
 import { createBoard } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
 
 export const AddBoard: FC = () => {
   const dispatch = useDispatch();
-
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm<Board>();
-
   function boardData(board: Board) {
     createBoard(board).then(() => {
       dispatch(resetModal());
@@ -24,11 +26,11 @@ export const AddBoard: FC = () => {
   }
 
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Create new board</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(boardData)}>
           <div className="form-group">
             <label htmlFor="title">Board name</label>
