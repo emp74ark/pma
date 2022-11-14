@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { TasksList } from '../../components/Task/Task';
 import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
+import { RootState } from '../../redux/store';
 import { getBoardById } from '../../services/board.services';
 import { getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
@@ -18,6 +19,7 @@ export const BoardComonent: FC = () => {
   const [boardData, setBoardData] = useState<Board>();
   const [columns, setColumns] = useState<Column[]>([]);
   const [columnData, setColumnData] = useState<ColumnData[]>([]);
+  const { theme } = useSelector((state: RootState) => state.setting);
 
   useEffect(() => {
     dispatch(toggleLoading(true));
@@ -101,6 +103,8 @@ export const BoardComonent: FC = () => {
               key={column.id}
               className="h-auto flex-grow-0 flex-shrink-0"
               style={{ width: '20rem' }}
+              bg={theme}
+              text={theme === 'dark' ? 'white' : 'dark'}
             >
               <Card.Header className="gap-3">
                 <div className="row">

@@ -11,3 +11,7 @@ body{
   height: 100vh;
   display: flex;
 }
+[data-theme="dark"]{
+  background-color: #303030;
+  color:#fff;
+}

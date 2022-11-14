@@ -10,7 +10,9 @@ import { Task } from '../../shared/interfaces';
 export const EditTask: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order, description, userId, boardId, columnId } = data as Task;
-
+  const { theme } = useSelector((state: RootState) => state.setting);
+  const colorText = theme === 'dark' ? 'white' : 'black';
+  
   const {
     register,
     handleSubmit,
@@ -35,11 +37,11 @@ export const EditTask: FC = () => {
     }
   }
   return (
-    <Modal size="lg" centered show={true}>
-      <Modal.Header>
+    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
+      <Modal.Header className={`bg-${theme}`}>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(taskData)}>
           <div className="form-group">
             <label htmlFor="title">Task name</label>
