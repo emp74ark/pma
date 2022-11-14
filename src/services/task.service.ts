@@ -25,15 +25,18 @@ function deleteTask(boardId: string, columnId: string, taskId: string) {
   return response;
 }
 
-function editTask(boardId: string, columnId: string, task: Task, userId: string) {
-  const response = http.put<Task>(`/boards/${boardId}/columns/${columnId}/tasks/${task.id}`, {
-    title: task.title,
-    order: task.order,
-    description: task.description,
-    userId,
-    boardId,
-    columnId,
-  });
+function editTask(task: Task) {
+  const response = http.put<Task>(
+    `/boards/${task.boardId}/columns/${task.columnId}/tasks/${task.id}`,
+    {
+      boardId: task.boardId,
+      columnId: task.columnId,
+      description: task.description,
+      order: task.order,
+      title: task.title,
+      userId: task.userId,
+    }
+  );
   return response;
 }
 
