@@ -2,13 +2,14 @@ import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../../redux/modalSlice';
+import { closeModal, resetModal } from '../../redux/modalSlice';
 
 import { RootState } from '../../redux/store';
+import { editUser } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
 
 export const EditUser: FC = () => {
-  const { data } = useSelector((state: RootState) => state.modal);
+  const { users } = useSelector((state: RootState) => state);
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
@@ -20,8 +21,12 @@ export const EditUser: FC = () => {
 
   const dispatch = useDispatch();
 
-  const formData = (data: User) => {
-    console.log('from data: ', data, errors);
+  const formData = (data: Omit<User, 'id'>) => {
+    const userData = {
+      ...data,
+      id: users.current?.id,
+    };
+    editUser(userData).then(() => dispatch(resetModal()));
     reset();
   };
 
