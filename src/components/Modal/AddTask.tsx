@@ -23,7 +23,6 @@ export const AddTask: FC = () => {
   } = useForm<Task>();
 
   function taskData(task: Task) {
-    console.log(task);
     if (data) {
       const newData: Task = {
         ...data,

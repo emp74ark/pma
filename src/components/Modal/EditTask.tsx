@@ -11,6 +11,7 @@ export const EditTask: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order, description, userId, boardId, columnId } = data as Task;
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { users } = useSelector((state: RootState) => state);
   const colorText = theme === 'dark' ? 'white' : 'black';
 
   const {
@@ -24,7 +25,7 @@ export const EditTask: FC = () => {
     const newData = {
       id,
       order,
-      userId,
+      userId: task.userId,
       boardId,
       columnId,
       title: task.title,
@@ -66,6 +67,21 @@ export const EditTask: FC = () => {
             />
           </div>
           {errors.title?.type === 'required' && <Alert variant="warning">Title is required</Alert>}
+          <div className="form-group">
+            <label htmlFor="description">Assigned user</label>
+            <select
+              className="form-control"
+              {...register('userId')}
+              id="userId"
+              defaultValue={userId}
+            >
+              {users.all.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.login}
+                </option>
+              ))}
+            </select>
+          </div>
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
             Submit
           </Button>
