@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { signin, signout, signup } from '../services/user.service';
+import { signout } from '../services/user.service';
 import { AuthState, User } from '../shared/interfaces';
 
 const initialState: AuthState = {
@@ -13,20 +13,19 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logIn: (state, action: PayloadAction<User>) => {
-      signin(action.payload);
       state.login = action.payload.login;
       state.exp = false;
     },
-    logOut: () => {
+    logOut: (state) => {
+      state.login = undefined;
+      state.exp = true;
       signout();
-      initialState;
     },
     mode: (state, action: PayloadAction<'login' | 'registration'>) => {
       signout();
       state.mode = action.payload;
     },
-    signUp: (state, action: PayloadAction<User>) => {
-      signup(action.payload);
+    signUp: (state) => {
       state.mode = 'login';
     },
     expToggle: (state, action: PayloadAction<boolean>) => {

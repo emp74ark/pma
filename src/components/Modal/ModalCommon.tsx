@@ -5,10 +5,12 @@ import { SpinnerComponent } from '../Spinner/Spinner';
 import { AddBoard } from './AddBoard';
 import AddColumn from './AddColumn';
 import { AddTask } from './AddTask';
+import { AuthError } from './AuthError';
 import { EditBoard } from './EditBoard';
 import { EditColumn } from './EditColumn';
 import { EditTask } from './EditTask';
 import { ModalSession } from './ModalSession';
+import { RegisterError } from './RegisterError';
 import { RemoveBoard } from './RemoveBoard';
 import { RemoveColumn } from './RemoveColumn';
 import { RemoveTask } from './RemoveTask';
@@ -28,6 +30,8 @@ export const ModalCommon: FC = () => {
       {modal.visible.editTask && <EditTask />}
       {modal.visible.removeColumn && <RemoveColumn />}
       {modal.visible.removeTask && <RemoveTask />}
+      {modal.visible.authError && <AuthError />}
+      {modal.visible.registerError && <RegisterError />}
     </>
   );
 };
