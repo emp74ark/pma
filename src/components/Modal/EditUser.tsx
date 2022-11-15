@@ -2,10 +2,11 @@ import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { closeModal, resetModal } from '../../redux/modalSlice';
 
 import { RootState } from '../../redux/store';
-import { editUser } from '../../services/user.service';
+import { editUser, signout } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
 
 export const EditUser: FC = () => {
@@ -18,7 +19,7 @@ export const EditUser: FC = () => {
     reset,
     formState: { errors, isDirty, isValid },
   } = useForm<User>({ mode: 'all' });
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const formData = (data: Omit<User, 'id'>) => {
@@ -26,8 +27,11 @@ export const EditUser: FC = () => {
       ...data,
       id: users.current?.id,
     };
-    editUser(userData).then(() => dispatch(resetModal()));
-    reset();
+    editUser(userData).then(() => {
+      dispatch(resetModal());
+      signout();
+      navigate('/auth');
+    });
   };
 
   return (
