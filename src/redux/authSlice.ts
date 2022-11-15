@@ -17,7 +17,10 @@ const authSlice = createSlice({
       state.login = action.payload.login;
       state.exp = false;
     },
-    logOut: () => initialState,
+    logOut: () => {
+      signout();
+      initialState;
+    },
     mode: (state, action: PayloadAction<'login' | 'registration'>) => {
       signout();
       state.mode = action.payload;
