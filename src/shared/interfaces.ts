@@ -49,3 +49,8 @@ export interface ModalState {
   visible: Record<string, boolean>;
   data: Board | Column | Task | null;
 }
+
+export interface usersState {
+  all: User[];
+  current: User | null;
+}

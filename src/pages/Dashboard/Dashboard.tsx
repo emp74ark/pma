@@ -6,7 +6,7 @@ import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
-import { allUsers } from '../../redux/usersSlice';
+import { allUsers, currentUser } from '../../redux/usersSlice';
 import { getAllBoards } from '../../services/board.services';
 import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
@@ -15,7 +15,7 @@ export const Dashboard: FC = () => {
   const navigate = useNavigate();
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
-  const { modal } = useSelector((state: RootState) => state);
+  const { modal, auth } = useSelector((state: RootState) => state);
   const { theme } = useSelector((state: RootState) => state.setting);
   const openBoard = (boardId: string) => {
     navigate(`/user/board/${boardId}`);
@@ -29,6 +29,8 @@ export const Dashboard: FC = () => {
     });
     getAllUsers().then((response) => {
       dispatch(allUsers(response.data));
+      const current = response.data.filter((user) => user.login === auth.login)[0];
+      dispatch(currentUser(current));
     });
   }, [modal]);
 
