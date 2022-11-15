@@ -3,12 +3,14 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import authSlice from './authSlice';
 import modalSlice from './modalSlice';
 import settingsSlice from './settingsSlice';
+import usersSlice from './usersSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authSlice,
     setting: settingsSlice,
     modal: modalSlice,
+    users: usersSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useJwt } from 'react-jwt';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { closeModal, resetModal } from '../../redux/modalSlice';
@@ -9,31 +8,25 @@ import { RootState } from '../../redux/store';
 import { createTask } from '../../services/task.service';
 import { Task } from '../../shared/interfaces';
 
-type DecodedToken = {
-  iat: number;
-  login: string;
-  userId: string;
-};
-
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.modal);
+  const { users } = useSelector((state: RootState) => state);
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm<Task>();
-  const token = localStorage.getItem('token') as string;
-  const { decodedToken } = useJwt<DecodedToken>(token);
+
   function taskData(task: Task) {
-    if (data && decodedToken?.userId) {
+    if (data) {
       const newData: Task = {
         ...data,
         ...task,
-        userId: decodedToken?.userId,
       };
       createTask(newData).then(() => {
         dispatch(resetModal());
@@ -74,6 +67,21 @@ export const AddTask: FC = () => {
             {errors.description?.type === 'required' && (
               <Alert variant="warning">Description is required</Alert>
             )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="description">Assigned user</label>
+            <select
+              className="form-control"
+              {...register('userId')}
+              id="userId"
+              defaultValue={users.current?.id}
+            >
+              {users.all.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.login}
+                </option>
+              ))}
+            </select>
           </div>
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
             Submit

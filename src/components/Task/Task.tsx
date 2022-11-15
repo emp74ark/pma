@@ -9,6 +9,7 @@ export const TasksList = (props: { data: ColumnData }) => {
   const dispatch = useDispatch();
   const { data } = props;
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { users } = useSelector((state: RootState) => state);
   const colorText = theme === 'dark' ? 'white' : 'dark';
   const editHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();
@@ -18,6 +19,11 @@ export const TasksList = (props: { data: ColumnData }) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'removeTask', data: task }));
   };
+
+  function defineName(userId: string) {
+    const user = users.all.filter((user) => user.id === userId);
+    return user[0].login;
+  }
 
   return (
     <>
@@ -36,6 +42,7 @@ export const TasksList = (props: { data: ColumnData }) => {
               </ButtonGroup>
             </div>
             <div className="row p-2">{task.description}</div>
+            <div className="row p-2">{defineName(task.userId)}</div>
           </ListGroup.Item>
         ))}
       </ListGroup>
