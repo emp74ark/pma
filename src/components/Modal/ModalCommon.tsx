@@ -9,11 +9,13 @@ import { AuthError } from './AuthError';
 import { EditBoard } from './EditBoard';
 import { EditColumn } from './EditColumn';
 import { EditTask } from './EditTask';
+import { EditUser } from './EditUser';
 import { ModalSession } from './ModalSession';
 import { RegisterError } from './RegisterError';
 import { RemoveBoard } from './RemoveBoard';
 import { RemoveColumn } from './RemoveColumn';
 import { RemoveTask } from './RemoveTask';
+import { RemoveUser } from './RemoveUser';
 
 export const ModalCommon: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
@@ -32,6 +34,8 @@ export const ModalCommon: FC = () => {
       {modal.visible.removeTask && <RemoveTask />}
       {modal.visible.authError && <AuthError />}
       {modal.visible.registerError && <RegisterError />}
+      {modal.visible.editUser && <EditUser />}
+      {modal.visible.removeUser && <RemoveUser />}
     </>
   );
 };
