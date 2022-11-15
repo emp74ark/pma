@@ -1,8 +1,3 @@
-/* 
-  onClick={() => dispatch(openModal('NAME, ID'))}
-  onClick={() => dispatch(closeModal('NAME, ID'))}
- */
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Board, Column, ModalState, Task } from '../shared/interfaces';
 
@@ -17,6 +12,8 @@ const initialState: ModalState = {
     addTask: false,
     editTask: false,
     removeTask: false,
+    authError: false,
+    registerError: false,
   },
   data: null,
 };

@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../redux/authSlice';
+import { openModal } from '../../redux/modalSlice';
+import { signup } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
 
 export const AuthRegister: FC = () => {
@@ -18,10 +20,19 @@ export const AuthRegister: FC = () => {
   } = useForm<User>({ mode: 'all' });
 
   function formData(form: User) {
-    // TODO: error handling
-    dispatch(signUp(form));
-    reset();
-    navigate('/auth');
+    signup(form)
+      .then((response) => {
+        if (response.status === 201) {
+          dispatch(signUp());
+          reset();
+          navigate('/auth');
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          dispatch(openModal({ name: 'registerError', data: null }));
+        }
+      });
   }
 
   return (

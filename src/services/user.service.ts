@@ -1,17 +1,14 @@
-import { sessionLifetime } from '../shared/environment';
 import { User } from '../shared/interfaces';
 import { http } from './interceptor.service';
 
 function signin(user: User) {
-  http.post('/signin', user).then((response) => {
-    localStorage.setItem('token', response.data.token);
-    const exp = Date.now() + sessionLifetime;
-    localStorage.setItem('exp', exp.toString());
-  });
+  const response = http.post('/signin', user);
+  return response;
 }
 
 function signup(user: User) {
-  http.post('/signup', user);
+  const response = http.post('/signup', user);
+  return response;
 }
 
 function signout() {

@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logIn } from '../../redux/authSlice';
+import { openModal } from '../../redux/modalSlice';
+import { signin } from '../../services/user.service';
+import { sessionLifetime } from '../../shared/environment';
 import { User } from '../../shared/interfaces';
 
 export const AuthLogin: FC = () => {
@@ -18,10 +21,22 @@ export const AuthLogin: FC = () => {
   } = useForm<User>({ mode: 'all' });
 
   function formData(form: User) {
-    // TODO: error handling
-    dispatch(logIn(form));
-    reset();
-    navigate('/user/dashboard');
+    signin(form)
+      .then((response) => {
+        if (response.status === 201) {
+          localStorage.setItem('token', response.data.token);
+          const exp = Date.now() + sessionLifetime;
+          localStorage.setItem('exp', exp.toString());
+          dispatch(logIn(form));
+          reset();
+          navigate('/user/dashboard');
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 403) {
+          dispatch(openModal({ name: 'authError', data: null }));
+        }
+      });
   }
 
   return (
