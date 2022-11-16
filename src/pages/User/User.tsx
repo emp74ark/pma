@@ -21,21 +21,23 @@ export const UserProfile: FC = () => {
   };
 
   return (
-    <Container className="flex-fill d-flex flex-column gap-2">
+    <Container className="flex-fill d-flex flex-column gap-2 justify-content-center align-items-center">
       <h1>User Profile</h1>
       <h5>Your Name: </h5>
       <h3>{users.current?.name}</h3>
       <h5>Email: </h5>
       <h3>{users.current?.login}</h3>
-      <button className="btn btn-primary align-self-start" onClick={editUserHandler}>
-        Edit
-      </button>
-      <button
-        onClick={(e) => removeUserHandler(e, users?.current as User)}
-        className="btn btn-primary align-self-start"
-      >
-        Delete User
-      </button>
+      <div className="d-flex flex-column gap-2 align-self-center">
+        <button className="btn btn-primary" onClick={editUserHandler}>
+          Edit
+        </button>
+        <button
+          onClick={(e) => removeUserHandler(e, users?.current as User)}
+          className="btn btn-primary"
+        >
+          Delete User
+        </button>
+      </div>
     </Container>
   );
 };
