@@ -3,7 +3,7 @@ import { Auth } from '../pages/Auth/Auth';
 import { BoardComonent } from '../pages/Board/Board';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
 import { UFO } from '../pages/UFO/UFO';
-import { User } from '../pages/User/User';
+import { UserProfile } from '../pages/User/User';
 import { Welcome } from '../pages/Welcome/Welcome';
 
 export const commonRoutes = [
@@ -13,7 +13,7 @@ export const commonRoutes = [
 
 export const userRoutes = [
   { title: 'Dashboard', path: '/user/dashboard', element: <Dashboard /> },
-  { title: 'User', path: '/user/cabinet', element: <User /> },
+  { title: 'User', path: '/user/cabinet', element: <UserProfile /> },
 ];
 
 const taskRoutes = [
