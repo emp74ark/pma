@@ -49,7 +49,7 @@ export const EditUser: FC = () => {
               name="name"
               id="name"
               className="form-control"
-              placeholder="User name"
+              defaultValue={users.current?.name}
             />
             {errors.name?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
             {errors.name?.type === 'minLength' && (
@@ -64,7 +64,7 @@ export const EditUser: FC = () => {
               name="login"
               id="login"
               className="form-control"
-              placeholder="user@address.mail"
+              defaultValue={users.current?.login}
             />
             {errors.login?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
           </div>
