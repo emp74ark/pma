@@ -11,8 +11,8 @@ export const Auth: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <Container className="flex-fill">
-      <Row className="d-flex justify-content-center">
+    <Container className="flex-fill d-flex flex-column justify-content-center">
+      <Row className="d-flex justify-content-center mb-auto">
         <ButtonGroup className="col-md-5 m-2">
           <Button
             className="w-50"
@@ -30,7 +30,7 @@ export const Auth: FC = () => {
           </Button>
         </ButtonGroup>
       </Row>
-      <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center mb-auto">
         {authMode === 'login' && <AuthLogin />}
         {authMode === 'registration' && <AuthRegister />}
       </Row>

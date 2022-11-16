@@ -2,6 +2,8 @@ import { FC, useEffect } from 'react';
 import { Container, DropdownButton, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import { toggleLocale, toggleTheme } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { NavCommon } from './Header.common';
@@ -29,10 +31,15 @@ export const Header: FC = () => {
   return (
     <Navbar collapseOnSelect expand="lg" className={`bg-${theme} text-${colorText}`}>
       <Container fluid>
-        <Navbar.Brand className={`text-${colorText}`}>PMA</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Brand className={`text-${colorText} nav-link`}>
+          <NavLink className={`text-decoration-none text-${colorText}`} to="/">
+            PMA
+          </NavLink>
+        </Navbar.Brand>
+        <Navbar.Toggle className={`bg-light`} aria-controls="responsive-navbar-nav" />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-lg"
+          className={`bg-${theme} text-${colorText}`}
           aria-labelledby="offcanvasNavbarLabel-expand"
           placement="end"
         >
