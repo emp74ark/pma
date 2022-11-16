@@ -32,7 +32,9 @@ export const Header: FC = () => {
     <Navbar collapseOnSelect expand="lg" className={`bg-${theme} text-${colorText}`}>
       <Container fluid>
         <Navbar.Brand className={`text-${colorText} nav-link`}>
-          <NavLink to="/">PMA</NavLink>
+          <NavLink className={`text-decoration-none text-${colorText}`} to="/">
+            PMA
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle className={`bg-light`} aria-controls="responsive-navbar-nav" />
         <Navbar.Offcanvas
