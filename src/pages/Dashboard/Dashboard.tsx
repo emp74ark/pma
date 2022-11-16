@@ -24,8 +24,10 @@ export const Dashboard: FC = () => {
   useEffect(() => {
     dispatch(toggleLoading(true));
     getAllBoards().then((response) => {
+      if (response.status === 200) {
+        dispatch(toggleLoading(false));
+      }
       setBoards(response.data);
-      dispatch(toggleLoading(false));
     });
     getAllUsers().then((response) => {
       dispatch(allUsers(response.data));

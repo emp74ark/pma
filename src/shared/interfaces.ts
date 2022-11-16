@@ -54,3 +54,10 @@ export interface usersState {
   all: User[];
   current: User | null;
 }
+
+export interface LoginResponse {
+  status: number;
+  data: {
+    token: string;
+  };
+}

@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logIn } from '../../redux/authSlice';
 import { openModal } from '../../redux/modalSlice';
+import { saveToken } from '../../services/interceptor.service';
 import { signin } from '../../services/user.service';
-import { sessionLifetime } from '../../shared/environment';
 import { User } from '../../shared/interfaces';
 
 export const AuthLogin: FC = () => {
@@ -22,11 +22,9 @@ export const AuthLogin: FC = () => {
 
   function formData(form: User) {
     signin(form)
-      .then((response) => {
-        if (response.status === 201) {
-          localStorage.setItem('token', response.data.token);
-          const exp = Date.now() + sessionLifetime;
-          localStorage.setItem('exp', exp.toString());
+      .then((response) => saveToken(response))
+      .then((result) => {
+        if (result) {
           dispatch(logIn(form));
           reset();
           navigate('/user/dashboard');
