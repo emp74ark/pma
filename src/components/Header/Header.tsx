@@ -11,7 +11,7 @@ export const Header: FC = () => {
   const { login } = useSelector((state: RootState) => state.auth);
   const { theme } = useSelector((state: RootState) => state.setting);
   const dispatch = useDispatch();
-
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const selectLocaleHandler = (key: string | null) => {
     const value = key ? key : 'en';
     dispatch(toggleLocale(value));
@@ -27,9 +27,9 @@ export const Header: FC = () => {
   }, [theme]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" variant={theme}>
+    <Navbar collapseOnSelect expand="lg" className={`bg-${theme} text-${colorText}`}>
       <Container fluid>
-        <Navbar.Brand>PMA</Navbar.Brand>
+        <Navbar.Brand className={`text-${colorText}`}>PMA</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-lg"
