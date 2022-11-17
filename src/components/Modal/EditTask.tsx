@@ -18,7 +18,7 @@ export const EditTask: FC = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Task>();
+  } = useForm<Task>({ mode: 'all' });
 
   const dispatch = useDispatch();
   function taskData(task: Task) {

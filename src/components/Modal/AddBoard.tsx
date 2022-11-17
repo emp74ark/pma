@@ -17,7 +17,7 @@ export const AddBoard: FC = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<Board>();
+  } = useForm<Board>({ mode: 'all' });
   function boardData(board: Board) {
     createBoard(board).then(() => {
       dispatch(resetModal());

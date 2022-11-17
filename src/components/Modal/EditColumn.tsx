@@ -16,7 +16,7 @@ export const EditColumn: FC = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Board>();
+  } = useForm<Board>({ mode: 'all' });
 
   const dispatch = useDispatch();
 
