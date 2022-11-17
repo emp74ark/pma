@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { TasksList } from '../../components/Task/Task';
+import { TasksList } from '../../components/TasksList/TasksList';
 import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
