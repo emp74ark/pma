@@ -17,7 +17,7 @@ const AddColumn = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<Column>();
+  } = useForm<Column>({ mode: 'all' });
 
   function columnData(column: Column) {
     createColumn(data?.id as string, column.title).then(() => {

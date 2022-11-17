@@ -20,7 +20,7 @@ export const AddTask: FC = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<Task>();
+  } = useForm<Task>({ mode: 'all' });
 
   function taskData(task: Task) {
     if (data) {
