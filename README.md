@@ -9,3 +9,4 @@
 - [Project management icon pack](https://www.flaticon.com/packs/project-management-82/2)
 - [RS School REST service](https://github.com/vitaly-sazonov/kanban-rest)
 - Favicon: [Feather icons](https://iconer.app/feather/)
+- [react-sortablejs](https://github.com/SortableJS/react-sortablejs)

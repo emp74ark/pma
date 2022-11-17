@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Task } from '../../shared/interfaces';
 import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
 import { openModal } from '../../redux/modalSlice';

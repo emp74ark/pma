@@ -24,7 +24,7 @@ export interface Column {
 }
 
 export interface Task {
-  id?: string;
+  id: string;
   order?: number;
   title: string;
   description: string;
