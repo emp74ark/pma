@@ -22,7 +22,10 @@ export const TasksList = (props: { data: ColumnData }) => {
 
   function defineName(userId: string) {
     const user = users.all.filter((user) => user.id === userId);
-    return user[0].login;
+    if (user.length !== 0) {
+      return user[0].login;
+    }
+    return 'unknown'; // TODO: replace by variable with translation
   }
 
   return (
