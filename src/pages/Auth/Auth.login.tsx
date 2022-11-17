@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logIn } from '../../redux/authSlice';
 import { openModal } from '../../redux/modalSlice';
+import { toggleLoading } from '../../redux/settingsSlice';
 import { saveToken } from '../../services/interceptor.service';
 import { signin } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
@@ -21,10 +22,12 @@ export const AuthLogin: FC = () => {
   } = useForm<User>({ mode: 'all' });
 
   function formData(form: User) {
+    dispatch(toggleLoading(true));
     signin(form)
       .then((response) => saveToken(response))
       .then((result) => {
         if (result) {
+          dispatch(toggleLoading(false));
           dispatch(logIn(form));
           reset();
           navigate('/user/dashboard');
@@ -32,6 +35,7 @@ export const AuthLogin: FC = () => {
       })
       .catch((error) => {
         if (error.response.status === 403) {
+          dispatch(toggleLoading(false));
           dispatch(openModal({ name: 'authError', data: null }));
         }
       });
