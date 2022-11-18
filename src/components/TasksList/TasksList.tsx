@@ -12,14 +12,17 @@ export const TasksList = (props: { data: ColumnData }) => {
     createTask({
       ...task,
       columnId: to.id,
-      order: newIndex! + 1,
-    }).then((response) =>
-      editTask({
-        ...response.data,
-        order: newIndex! + 1,
-      })
-    );
-    deleteTask(task.boardId!, task.columnId!, task.id);
+    })
+      .then((response) =>
+        editTask({
+          ...response.data,
+          order: newIndex! + 1,
+        })
+      )
+      .then((response) => {
+        if (response.status === 200) deleteTask(task.boardId!, task.columnId!, task.id);
+      });
+    // deleteTask(task.boardId!, task.columnId!, task.id);
   };
 
   return (
