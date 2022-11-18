@@ -97,6 +97,9 @@ export const BoardComonent: FC = () => {
         setList={setColumnData}
         onEnd={onSortEnd}
         direction={'horizontal'}
+        animation={300}
+        delayOnTouchOnly={true}
+        delay={2}
         className="w-100 min-vh-80 d-flex gap-5 overflow-auto"
       >
         {columnData.map((data) => (

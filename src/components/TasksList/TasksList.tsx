@@ -17,7 +17,14 @@ export const TasksList = (props: { data: ColumnData }) => {
 
   return (
     <ListGroup>
-      <ReactSortable list={tasks} setList={setTasks} onEnd={onSortEnd}>
+      <ReactSortable
+        list={tasks}
+        setList={setTasks}
+        onEnd={onSortEnd}
+        animation={300}
+        delayOnTouchOnly={true}
+        delay={2}
+      >
         {tasks.map((task) => (
           <TaskItem {...task} key={task.id} />
         ))}
