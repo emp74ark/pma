@@ -1,14 +1,15 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { ReactSortable, SortableEvent } from 'react-sortablejs';
 
 import { TasksList } from '../../components/TasksList/TasksList';
 import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { getBoardById } from '../../services/board.services';
-import { getAllColums } from '../../services/column.service';
+import { editColumn, getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, Column, ColumnData } from '../../shared/interfaces';
 
@@ -31,15 +32,26 @@ export const BoardComonent: FC = () => {
       reposnse.data.map((column) => {
         getAllTasks(boardId!, column.id!).then((tasks) => {
           const data: ColumnData = {
+            id: column.id!,
             column,
             tasks: tasks.data,
           };
-          setColumnData((prev) => [...prev, data]);
+          setColumnData((prev) =>
+            [...prev, data].sort((a, b) => a.column.order! - b.column.order!)
+          );
         });
       });
     });
     getBoardById(boardId!).then((response) => setBoardData(response.data));
   }, [modal]);
+
+  const onSortEnd = ({ oldIndex, newIndex }: SortableEvent) => {
+    editColumn({
+      boardId: boardId,
+      ...columnData[oldIndex!].column,
+      order: newIndex! + 1,
+    });
+  };
 
   const editColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
@@ -80,7 +92,13 @@ export const BoardComonent: FC = () => {
       <div className="row m-3">
         <h3 className="col text-center text-secondary">{boardData?.description}</h3>
       </div>
-      <div className="w-100 min-vh-80 d-flex gap-5 overflow-auto">
+      <ReactSortable
+        list={columnData}
+        setList={setColumnData}
+        onEnd={onSortEnd}
+        direction={'horizontal'}
+        className="w-100 min-vh-80 d-flex gap-5 overflow-auto"
+      >
         {columnData.map((data) => (
           <Card
             key={data.column.id}
@@ -116,7 +134,7 @@ export const BoardComonent: FC = () => {
             </Card.Body>
           </Card>
         ))}
-      </div>
+      </ReactSortable>
     </Container>
   );
 };

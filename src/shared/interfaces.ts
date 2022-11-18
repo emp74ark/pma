@@ -12,6 +12,7 @@ export interface Board {
 }
 
 export interface ColumnData {
+  id: string;
   column: Column;
   tasks: Task[];
 }

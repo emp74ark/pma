@@ -2,7 +2,7 @@ import { ListGroup } from 'react-bootstrap';
 import { ColumnData, Task } from '../../shared/interfaces';
 import { TaskItem } from '../TaskItem/TaskItem';
 import { ReactSortable, SortableEvent } from 'react-sortablejs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { editTask } from '../../services/task.service';
 
 export const TasksList = (props: { data: ColumnData }) => {
@@ -14,10 +14,6 @@ export const TasksList = (props: { data: ColumnData }) => {
       order: newIndex! + 1,
     });
   };
-
-  useEffect(() => {
-    console.log(tasks);
-  }, []);
 
   return (
     <ListGroup>
