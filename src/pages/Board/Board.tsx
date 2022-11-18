@@ -32,7 +32,10 @@ export const BoardComonent: FC = () => {
         getAllTasks(boardId!, column.id!).then((tasks) => {
           const data: ColumnData = {
             id: column.id!,
-            column,
+            column: {
+              ...column,
+              boardId: boardId!,
+            },
             tasks: tasks.data,
           };
           setColumnData((prev) =>
