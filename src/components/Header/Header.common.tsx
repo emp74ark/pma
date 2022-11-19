@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
 import { Button, Nav } from 'react-bootstrap';
-import { mode } from '../../redux/authSlice';
+import { mode, resetAuth } from '../../redux/authSlice';
 
 export const NavCommon: FC = () => {
   const { setting, auth } = useSelector((state: RootState) => state);
@@ -21,6 +21,7 @@ export const NavCommon: FC = () => {
               ? `nav-link text-decoration-none text-${colorText}`
               : `nav-link text-${colorText}`
           }
+          onClick={() => dispatch(resetAuth())}
           to={path}
         >
           {title}
