@@ -1,6 +1,6 @@
 import { About } from '../pages/About/About';
 import { Auth } from '../pages/Auth/Auth';
-import { BoardComonent } from '../pages/Board/Board';
+import { BoardPage } from '../pages/Board/Board';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
 import { UFO } from '../pages/UFO/UFO';
 import { UserProfile } from '../pages/User/User';
@@ -20,7 +20,7 @@ const taskRoutes = [
   {
     title: 'Board',
     path: '/user/board/:boardId',
-    element: <BoardComonent />,
+    element: <BoardPage />,
   },
 ];
 

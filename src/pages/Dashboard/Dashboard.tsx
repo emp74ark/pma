@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, ButtonGroup, Card, Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
@@ -10,16 +9,12 @@ import { allUsers, currentUser } from '../../redux/usersSlice';
 import { getAllBoards } from '../../services/board.services';
 import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
+import { BoardItem } from '../../components/BoardItem/BoardItem';
 
 export const Dashboard: FC = () => {
-  const navigate = useNavigate();
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
   const { modal, auth } = useSelector((state: RootState) => state);
-  const { theme } = useSelector((state: RootState) => state.setting);
-  const openBoard = (boardId: string) => {
-    navigate(`/user/board/${boardId}`);
-  };
 
   useEffect(() => {
     dispatch(toggleLoading(true));
@@ -31,20 +26,10 @@ export const Dashboard: FC = () => {
     });
     getAllUsers().then((response) => {
       dispatch(allUsers(response.data));
-      const current = response.data.filter((user) => user.login === auth.login)[0];
-      dispatch(currentUser(current));
+      const current = response.data.find((user) => user.login === auth.login);
+      if (current) dispatch(currentUser(current));
     });
   }, [modal]);
-
-  const removeHandler = (e: React.MouseEvent, board: Board) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'removeBoard', data: board }));
-  };
-
-  const editHandler = (e: React.MouseEvent, board: Board) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'editBoard', data: board }));
-  };
 
   return (
     <Container fluid className="flex-fill overflow-auto">
@@ -61,38 +46,7 @@ export const Dashboard: FC = () => {
         </Button>
       </div>
       <div className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1">
-        {boards &&
-          boards.map((board) => (
-            <Card
-              style={{ width: '20rem' }}
-              className="col-2 p-0"
-              key={board.id}
-              onClick={() => openBoard(board.id!)}
-              bg={theme}
-              text={theme === 'dark' ? 'white' : 'dark'}
-            >
-              <Card.Header>
-                <div className="row">
-                  <Card.Title className="col">{board.title}</Card.Title>
-                  <ButtonGroup className="col float-right" size="sm">
-                    <Button
-                      className="bi-pencil text-success"
-                      variant="link"
-                      onClick={(e) => editHandler(e, board)}
-                    />
-                    <Button
-                      className="bi-trash text-danger"
-                      variant="link"
-                      onClick={(e) => removeHandler(e, board)}
-                    />
-                  </ButtonGroup>
-                </div>
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>{board.description}</Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
+        {boards && boards.map((board) => <BoardItem key={board.id} {...board} />)}
       </div>
     </Container>
   );

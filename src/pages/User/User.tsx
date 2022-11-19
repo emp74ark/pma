@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,7 +33,7 @@ export const UserProfile: FC = () => {
         </button>
         <button
           onClick={(e) => removeUserHandler(e, users?.current as User)}
-          className="btn btn-primary"
+          className="btn btn-danger"
         >
           Delete User
         </button>

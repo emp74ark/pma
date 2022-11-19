@@ -10,10 +10,13 @@ import { NavCommon } from './Header.common';
 import { NavUser } from './Header.user';
 
 export const Header: FC = () => {
-  const { login } = useSelector((state: RootState) => state.auth);
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const {
+    auth: { login },
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
   const colorText = theme === 'dark' ? 'white' : 'black';
+
   const selectLocaleHandler = (key: string | null) => {
     const value = key ? key : 'en';
     dispatch(toggleLocale(value));

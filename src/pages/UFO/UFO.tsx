@@ -6,7 +6,7 @@ export const UFO: FC = () => {
   return (
     <Container className="flex-fill">
       <Row>
-        <h2 className="col">Page not found</h2>
+        <h2 className="col text-center pt-5">Page not found</h2>
       </Row>
       <Row className="b-fle justify-content-center">
         <img src={ufo} alt="Page not found" className="w-50" />

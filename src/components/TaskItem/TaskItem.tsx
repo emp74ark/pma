@@ -7,8 +7,10 @@ import { RootState } from '../../redux/store';
 
 export const TaskItem: FC<Task> = (task) => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state: RootState) => state);
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const {
+    users,
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
 
   const editHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();

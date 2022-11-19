@@ -7,6 +7,7 @@ import { editTask, getTaskById } from '../../services/task.service';
 export const TasksList = (props: { data: ColumnData }) => {
   const { data } = props;
   const [tasks, setTasks] = useState<Task[]>(data.tasks.sort((a, b) => a.order! - b.order!));
+
   const onSortEnd = ({ from, to, oldIndex, newIndex }: SortableEvent) => {
     const { boardId, id: taskId } = tasks[oldIndex!];
     getTaskById(boardId!, from.id, taskId).then(({ data }) => {

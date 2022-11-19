@@ -11,6 +11,7 @@ export const NavUser: FC = () => {
   const navigate = useNavigate();
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
+
   const logoutHandler = () => {
     dispatch(logOut());
     navigate('/auth');

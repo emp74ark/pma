@@ -8,6 +8,7 @@ import { RootState } from '../../redux/store';
 export const NavCommon: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
+
   return (
     <>
       {commonRoutes.map(({ title, path }) => (

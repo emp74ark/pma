@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { Button, ButtonGroup, Card } from 'react-bootstrap';
-import { TasksList } from '../../components/TasksList/TasksList';
+import { TasksList } from '../TasksList/TasksList';
 import { Column, ColumnData } from '../../shared/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/modalSlice';
 
-export const ColumnComponent: FC<ColumnData> = (data) => {
+export const ColumnItem: FC<ColumnData> = (data) => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state: RootState) => state.setting);
 
@@ -16,7 +16,6 @@ export const ColumnComponent: FC<ColumnData> = (data) => {
   };
 
   const removeColumnHandler = (e: React.MouseEvent, column: Column) => {
-    console.log(column);
     e.stopPropagation();
     dispatch(openModal({ name: 'removeColumn', data: column }));
   };

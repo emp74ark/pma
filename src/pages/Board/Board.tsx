@@ -11,9 +11,9 @@ import { getBoardById } from '../../services/board.services';
 import { editColumn, getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
-import { ColumnComponent } from '../ColumnComponent/ColumnContainer';
+import { ColumnItem } from '../../components/ColumnItem/ColumnItem';
 
-export const BoardComonent: FC = () => {
+export const BoardPage: FC = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const boardId = params.boardId;
@@ -85,7 +85,7 @@ export const BoardComonent: FC = () => {
         className="w-100 min-vh-80 d-flex gap-5 overflow-auto"
       >
         {columnData.map((data) => (
-          <ColumnComponent {...data} key={data.column.id} />
+          <ColumnItem {...data} key={data.column.id} />
         ))}
       </ReactSortable>
     </Container>

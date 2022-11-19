@@ -6,6 +6,7 @@ import { contacts } from './Footer.props';
 
 export const Footer: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
+
   return (
     <footer className={`bg-${theme} d-flex justify-content-center`}>
       <ul className="nav d-flex flex-wrap justify-content-center">
