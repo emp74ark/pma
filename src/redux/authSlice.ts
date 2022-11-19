@@ -5,7 +5,7 @@ import { AuthState, User } from '../shared/interfaces';
 const initialState: AuthState = {
   login: undefined,
   exp: true,
-  mode: 'login',
+  mode: null,
 };
 
 const authSlice = createSlice({

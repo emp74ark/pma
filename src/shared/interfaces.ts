@@ -37,7 +37,7 @@ export interface Task {
 export interface AuthState {
   login: string | undefined;
   exp: boolean;
-  mode: 'login' | 'registration';
+  mode: 'login' | 'registration' | null;
 }
 
 export interface SettingsState {
