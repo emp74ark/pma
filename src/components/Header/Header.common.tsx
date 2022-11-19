@@ -36,6 +36,7 @@ export const NavCommon: FC = () => {
         <Button
           variant={auth.mode === 'login' ? 'primary' : 'secondary'}
           onClick={() => dispatch(mode('login'))}
+          style={{ width: '6rem' }}
         >
           Sign Up
         </Button>
@@ -49,6 +50,7 @@ export const NavCommon: FC = () => {
         <Button
           variant={auth.mode === 'registration' ? 'primary' : 'secondary'}
           onClick={() => dispatch(mode('registration'))}
+          style={{ width: '6rem' }}
         >
           Sign In
         </Button>

@@ -25,7 +25,7 @@ export const SignUp: FC = () => {
         if (response.status === 201) {
           dispatch(signUp());
           reset();
-          navigate('/auth');
+          navigate('/signin');
         }
       })
       .catch((error) => {
