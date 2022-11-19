@@ -1,14 +1,16 @@
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
 import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
+import { Button, Nav } from 'react-bootstrap';
+import { mode, resetAuth } from '../../redux/authSlice';
 
 export const NavCommon: FC = () => {
-  const { theme } = useSelector((state: RootState) => state.setting);
-  const colorText = theme === 'dark' ? 'white' : 'black';
-
+  const { setting, auth } = useSelector((state: RootState) => state);
+  const colorText = setting.theme === 'dark' ? 'white' : 'black';
+  const dispatch = useDispatch();
   return (
     <>
       {commonRoutes.map(({ title, path }) => (
@@ -19,6 +21,7 @@ export const NavCommon: FC = () => {
               ? `nav-link text-decoration-none text-${colorText}`
               : `nav-link text-${colorText}`
           }
+          onClick={() => dispatch(resetAuth())}
           to={path}
         >
           {title}
@@ -26,13 +29,31 @@ export const NavCommon: FC = () => {
       ))}
       <NavLink
         className={({ isActive }) =>
-          isActive
-            ? `nav-link text-decoration-none text-${colorText}`
-            : `nav-link text-${colorText}`
+          isActive ? `text-decoration-none text-${colorText}` : `text-${colorText}`
         }
-        to="/auth"
+        to="/signup"
       >
-        Login
+        <Button
+          variant={auth.mode === 'login' ? 'primary' : 'secondary'}
+          onClick={() => dispatch(mode('login'))}
+          style={{ width: '6rem' }}
+        >
+          Sign Up
+        </Button>
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? `text-decoration-none text-${colorText}` : `text-${colorText}`
+        }
+        to="/signin"
+      >
+        <Button
+          variant={auth.mode === 'registration' ? 'primary' : 'secondary'}
+          onClick={() => dispatch(mode('registration'))}
+          style={{ width: '6rem' }}
+        >
+          Sign In
+        </Button>
       </NavLink>
     </>
   );

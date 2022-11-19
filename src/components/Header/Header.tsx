@@ -43,18 +43,15 @@ export const Header: FC = () => {
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-lg"
           className={`bg-${theme} text-${colorText}`}
-          aria-labelledby="offcanvasNavbarLabel-expand"
+          aria-labelledby="offcanvasNavbarLabel-expand-lg"
           placement="end"
         >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="ms-auto">
+            <Nav className="gap-3 justify-content-end w-100">
               {!login && <NavCommon />}
               {login && <NavUser />}
-            </Nav>
-            <Nav className="d-flex gap-2 ms-auto">
               <DropdownButton
-                className="col"
                 id="locale"
                 onSelect={(key) => selectLocaleHandler(key)}
                 title="Language"
@@ -62,12 +59,7 @@ export const Header: FC = () => {
                 <DropdownItem eventKey={'en'}>English</DropdownItem>
                 <DropdownItem eventKey={'ru'}>Russian</DropdownItem>
               </DropdownButton>
-              <DropdownButton
-                className="col"
-                id="theme"
-                onSelect={(key) => selectThemeHandler(key)}
-                title="Theme"
-              >
+              <DropdownButton id="theme" onSelect={(key) => selectThemeHandler(key)} title="Theme">
                 <DropdownItem eventKey={'light'}>Light</DropdownItem>
                 <DropdownItem eventKey={'dark'}>Dark</DropdownItem>
               </DropdownButton>

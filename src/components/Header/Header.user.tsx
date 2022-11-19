@@ -14,7 +14,7 @@ export const NavUser: FC = () => {
 
   const logoutHandler = () => {
     dispatch(logOut());
-    navigate('/auth');
+    navigate('/signin');
   };
 
   return (
