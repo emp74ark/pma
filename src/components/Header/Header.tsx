@@ -17,7 +17,8 @@ export const Header: FC = () => {
   const dispatch = useDispatch();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const [isScrolling, setScrolling] = useState<boolean>(false);
-  const headerTheme = isScrolling ? 'secondary' : theme;
+  const scrollingTheme = theme === 'dark' ? 'secondary' : 'warning';
+  const headerTheme = isScrolling ? scrollingTheme : theme;
   const selectLocaleHandler = (key: string | null) => {
     const value = key ? key : 'en';
 
