@@ -54,7 +54,7 @@ export const Header: FC = () => {
       sticky="top"
       collapseOnSelect
       expand="lg"
-      className={`bg-${headerTheme} text-${colorText} shadow`}
+      className={`bg-${headerTheme} text-${colorText}`}
     >
       <Container fluid>
         <Navbar.Brand className={`text-${colorText} nav-link`}>
