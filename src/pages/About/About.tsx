@@ -2,11 +2,13 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 import board from '../../assets/images/board.png';
 import toyota from '../../assets/images/toyota.jpeg';
+import { useTranslation } from 'react-i18next';
 
 export const About: FC = () => {
+  const { t } = useTranslation();
   return (
     <Container>
-      <h2>About</h2>
+      <h2>{t('About')}</h2>
       <img src={board} alt="Kanban board" />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt perferendis expedita hic quae
