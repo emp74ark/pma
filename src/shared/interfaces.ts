@@ -44,6 +44,7 @@ export interface SettingsState {
   locale: string;
   theme: string;
   loading: boolean;
+  maxHeight: number;
 }
 
 export interface ModalState {
