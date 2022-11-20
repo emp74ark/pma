@@ -16,7 +16,6 @@ const localeSlice = createSlice({
     },
     toggleTheme: (state, action: PayloadAction<string>) => {
       state.theme = action.payload;
-      console.log('first');
     },
     toggleLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
