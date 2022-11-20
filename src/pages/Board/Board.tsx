@@ -56,7 +56,6 @@ export const BoardPage: FC = () => {
   };
 
   useEffect(() => {
-    console.log('height', document.querySelector('.columns')?.clientHeight);
     if (document.querySelector('.columns')?.clientHeight)
       dispatch(setMaxHeight(document.querySelector('.columns')?.clientHeight as number));
   }, [document.querySelector('.columns')?.clientHeight]);
