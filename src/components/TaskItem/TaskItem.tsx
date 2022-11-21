@@ -26,7 +26,7 @@ export const TaskItem: FC<Task> = (task) => {
     if (user.length !== 0) {
       return user[0].login;
     }
-    return 'unknown'; // TODO: replace by variable with translation
+    return 'unknown';
   }
 
   return (

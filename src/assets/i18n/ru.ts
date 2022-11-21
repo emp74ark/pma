@@ -156,7 +156,7 @@ export const dict_ru = {
         addColumn: 'Добавить колонку',
       },
       dashboard: {
-        title: 'Дэшборд',
+        title: 'Доски',
         addBoard: 'Добавить доску',
       },
     },

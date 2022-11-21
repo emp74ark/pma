@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
-import { Button, Nav } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { mode, resetAuth } from '../../redux/authSlice';
 import { useTranslation } from 'react-i18next';
 
@@ -38,7 +38,6 @@ export const NavCommon: FC = () => {
         <Button
           variant={auth.mode === 'login' ? 'primary' : 'secondary'}
           onClick={() => dispatch(mode('login'))}
-          style={{ width: '6rem' }}
         >
           {t(`header.signUp`)}
         </Button>
@@ -52,7 +51,6 @@ export const NavCommon: FC = () => {
         <Button
           variant={auth.mode === 'registration' ? 'primary' : 'secondary'}
           onClick={() => dispatch(mode('registration'))}
-          style={{ width: '6rem' }}
         >
           {t(`header.signIn`)}
         </Button>
