@@ -1,36 +1,25 @@
 import { FC, useEffect, useState } from 'react';
-import { Container, DropdownButton, Nav, Navbar, Offcanvas } from 'react-bootstrap';
-import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import { useDispatch, useSelector } from 'react-redux';
+import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/images/kanban.png';
 
-import { toggleLocale, toggleTheme } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { NavCommon } from './Header.common';
 import { NavUser } from './Header.user';
-import { useTranslation } from 'react-i18next';
+import { NavAuth } from './Header.auth';
+import { LocaleSelector } from './Header.locale';
+import { ThemeSelector } from './Header.theme';
 
 export const Header: FC = () => {
   const {
     auth: { login },
     setting: { theme },
   } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const [isScrolling, setScrolling] = useState<boolean>(false);
   const scrollingTheme = theme === 'dark' ? 'secondary' : 'warning';
   const headerTheme = isScrolling ? scrollingTheme : theme;
-  const selectLocaleHandler = (key: string | null) => {
-    const value = key ? key : 'en';
-
-    dispatch(toggleLocale(value));
-  };
-
-  const selectThemeHandler = (key: string | null) => {
-    const value = key ? key : 'light';
-    dispatch(toggleTheme(value));
-  };
 
   const handleScroll = () => {
     if (window.scrollY >= 8) {
@@ -56,11 +45,13 @@ export const Header: FC = () => {
       sticky="top"
       collapseOnSelect
       expand="lg"
-      className={`bg-${headerTheme} text-${colorText}`}
+      className={`bg-${headerTheme} text-${colorText} rounded shadow-sm mt-2 mb-3`}
+      style={{ top: '.2rem' }}
     >
       <Container fluid>
         <Navbar.Brand className={`text-${colorText} nav-link`}>
           <NavLink className={`text-decoration-none text-${colorText}`} to="/">
+            <img src={logo} alt="PMA" className="pe-2" style={{ width: '3rem' }} />
             PMA
           </NavLink>
         </Navbar.Brand>
@@ -73,26 +64,13 @@ export const Header: FC = () => {
         >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="gap-3 justify-content-end w-100">
-              {!login && <NavCommon />}
+            <Nav className="gap-3 justify-content-center w-100">
+              <NavCommon />
+              {!login && <NavAuth />}
               {login && <NavUser />}
-              <DropdownButton
-                id="locale"
-                onSelect={(key) => selectLocaleHandler(key)}
-                title={t('header.lang.title')}
-              >
-                <DropdownItem eventKey={'en'}>{t('header.lang.english')}</DropdownItem>
-                <DropdownItem eventKey={'ru'}>{t('header.lang.russian')}</DropdownItem>
-              </DropdownButton>
-              <DropdownButton
-                id="theme"
-                onSelect={(key) => selectThemeHandler(key)}
-                title={t('header.theme.title')}
-              >
-                <DropdownItem eventKey={'light'}>{t('header.theme.light')}</DropdownItem>
-                <DropdownItem eventKey={'dark'}>{t('header.theme.dark')}</DropdownItem>
-              </DropdownButton>
             </Nav>
+            <LocaleSelector />
+            <ThemeSelector />
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

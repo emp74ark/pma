@@ -2,20 +2,19 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
-import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
 import { resetAuth } from '../../redux/authSlice';
 import { useTranslation } from 'react-i18next';
+import { authRoutes } from '../../routes/Routes';
 
-export const NavCommon: FC = () => {
+export const NavAuth: FC = () => {
   const { setting } = useSelector((state: RootState) => state);
   const colorText = setting.theme === 'dark' ? 'white' : 'black';
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
   return (
     <>
-      {commonRoutes.map(({ title, path }) => (
+      {authRoutes.map(({ title, path }) => (
         <NavLink
           key={path}
           className={({ isActive }) =>
