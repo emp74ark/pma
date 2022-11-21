@@ -2,34 +2,29 @@ import { Board } from '../shared/interfaces';
 import { http } from './interceptor.service';
 
 function getAllBoards() {
-  const response = http.get<Board[]>('/boards');
-  return response;
+  return http.get<Board[]>('/boards');
 }
 
 function getBoardById(id: string) {
-  const response = http.get<Board>(`/boards/${id}`);
-  return response;
+  return http.get<Board>(`/boards/${id}`);
 }
 
 function createBoard(board: Board) {
-  const response = http.post('/boards', {
+  return http.post('/boards', {
     title: board.title,
     description: board.description,
   });
-  return response;
 }
 
 function deleteBoard(id: string) {
-  const response = http.delete(`/boards/${id}`);
-  return response;
+  return http.delete(`/boards/${id}`);
 }
 
 function editBoard(board: Board) {
-  const response = http.put<Board>(`/boards/${board.id}`, {
+  return http.put<Board>(`/boards/${board.id}`, {
     title: board.title,
     description: board.description,
   });
-  return response;
 }
 
 export { getAllBoards, getBoardById, createBoard, deleteBoard, editBoard };

@@ -2,13 +2,11 @@ import { User } from '../shared/interfaces';
 import { http } from './interceptor.service';
 
 function signin(user: User) {
-  const response = http.post('/signin', user);
-  return response;
+  return http.post('/signin', user);
 }
 
 function signup(user: User) {
-  const response = http.post('/signup', user);
-  return response;
+  return http.post('/signup', user);
 }
 
 function signout() {
@@ -16,27 +14,23 @@ function signout() {
 }
 
 function getAllUsers() {
-  const response = http.get<User[]>('/users');
-  return response;
+  return http.get<User[]>('/users');
 }
 
 function getUserById(id: string) {
-  const response = http.get<User>(`/users/${id}`);
-  return response;
+  return http.get<User>(`/users/${id}`);
 }
 
 function deleteUser(user: User) {
-  const response = http.delete(`/users/${user.id}`);
-  return response;
+  return http.delete(`/users/${user.id}`);
 }
 
 function editUser(user: User) {
-  const response = http.put<User>(`/users/${user.id}`, {
+  return http.put<User>(`/users/${user.id}`, {
     name: user.name,
     login: user.login,
     password: user.password,
   });
-  return response;
 }
 
 export { signin, signup, signout, getAllUsers, getUserById, deleteUser, editUser };

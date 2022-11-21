@@ -8,7 +8,7 @@ import { openModal } from '../../redux/modalSlice';
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { getBoardById } from '../../services/board.services';
-import { editColumn, getAllColums } from '../../services/column.service';
+import { editColumn, getAllColumns } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
 import { ColumnItem } from '../../components/ColumnItem/ColumnItem';
@@ -26,7 +26,7 @@ export const BoardPage: FC = () => {
   useEffect(() => {
     setColumnData([]);
     dispatch(toggleLoading(true));
-    getAllColums(boardId!).then((reposnse) => {
+    getAllColumns(boardId!).then((reposnse) => {
       if (reposnse.status === 200) {
         dispatch(toggleLoading(false));
       }
