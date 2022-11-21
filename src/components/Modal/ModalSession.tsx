@@ -16,7 +16,7 @@ export const ModalSession: FC = () => {
 
   const buttonHandler = () => {
     dispatch(logOut());
-    navigate('/auth');
+    navigate('/');
   };
 
   return (
