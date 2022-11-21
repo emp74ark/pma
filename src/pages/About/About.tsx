@@ -8,7 +8,7 @@ export const About: FC = () => {
   const { t } = useTranslation();
   return (
     <Container>
-      <h2>{t('About')}</h2>
+      <h2>{t('about.title')}</h2>
       <img src={board} alt="Kanban board" />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt perferendis expedita hic quae

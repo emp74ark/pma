@@ -8,7 +8,7 @@ export const Welcome: FC = () => {
   const { t } = useTranslation();
   return (
     <Container className="flex-fill">
-      <h2>{t('Welcome')}</h2>
+      <h2>{t('welcome.title')}</h2>
       <img src={kanban} alt="Kanban" />
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod dolor temporibus sed quasi

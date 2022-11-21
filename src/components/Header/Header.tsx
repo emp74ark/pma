@@ -8,6 +8,7 @@ import { toggleLocale, toggleTheme } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { NavCommon } from './Header.common';
 import { NavUser } from './Header.user';
+import { useTranslation } from 'react-i18next';
 
 export const Header: FC = () => {
   const {
@@ -15,6 +16,7 @@ export const Header: FC = () => {
     setting: { theme },
   } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
 
   const selectLocaleHandler = (key: string | null) => {
@@ -54,14 +56,18 @@ export const Header: FC = () => {
               <DropdownButton
                 id="locale"
                 onSelect={(key) => selectLocaleHandler(key)}
-                title="Language"
+                title={t('header.lang.title')}
               >
-                <DropdownItem eventKey={'en'}>English</DropdownItem>
-                <DropdownItem eventKey={'ru'}>Russian</DropdownItem>
+                <DropdownItem eventKey={'en'}>{t('header.lang.english')}</DropdownItem>
+                <DropdownItem eventKey={'ru'}>{t('header.lang.russian')}</DropdownItem>
               </DropdownButton>
-              <DropdownButton id="theme" onSelect={(key) => selectThemeHandler(key)} title="Theme">
-                <DropdownItem eventKey={'light'}>Light</DropdownItem>
-                <DropdownItem eventKey={'dark'}>Dark</DropdownItem>
+              <DropdownButton
+                id="theme"
+                onSelect={(key) => selectThemeHandler(key)}
+                title={t('header.theme.title')}
+              >
+                <DropdownItem eventKey={'light'}>{t('header.theme.light')}</DropdownItem>
+                <DropdownItem eventKey={'dark'}>{t('header.theme.dark')}</DropdownItem>
               </DropdownButton>
             </Nav>
           </Offcanvas.Body>

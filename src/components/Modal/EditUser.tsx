@@ -8,10 +8,12 @@ import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editUser, signout } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const EditUser: FC = () => {
   const { users } = useSelector((state: RootState) => state);
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
@@ -37,12 +39,12 @@ export const EditUser: FC = () => {
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>Edit</Modal.Title>
+        <Modal.Title>{t('editUser.edit')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(formData)}>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{t('editUser.name')}</label>
             <input
               {...register('name', { required: true, minLength: 2 })}
               type="text"
@@ -51,13 +53,15 @@ export const EditUser: FC = () => {
               className="form-control"
               defaultValue={users.current?.name}
             />
-            {errors.name?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
+            {errors.name?.type === 'required' && (
+              <Alert variant="warning">{t('editUser.nameRequired')}</Alert>
+            )}
             {errors.name?.type === 'minLength' && (
-              <Alert variant="warning">Name is too short</Alert>
+              <Alert variant="warning">{t('editUser.nameShort')}</Alert>
             )}
           </div>
           <div className="form-group">
-            <label htmlFor="login">Email</label>
+            <label htmlFor="login">{t('editUser.email')}</label>
             <input
               {...register('login', { required: true })}
               type="text"
@@ -66,10 +70,12 @@ export const EditUser: FC = () => {
               className="form-control"
               defaultValue={users.current?.login}
             />
-            {errors.login?.type === 'required' && <Alert variant="warning">Name is required</Alert>}
+            {errors.login?.type === 'required' && (
+              <Alert variant="warning">{t('editUser.emailRequired')}</Alert>
+            )}
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t('editUser.password')}</label>
             <input
               {...register('password', { required: true, minLength: 6 })}
               type="password"
@@ -78,17 +84,17 @@ export const EditUser: FC = () => {
               className="form-control"
             />
             {errors.password?.type === 'required' && (
-              <Alert variant="warning">Password is required</Alert>
+              <Alert variant="warning">{t('editUser.passwordRequired')}</Alert>
             )}
             {errors.password?.type === 'minLength' && (
-              <Alert variant="warning">Password is too short</Alert>
+              <Alert variant="warning">{t('editUser.passwordShort')}</Alert>
             )}
           </div>
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
+            {t('editUser.submit')}
           </Button>
           <Button variant="warning" onClick={() => dispatch(closeModal('editUser'))}>
-            Cancel
+            {t('editUser.cancel')}
           </Button>
         </form>
       </Modal.Body>

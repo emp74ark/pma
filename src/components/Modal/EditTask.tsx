@@ -6,12 +6,14 @@ import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editTask } from '../../services/task.service';
 import { Task } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const EditTask: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order, description, userId, boardId, columnId } = data as Task;
   const { theme } = useSelector((state: RootState) => state.setting);
   const { users } = useSelector((state: RootState) => state);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
 
   const {
@@ -40,12 +42,12 @@ export const EditTask: FC = () => {
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>Edit</Modal.Title>
+        <Modal.Title>{t('editTask.edit')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(taskData)}>
           <div className="form-group">
-            <label htmlFor="title">Task name</label>
+            <label htmlFor="title">{t('editTask.taskName')}</label>
             <input
               className="form-control"
               {...register('title', { required: true })}
@@ -56,7 +58,7 @@ export const EditTask: FC = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Task description</label>
+            <label htmlFor="description">{t('editTask.taskDescription')}</label>
             <input
               className="form-control"
               {...register('description', { required: true })}
@@ -66,9 +68,11 @@ export const EditTask: FC = () => {
               defaultValue={description}
             />
           </div>
-          {errors.title?.type === 'required' && <Alert variant="warning">Title is required</Alert>}
+          {errors.title?.type === 'required' && (
+            <Alert variant="warning">{t('editTask.titleRequired')}</Alert>
+          )}
           <div className="form-group">
-            <label htmlFor="description">Assigned user</label>
+            <label htmlFor="description">{t('editTask.assignedUser')}</label>
             <select
               className="form-control"
               {...register('userId')}
@@ -83,10 +87,10 @@ export const EditTask: FC = () => {
             </select>
           </div>
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
+            {t('editTask.submit')}
           </Button>
           <Button variant="warning" onClick={() => dispatch(closeModal('editTask'))}>
-            Cancel
+            {t('editTask.cancel')}
           </Button>
         </form>
       </Modal.Body>

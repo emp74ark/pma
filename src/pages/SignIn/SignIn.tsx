@@ -9,10 +9,12 @@ import { toggleLoading } from '../../redux/settingsSlice';
 import { saveToken } from '../../services/interceptor.service';
 import { signin } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const SignIn: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -43,14 +45,14 @@ export const SignIn: FC = () => {
 
   return (
     <Container fluid className="flex-fill d-flex flex-column justify-content-center">
-      <h2 className="mb-3 text-center mb-auto mt-5">Sign In</h2>
+      <h2 className="mb-3 text-center mb-auto mt-5">{t('sign.signIn')}</h2>
       <form className="row justify-content-center mb-auto" onSubmit={handleSubmit(formData)}>
         <div className="row mb-2 justify-content-center">
           <label
             className="col-md-5 d-flex flex-column justify-content-center"
             htmlFor="autoSizingInput"
           >
-            Email
+            {t('sign.email')}
           </label>
         </div>
         <div className="row mb-3 justify-content-center">
@@ -64,13 +66,13 @@ export const SignIn: FC = () => {
               placeholder="user@address.mail"
             />
             {errors.login?.type === 'required' && (
-              <Alert variant="warning">Login is required</Alert>
+              <Alert variant="warning">{t('sign.loginRequired')}</Alert>
             )}
           </div>
         </div>
         <div className="row mb-2 justify-content-center">
           <label className="col-md-5 d-flex flex-column justify-content-center" htmlFor="password">
-            Password
+            {t('sign.password')}
           </label>
         </div>
         <div className="row mb-3 justify-content-center">
@@ -83,7 +85,7 @@ export const SignIn: FC = () => {
               className="form-control"
             />
             {errors.password?.type === 'required' && (
-              <Alert variant="warning">Password is required</Alert>
+              <Alert variant="warning">{t('sign.passwordRequired')}</Alert>
             )}
           </div>
         </div>
@@ -94,7 +96,7 @@ export const SignIn: FC = () => {
               className="btn btn-success m-2 col-md-5"
               disabled={!isDirty || !isValid}
             >
-              Submit
+              {t('sign.submit')}
             </button>
           </div>
         </div>

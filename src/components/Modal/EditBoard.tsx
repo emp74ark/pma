@@ -6,11 +6,13 @@ import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editBoard } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const EditBoard: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, description } = data as Board;
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
@@ -34,12 +36,12 @@ export const EditBoard: FC = () => {
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>Edit</Modal.Title>
+        <Modal.Title>{t('editBoard.edit')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(boardData)}>
           <div className="form-group">
-            <label htmlFor="title">Board name</label>
+            <label htmlFor="title">{t('editBoard.boardName')}</label>
             <input
               className="form-control"
               {...register('title', { required: true })}
@@ -50,7 +52,7 @@ export const EditBoard: FC = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Board description</label>
+            <label htmlFor="description">{t('editBoard.boardDescription')}</label>
             <input
               className="form-control"
               {...register('description', { required: true })}
@@ -60,12 +62,14 @@ export const EditBoard: FC = () => {
               defaultValue={description}
             />
           </div>
-          {errors.title?.type === 'required' && <Alert variant="warning">Title is required</Alert>}
+          {errors.title?.type === 'required' && (
+            <Alert variant="warning">{t('editBoard.titleRequired')}</Alert>
+          )}
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
+            {t('editBoard.submit')}
           </Button>
           <Button variant="warning" onClick={() => dispatch(closeModal('editBoard'))}>
-            Cancel
+            {t('editBoard.cancel')}
           </Button>
         </form>
       </Modal.Body>
