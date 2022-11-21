@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../redux/authSlice';
 import { RootState } from '../../redux/store';
+import { useTranslation } from 'react-i18next';
 
 export const ModalSession: FC = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export const ModalSession: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
   const colorText = theme === 'dark' ? 'white' : 'black';
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const buttonHandler = () => {
     dispatch(logOut());
@@ -21,14 +23,14 @@ export const ModalSession: FC = () => {
     <>
       <Modal className={`text-${colorText}`} show={exp && !!login} centered>
         <Modal.Header className={`bg-${theme}`}>
-          <Modal.Title>Session life-time</Modal.Title>
+          <Modal.Title>{t('modalSession.session')}</Modal.Title>
         </Modal.Header>
         <Modal.Body className={`bg-${theme}`}>
-          <p>Your session token is expired</p>
+          <p>{t('modalSession.tokenExpired')}</p>
         </Modal.Body>
         <Modal.Footer className={`bg-${theme}`}>
           <button className="btn btn-warning" onClick={() => buttonHandler()}>
-            Understood
+            {t('modalSession.understood')}
           </button>
         </Modal.Footer>
       </Modal>

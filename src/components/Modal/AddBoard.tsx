@@ -7,10 +7,12 @@ import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { createBoard } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const AddBoard: FC = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
@@ -28,12 +30,12 @@ export const AddBoard: FC = () => {
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>Create new board</Modal.Title>
+        <Modal.Title>{t('addBoard.createBoard')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(boardData)}>
           <div className="form-group">
-            <label htmlFor="title">Board name</label>
+            <label htmlFor="title">{t('addBoard.boardName')}</label>
             <input
               className="form-control"
               {...register('title', { required: true })}
@@ -42,11 +44,11 @@ export const AddBoard: FC = () => {
               id="title"
             />
             {errors.title?.type === 'required' && (
-              <Alert variant="warning">Title is required</Alert>
+              <Alert variant="warning">{t('addBoard.titleRequired')}</Alert>
             )}
           </div>
           <div className="form-group">
-            <label htmlFor="description">Board description</label>
+            <label htmlFor="description">{t('addBoard.boardDescription')}</label>
             <input
               className="form-control"
               {...register('description', { required: true })}
@@ -55,14 +57,14 @@ export const AddBoard: FC = () => {
               id="description"
             />
             {errors.description?.type === 'required' && (
-              <Alert variant="warning">Description is required</Alert>
+              <Alert variant="warning">{t('addBoard.descriptionRequired')}</Alert>
             )}
           </div>
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
+            {t('addBoard.submit')}
           </Button>
           <Button variant="warning" onClick={() => dispatch(closeModal('addBoard'))}>
-            Cancel
+            {t('addBoard.cancel')}
           </Button>
         </form>
       </Modal.Body>

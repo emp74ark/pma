@@ -5,11 +5,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { userRoutes } from '../../routes/Routes';
 import { logOut } from '../../redux/authSlice';
 import { RootState } from '../../redux/store';
+import { useTranslation } from 'react-i18next';
 
 export const NavUser: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
 
   const logoutHandler = () => {
@@ -29,13 +31,13 @@ export const NavUser: FC = () => {
             }
             to={path}
           >
-            {title}
+            {t(`routes.${title}`)}
           </NavLink>
         </li>
       ))}
       <li className="nav-item">
         <span onClick={() => logoutHandler()} className={`nav-link text-${colorText}`}>
-          Log out
+          {t(`header.logout`)}
         </span>
       </li>
     </>

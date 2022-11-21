@@ -9,10 +9,12 @@ import { toggleLoading } from '../../redux/settingsSlice';
 import { saveToken } from '../../services/interceptor.service';
 import { signin } from '../../services/user.service';
 import { User } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const AuthLogin: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,

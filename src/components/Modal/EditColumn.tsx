@@ -6,11 +6,13 @@ import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editColumn } from '../../services/column.service';
 import { Board, Column } from '../../shared/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
   const { id, title, order } = data as Column;
   const { theme } = useSelector((state: RootState) => state.setting);
+  const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
@@ -36,12 +38,12 @@ export const EditColumn: FC = () => {
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>Edit</Modal.Title>
+        <Modal.Title>{t('editColumn.edit')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`bg-${theme}`}>
         <form onSubmit={handleSubmit(columnData)}>
           <div className="form-group">
-            <label htmlFor="title">Column name</label>
+            <label htmlFor="title">{t('editColumn.columnName')}</label>
             <input
               className="form-control"
               {...register('title', { required: true })}
@@ -51,12 +53,14 @@ export const EditColumn: FC = () => {
               defaultValue={title}
             />
           </div>
-          {errors.title?.type === 'required' && <Alert variant="warning">Title is required</Alert>}
+          {errors.title?.type === 'required' && (
+            <Alert variant="warning">{t('editColumn.titleRequired')}</Alert>
+          )}
           <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            Submit
+            {t('editColumn.submit')}
           </Button>
           <Button variant="warning" onClick={() => dispatch(closeModal('editColumn'))}>
-            Cancel
+            {t('editColumn.cancel')}
           </Button>
         </form>
       </Modal.Body>

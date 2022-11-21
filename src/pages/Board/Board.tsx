@@ -12,6 +12,7 @@ import { editColumn, getAllColums } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
 import { ColumnItem } from '../../components/ColumnItem/ColumnItem';
+import { useTranslation } from 'react-i18next';
 
 export const BoardPage: FC = () => {
   const params = useParams();
@@ -20,6 +21,7 @@ export const BoardPage: FC = () => {
   const [boardData, setBoardData] = useState<Board>();
   const [columnData, setColumnData] = useState<ColumnData[]>([]);
   const { modal } = useSelector((state: RootState) => state);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setColumnData([]);
@@ -67,7 +69,7 @@ export const BoardPage: FC = () => {
           }
         >
           <i className="bi-plus-circle">
-            <span className="m-2">Add column</span>
+            <span className="m-2">{t('board.addColumn')}</span>
           </i>
         </Button>
       </div>

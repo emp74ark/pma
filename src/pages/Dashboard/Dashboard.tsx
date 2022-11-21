@@ -10,11 +10,13 @@ import { getAllBoards } from '../../services/board.services';
 import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
 import { BoardItem } from '../../components/BoardItem/BoardItem';
+import { useTranslation } from 'react-i18next';
 
 export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
   const { modal, auth } = useSelector((state: RootState) => state);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(toggleLoading(true));
@@ -34,14 +36,14 @@ export const Dashboard: FC = () => {
   return (
     <Container fluid className="flex-fill overflow-auto">
       <div className="row d-flex justify-content-between m-3">
-        <h2 className="col-auto">Dashboard</h2>
+        <h2 className="col-auto">{t('dashboard.title')}</h2>
         <Button
           className="col-auto"
           variant="success"
           onClick={() => dispatch(openModal({ name: 'addBoard', data: null }))}
         >
           <i className="bi-plus-circle">
-            <span className="m-2">Add board</span>
+            <span className="m-2">{t('dashboard.addBoard')}</span>
           </i>
         </Button>
       </div>

@@ -6,11 +6,13 @@ import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
 import { Button, Nav } from 'react-bootstrap';
 import { mode, resetAuth } from '../../redux/authSlice';
+import { useTranslation } from 'react-i18next';
 
 export const NavCommon: FC = () => {
   const { setting, auth } = useSelector((state: RootState) => state);
   const colorText = setting.theme === 'dark' ? 'white' : 'black';
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   return (
     <>
       {commonRoutes.map(({ title, path }) => (
@@ -24,7 +26,7 @@ export const NavCommon: FC = () => {
           onClick={() => dispatch(resetAuth())}
           to={path}
         >
-          {title}
+          {t(`routes.${title}`)}
         </NavLink>
       ))}
       <NavLink
@@ -38,7 +40,7 @@ export const NavCommon: FC = () => {
           onClick={() => dispatch(mode('login'))}
           style={{ width: '6rem' }}
         >
-          Sign Up
+          {t(`header.signUp`)}
         </Button>
       </NavLink>
       <NavLink
@@ -52,7 +54,7 @@ export const NavCommon: FC = () => {
           onClick={() => dispatch(mode('registration'))}
           style={{ width: '6rem' }}
         >
-          Sign In
+          {t(`header.signIn`)}
         </Button>
       </NavLink>
     </>

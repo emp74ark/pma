@@ -9,18 +9,18 @@ import { UserProfile } from '../pages/User/User';
 import { Welcome } from '../pages/Welcome/Welcome';
 
 export const commonRoutes = [
-  { title: 'Welcome', path: '/', element: <Welcome /> },
-  { title: 'About', path: '/about', element: <About /> },
+  { title: 'welcome', path: '/', element: <Welcome /> },
+  { title: 'about', path: '/about', element: <About /> },
 ];
 
 export const userRoutes = [
-  { title: 'Dashboard', path: '/user/dashboard', element: <Dashboard /> },
-  { title: 'User', path: '/user/cabinet', element: <UserProfile /> },
+  { title: 'dashboard', path: '/user/dashboard', element: <Dashboard /> },
+  { title: 'user', path: '/user/cabinet', element: <UserProfile /> },
 ];
 
 const taskRoutes = [
   {
-    title: 'Board',
+    title: 'board',
     path: '/user/board/:boardId',
     element: <BoardPage />,
   },
@@ -28,9 +28,9 @@ const taskRoutes = [
 
 export const appRoutes = [
   ...commonRoutes,
-  { title: 'UFO', path: '/*', element: <UFO /> },
-  { title: 'Sign Up', path: '/signup', element: <SignUp /> },
-  { title: 'Sign In', path: '/signIn', element: <SignIn /> },
+  { title: 'ufo', path: '/*', element: <UFO /> },
+  { title: 'signUp', path: '/signup', element: <SignUp /> },
+  { title: 'signIn', path: '/signIn', element: <SignIn /> },
 ];
 
 export const protectedRoutes = [...userRoutes, ...taskRoutes];
