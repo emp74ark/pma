@@ -91,6 +91,9 @@ export const dict_ru = {
         submit: 'Подтвердить',
         cancel: 'Отмена',
       },
+      infoTask: {
+        close: 'Закрыть',
+      },
       authError: {
         error: 'Ошибка авторизации',
         wrong: 'Неверный логин или пароль',
@@ -156,7 +159,7 @@ export const dict_ru = {
         addColumn: 'Добавить колонку',
       },
       dashboard: {
-        title: 'Дэшборд',
+        title: 'Доски',
         addBoard: 'Добавить доску',
       },
     },

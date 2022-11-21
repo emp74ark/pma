@@ -20,17 +20,21 @@ export const TaskItem: FC<Task> = (task) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'removeTask', data: task }));
   };
+  const infoHandler = (e: React.MouseEvent, task: Task) => {
+    e.stopPropagation();
+    dispatch(openModal({ name: 'infoTask', data: task }));
+  };
 
   function defineName(userId: string) {
     const user = users.all.filter((user) => user.id === userId);
     if (user.length !== 0) {
       return user[0].login;
     }
-    return 'unknown'; // TODO: replace by variable with translation
+    return 'unknown';
   }
 
   return (
-    <ListGroup.Item variant={theme} className="w-100">
+    <ListGroup.Item variant={theme} className="w-100" onClick={(e) => infoHandler(e, task)}>
       <div className="row align-middle">
         <h6 className="col">{task.title}</h6>
         <ButtonGroup className="col float-right">

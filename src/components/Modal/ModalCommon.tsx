@@ -16,6 +16,7 @@ import { RemoveBoard } from './RemoveBoard';
 import { RemoveColumn } from './RemoveColumn';
 import { RemoveTask } from './RemoveTask';
 import { RemoveUser } from './RemoveUser';
+import { InfoTask } from './InfoTask';
 
 export const ModalCommon: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
@@ -36,6 +37,7 @@ export const ModalCommon: FC = () => {
       {modal.visible.registerError && <RegisterError />}
       {modal.visible.editUser && <EditUser />}
       {modal.visible.removeUser && <RemoveUser />}
+      {modal.visible.infoTask && <InfoTask />}
     </>
   );
 };
