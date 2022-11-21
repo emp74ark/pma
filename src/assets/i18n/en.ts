@@ -140,10 +140,7 @@ export const dict_en = {
         tryAgain: 'Try again',
       },
       remove: {
-        removeBoard: 'Remove board',
-        removeColumn: 'Remove column',
-        removeTask: 'Remove task',
-        removeUser: 'Remove user',
+        remove: 'Remove',
         sure: 'Do you really want to do this?',
         yes: 'Yes',
         no: 'No',

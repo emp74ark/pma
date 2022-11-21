@@ -147,10 +147,7 @@ export const dict_ru = {
         tryAgain: 'Попробуйте снова',
       },
       remove: {
-        removeBoard: 'Удалить доску',
-        removeColumn: 'Удалить колонку',
-        removeTask: 'Удалить задачу',
-        removeUser: 'Удалить пользователя',
+        remove: 'Удалить',
         sure: 'Вы уверены?',
         yes: 'Да',
         no: 'Нет',
