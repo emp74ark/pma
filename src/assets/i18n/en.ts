@@ -1,5 +1,3 @@
-import addColumn from '../../components/Modal/AddColumn';
-
 export const dict_en = {
   en: {
     translation: {
@@ -85,6 +83,9 @@ export const dict_en = {
         assignedUser: 'Assigned user',
         submit: 'Submit',
         cancel: 'Cancel',
+      },
+      infoTask: {
+        close: 'Close',
       },
       authError: {
         error: 'Authorization error',

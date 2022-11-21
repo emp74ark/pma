@@ -91,6 +91,9 @@ export const dict_ru = {
         submit: 'Подтвердить',
         cancel: 'Отмена',
       },
+      infoTask: {
+        close: 'Закрыть',
+      },
       authError: {
         error: 'Ошибка авторизации',
         wrong: 'Неверный логин или пароль',

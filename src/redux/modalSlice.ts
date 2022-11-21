@@ -16,6 +16,7 @@ const initialState: ModalState = {
     registerError: false,
     editUser: false,
     removeUser: false,
+    infoTask: false,
   },
   data: null,
 };
