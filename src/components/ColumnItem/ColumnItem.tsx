@@ -8,7 +8,7 @@ import { openModal } from '../../redux/modalSlice';
 
 export const ColumnItem: FC<ColumnData> = (data) => {
   const dispatch = useDispatch();
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const { theme, maxHeight } = useSelector((state: RootState) => state.setting);
 
   const editColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
@@ -59,7 +59,10 @@ export const ColumnItem: FC<ColumnData> = (data) => {
           </ButtonGroup>
         </div>
       </Card.Header>
-      <Card.Body className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto">
+      <Card.Body
+        style={{ maxHeight: `${maxHeight - 52}px` }}
+        className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto"
+      >
         {<TasksList data={data} />}
       </Card.Body>
     </Card>

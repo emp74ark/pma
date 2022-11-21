@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { ReactSortable, SortableEvent } from 'react-sortablejs';
 
 import { openModal } from '../../redux/modalSlice';
-import { toggleLoading } from '../../redux/settingsSlice';
+import { setMaxHeight, toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
 import { getBoardById } from '../../services/board.services';
 import { editColumn, getAllColumns } from '../../services/column.service';
@@ -57,8 +57,13 @@ export const BoardPage: FC = () => {
     });
   };
 
+  useEffect(() => {
+    if (document.querySelector('.columns')?.clientHeight)
+      dispatch(setMaxHeight(document.querySelector('.columns')?.clientHeight as number));
+  }, [document.querySelector('.columns')?.clientHeight]);
+
   return (
-    <Container fluid className="flex-fill">
+    <Container fluid className="flex-fill d-flex flex-column mb-3">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{boardData?.title}</h2>
         <Button
@@ -84,7 +89,7 @@ export const BoardPage: FC = () => {
         animation={200}
         delayOnTouchOnly={true}
         delay={2}
-        className="w-100 min-vh-80 d-flex gap-5 overflow-auto"
+        className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto"
       >
         {columnData.map((data) => (
           <ColumnItem {...data} key={data.column.id} />

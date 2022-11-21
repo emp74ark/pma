@@ -6,6 +6,7 @@ const initialState: SettingsState = {
   locale: 'en',
   theme: 'light',
   loading: false,
+  maxHeight: 0,
 };
 
 const localeSlice = createSlice({
@@ -22,8 +23,11 @@ const localeSlice = createSlice({
     toggleLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    setMaxHeight: (state, action: PayloadAction<number>) => {
+      state.maxHeight = action.payload;
+    },
   },
 });
 
-export const { toggleLocale, toggleTheme, toggleLoading } = localeSlice.actions;
+export const { toggleLocale, toggleTheme, toggleLoading, setMaxHeight } = localeSlice.actions;
 export default localeSlice.reducer;
