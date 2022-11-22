@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
-import { Alert, Button, Modal } from 'react-bootstrap';
+import React from 'react';
+import { FC } from 'react';
+import { Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,11 +12,8 @@ import { useTranslation } from 'react-i18next';
 
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
-  const [clickedColumn, setClickedColumn] = useState('');
   const { id, title, order } = data as Column;
-  const { theme } = useSelector((state: RootState) => state.setting);
   const { t } = useTranslation();
-  const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
