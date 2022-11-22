@@ -18,7 +18,7 @@ export const TaskItem: FC<Task> = (task) => {
   };
   const deleteHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'removeTask', data: task }));
+    dispatch(openModal({ name: 'remove', data: task }));
   };
   const infoHandler = (e: React.MouseEvent, task: Task) => {
     e.stopPropagation();

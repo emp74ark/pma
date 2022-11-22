@@ -12,11 +12,8 @@ import { EditTask } from './EditTask';
 import { EditUser } from './EditUser';
 import { ModalSession } from './ModalSession';
 import { RegisterError } from './RegisterError';
-import { RemoveBoard } from './RemoveBoard';
-import { RemoveColumn } from './RemoveColumn';
-import { RemoveTask } from './RemoveTask';
-import { RemoveUser } from './RemoveUser';
 import { InfoTask } from './InfoTask';
+import { RemoveModal } from './RemoveModal';
 
 export const ModalCommon: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
@@ -26,18 +23,15 @@ export const ModalCommon: FC = () => {
       <ModalSession />
       {modal.visible.addBoard && <AddBoard />}
       {modal.visible.editBoard && <EditBoard />}
-      {modal.visible.removeBoard && <RemoveBoard />}
       {modal.visible.addColumn && <AddColumn />}
       {modal.visible.editColumn && <EditColumn />}
       {modal.visible.addTask && <AddTask />}
       {modal.visible.editTask && <EditTask />}
-      {modal.visible.removeColumn && <RemoveColumn />}
-      {modal.visible.removeTask && <RemoveTask />}
       {modal.visible.authError && <AuthError />}
       {modal.visible.registerError && <RegisterError />}
       {modal.visible.editUser && <EditUser />}
-      {modal.visible.removeUser && <RemoveUser />}
       {modal.visible.infoTask && <InfoTask />}
+      {modal.visible.remove && <RemoveModal />}
     </>
   );
 };

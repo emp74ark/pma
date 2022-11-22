@@ -17,8 +17,8 @@ function createTask(task: Task) {
   });
 }
 
-function deleteTask(boardId: string, columnId: string, taskId: string) {
-  return http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
+function deleteTask(task: Task) {
+  return http.delete(`/boards/${task.boardId}/columns/${task.columnId}/tasks/${task.id}`);
 }
 
 function editTask(task: Task, data = task) {
