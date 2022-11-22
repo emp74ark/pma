@@ -7,7 +7,6 @@ import AddColumn from './AddColumn';
 import { AddTask } from './AddTask';
 import { AuthError } from './AuthError';
 import { EditBoard } from './EditBoard';
-import { EditColumn } from './EditColumn';
 import { EditTask } from './EditTask';
 import { EditUser } from './EditUser';
 import { ModalSession } from './ModalSession';
@@ -25,7 +24,6 @@ export const ModalCommon: FC = () => {
       {modal.visible.addBoard && <AddBoard />}
       {modal.visible.editBoard && <EditBoard />}
       {modal.visible.addColumn && <AddColumn />}
-      {modal.visible.editColumn && <EditColumn />}
       {modal.visible.addTask && <AddTask />}
       {modal.visible.editTask && <EditTask />}
       {modal.visible.authError && <AuthError />}

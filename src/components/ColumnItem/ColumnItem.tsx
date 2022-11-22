@@ -5,10 +5,14 @@ import { Column, ColumnData } from '../../shared/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/modalSlice';
+import { EditColumn } from '../EditColumn/EditColumn';
 
-export const ColumnItem: FC<ColumnData> = (data) => {
+export const ColumnItem: FC<ColumnData> = (columnData) => {
   const dispatch = useDispatch();
-  const { theme, maxHeight } = useSelector((state: RootState) => state.setting);
+  const {
+    modal: { visible, data },
+    setting: { theme, maxHeight },
+  } = useSelector((state: RootState) => state);
 
   const editColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
@@ -39,22 +43,27 @@ export const ColumnItem: FC<ColumnData> = (data) => {
     >
       <Card.Header className="gap-3">
         <div className="row">
-          <Card.Title className="col">{data.column.title}</Card.Title>
-          <ButtonGroup className="col float-right" size="sm">
+          {visible.editColumn && data?.id === columnData.column.id ? (
+            <EditColumn />
+          ) : (
+            <Card.Title
+              onClick={(e: React.MouseEvent) => editColumnHandler(e, columnData.column)}
+              className="col"
+            >
+              {columnData.column.title}
+            </Card.Title>
+          )}
+
+          <ButtonGroup className="col-4 float-right" size="sm">
             <Button
               className="bi-plus-circle text-primary"
               variant="link"
-              onClick={(e) => addTaskHandler(e, data.column)}
-            />
-            <Button
-              className="bi-pencil text-success"
-              variant="link"
-              onClick={(e) => editColumnHandler(e, data.column)}
+              onClick={(e) => addTaskHandler(e, columnData.column)}
             />
             <Button
               className="bi-trash text-danger"
               variant="link"
-              onClick={(e) => removeColumnHandler(e, data.column)}
+              onClick={(e) => removeColumnHandler(e, columnData.column)}
             />
           </ButtonGroup>
         </div>
@@ -63,7 +72,7 @@ export const ColumnItem: FC<ColumnData> = (data) => {
         style={{ maxHeight: `${maxHeight - 52}px` }}
         className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto"
       >
-        {<TasksList data={data} />}
+        {<TasksList data={columnData} />}
       </Card.Body>
     </Card>
   );
