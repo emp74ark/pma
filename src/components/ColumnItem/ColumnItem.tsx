@@ -5,7 +5,7 @@ import { Column, ColumnData } from '../../shared/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/modalSlice';
-import { EditColumn } from '../Modal/EditColumn';
+import { EditColumn } from '../EditColumn/EditColumn';
 
 export const ColumnItem: FC<ColumnData> = (data) => {
   const dispatch = useDispatch();
