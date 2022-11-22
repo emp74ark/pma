@@ -18,7 +18,7 @@ http.interceptors.request.use(async (config) => {
   const token = await localStorage.getItem('token');
   config.baseURL = BASE_URL;
   config.headers = {
-    Authorization: `Bearer ${ token }`,
+    Authorization: `Bearer ${token}`,
   };
   return config;
 });
