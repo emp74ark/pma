@@ -10,8 +10,10 @@ import { useTranslation } from 'react-i18next';
 
 const AddColumn = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state: RootState) => state.modal);
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const {
+    modal: { data },
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
