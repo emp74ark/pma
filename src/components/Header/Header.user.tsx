@@ -34,7 +34,11 @@ export const NavUser: FC = () => {
         </li>
       ))}
       <li className="nav-item">
-        <span onClick={() => logoutHandler()} className={`nav-link text-${colorText}`}>
+        <span
+          role="button"
+          onClick={() => logoutHandler()}
+          className={`nav-link text-${colorText}`}
+        >
           {t(`header.logout`)}
         </span>
       </li>
