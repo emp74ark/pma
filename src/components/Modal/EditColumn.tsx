@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { editColumn } from '../../services/column.service';
@@ -10,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export const EditColumn: FC = () => {
   const { data } = useSelector((state: RootState) => state.modal);
+  const [clickedColumn, setClickedColumn] = useState('');
   const { id, title, order } = data as Column;
   const { theme } = useSelector((state: RootState) => state.setting);
   const { t } = useTranslation();
@@ -36,34 +38,35 @@ export const EditColumn: FC = () => {
   }
 
   return (
-    <Modal className={`text-${colorText}`} size="lg" centered show={true}>
-      <Modal.Header className={`bg-${theme}`}>
-        <Modal.Title>{t('editColumn.edit')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body className={`bg-${theme}`}>
-        <form onSubmit={handleSubmit(columnData)}>
-          <div className="form-group">
-            <label htmlFor="title">{t('editColumn.columnName')}</label>
-            <input
-              className="form-control"
-              {...register('title', { required: true })}
-              type="text"
-              name="title"
-              id="title"
-              defaultValue={title}
-            />
-          </div>
-          {errors.title?.type === 'required' && (
-            <Alert variant="warning">{t('editColumn.titleRequired')}</Alert>
-          )}
-          <Button type="submit" variant="success" className="m-2" disabled={!isValid}>
-            {t('editColumn.submit')}
-          </Button>
-          <Button variant="warning" onClick={() => dispatch(closeModal('editColumn'))}>
-            {t('editColumn.cancel')}
-          </Button>
-        </form>
-      </Modal.Body>
-    </Modal>
+    <div className="col">
+      <form className="d-flex align-items-center gap-1" onSubmit={handleSubmit(columnData)}>
+        <div className="form-group">
+          <input
+            className="form-control"
+            {...register('title', { required: true })}
+            type="text"
+            name="title"
+            id="title"
+            defaultValue={title}
+          />
+        </div>
+        {errors.title?.type === 'required' && (
+          <Alert variant="warning">{t('editColumn.titleRequired')}</Alert>
+        )}
+        <Button
+          size="sm"
+          type="submit"
+          variant="success"
+          className="bi-check-lg text-light"
+          disabled={!isValid}
+        ></Button>
+        <Button
+          size="sm"
+          variant="warning"
+          className="bi-x-lg text-light"
+          onClick={() => dispatch(closeModal('editColumn'))}
+        ></Button>
+      </form>
+    </div>
   );
 };

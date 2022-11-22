@@ -28,7 +28,7 @@ export const ModalCommon: FC = () => {
       {modal.visible.editBoard && <EditBoard />}
       {modal.visible.removeBoard && <RemoveBoard />}
       {modal.visible.addColumn && <AddColumn />}
-      {modal.visible.editColumn && <EditColumn />}
+      {/* {modal.visible.editColumn && <EditColumn />} */}
       {modal.visible.addTask && <AddTask />}
       {modal.visible.editTask && <EditTask />}
       {modal.visible.removeColumn && <RemoveColumn />}
