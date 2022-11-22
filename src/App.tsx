@@ -9,6 +9,8 @@ import { RootState } from './redux/store';
 import { appRoutes, protectedRoutes } from './routes/Routes';
 import { sessionIsExpired } from './services/session.service';
 import { sessionCheckInterval } from './shared/environment';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './components/ErrorFallback/ErrorFallback';
 
 const App: FC = () => {
   const { auth } = useSelector((state: RootState) => state);
@@ -27,15 +29,17 @@ const App: FC = () => {
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Suspense>
-          <Routes>
-            {appRoutes.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
-            {auth.login &&
-              protectedRoutes.map(({ path, element }) => (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Routes>
+              {appRoutes.map(({ path, element }) => (
                 <Route key={path} path={path} element={element} />
               ))}
-          </Routes>
+              {auth.login &&
+                protectedRoutes.map(({ path, element }) => (
+                  <Route key={path} path={path} element={element} />
+                ))}
+            </Routes>
+          </ErrorBoundary>
         </Suspense>
         <Footer />
       </Container>

@@ -68,6 +68,7 @@
   "devDependencies": {
     "@types/sortablejs": "^1.15.0",
     "gh-pages": "^4.0.0",
+    "react-error-boundary": "^3.1.4",
     "sass": "^1.56.0"
   }
 }
