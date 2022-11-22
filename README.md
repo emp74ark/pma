@@ -3,7 +3,7 @@
 1. [RS Task](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/project-management-system-EN.md);
 2. Deadline: 2022-12-06;
 3. Done: ;
-4. Deploy: [GitHub pages](#)
+4. Deploy: [GitHub pages](https://emp74ark.github.io/pma/)
 
 ## Sources:
 - [Project management icon pack](https://www.flaticon.com/packs/project-management-82/2)

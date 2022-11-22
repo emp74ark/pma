@@ -1,6 +1,7 @@
 {
   "name": "pma",
   "version": "0.1.0",
+  "homepage": "https://emp74ark.github.io/pma",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
@@ -42,7 +43,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +67,7 @@
   },
   "devDependencies": {
     "@types/sortablejs": "^1.15.0",
+    "gh-pages": "^4.0.0",
     "sass": "^1.56.0"
   }
 }

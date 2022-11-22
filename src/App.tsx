@@ -22,7 +22,7 @@ const App: FC = () => {
   }, [auth]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'/pma'}>
       <ModalCommon />
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
