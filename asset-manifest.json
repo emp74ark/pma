@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "/pma/static/css/main.00488f61.css",
-    "main.js": "/pma/static/js/main.57c52b58.js",
+    "main.css": "/pma/static/css/main.e05a5fb0.css",
+    "main.js": "/pma/static/js/main.043905a9.js",
+    "static/js/611.c30ed7bf.chunk.js": "/pma/static/js/611.c30ed7bf.chunk.js",
+    "static/js/738.9f44e68f.chunk.js": "/pma/static/js/738.9f44e68f.chunk.js",
     "static/js/787.89576599.chunk.js": "/pma/static/js/787.89576599.chunk.js",
+    "static/js/937.c9889648.chunk.js": "/pma/static/js/937.c9889648.chunk.js",
     "static/media/bootstrap-icons.woff?": "/pma/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
     "static/media/bootstrap-icons.woff2?": "/pma/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
     "static/media/toyota.jpeg": "/pma/static/media/toyota.b6c06110b1f5dc72aa24.jpeg",
@@ -12,12 +15,15 @@
     "static/media/monitoring.png": "/pma/static/media/monitoring.82215afdd116cac0d54c.png",
     "static/media/kanban.png": "/pma/static/media/kanban.399df6f6be1facdc938d.png",
     "index.html": "/pma/index.html",
-    "main.00488f61.css.map": "/pma/static/css/main.00488f61.css.map",
-    "main.57c52b58.js.map": "/pma/static/js/main.57c52b58.js.map",
-    "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map"
+    "main.e05a5fb0.css.map": "/pma/static/css/main.e05a5fb0.css.map",
+    "main.043905a9.js.map": "/pma/static/js/main.043905a9.js.map",
+    "611.c30ed7bf.chunk.js.map": "/pma/static/js/611.c30ed7bf.chunk.js.map",
+    "738.9f44e68f.chunk.js.map": "/pma/static/js/738.9f44e68f.chunk.js.map",
+    "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map",
+    "937.c9889648.chunk.js.map": "/pma/static/js/937.c9889648.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.00488f61.css",
-    "static/js/main.57c52b58.js"
+    "static/css/main.e05a5fb0.css",
+    "static/js/main.043905a9.js"
   ]
 }
