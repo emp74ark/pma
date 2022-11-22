@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
@@ -15,7 +14,10 @@ import { useTranslation } from 'react-i18next';
 export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
   const dispatch = useDispatch();
-  const { modal, auth } = useSelector((state: RootState) => state);
+  const {
+    modal,
+    auth: { login },
+  } = useSelector((state: RootState) => state);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export const Dashboard: FC = () => {
     });
     getAllUsers().then((response) => {
       dispatch(allUsers(response.data));
-      const current = response.data.find((user) => user.login === auth.login);
+      const current = response.data.find((user) => user.login === login);
       if (current) dispatch(currentUser(current));
     });
   }, [modal]);

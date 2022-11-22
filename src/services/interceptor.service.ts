@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { BASE_URL, sessionLifetime } from '../shared/environment';
 import { LoginResponse } from '../shared/interfaces';
-export const http = axios.create();
 
-const token = localStorage.getItem('token');
+export const http = axios.create();
 
 export function saveToken(response: LoginResponse) {
   if (response.status === 201) {
@@ -15,10 +14,11 @@ export function saveToken(response: LoginResponse) {
   return false;
 }
 
-http.interceptors.request.use((config) => {
+http.interceptors.request.use(async (config) => {
+  const token = await localStorage.getItem('token');
   config.baseURL = BASE_URL;
   config.headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${ token }`,
   };
   return config;
 });
