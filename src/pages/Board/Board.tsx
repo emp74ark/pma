@@ -89,7 +89,7 @@ export const BoardPage: FC = () => {
         animation={200}
         delayOnTouchOnly={true}
         delay={2}
-        className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto"
+        className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto p-2"
       >
         {columnData.map((data) => (
           <ColumnItem {...data} key={data.column.id} />

@@ -29,7 +29,7 @@ export const TasksList = (props: { data: ColumnData }) => {
       delayOnTouchOnly={true}
       delay={2}
       group="shared"
-      className="list-group"
+      className="list-group shadow-sm"
       id={data.id}
     >
       {tasks.map((task) => (
