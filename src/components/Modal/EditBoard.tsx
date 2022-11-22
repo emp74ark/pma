@@ -9,9 +9,11 @@ import { Board } from '../../shared/interfaces';
 import { useTranslation } from 'react-i18next';
 
 export const EditBoard: FC = () => {
-  const { data } = useSelector((state: RootState) => state.modal);
+  const {
+    modal: { data },
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
   const { id, title, description } = data as Board;
-  const { theme } = useSelector((state: RootState) => state.setting);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
@@ -19,7 +21,6 @@ export const EditBoard: FC = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<Board>({ mode: 'all' });
-
   const dispatch = useDispatch();
 
   function boardData(board: Board) {

@@ -6,6 +6,8 @@ import { userRoutes } from '../../routes/Routes';
 import { logOut } from '../../redux/authSlice';
 import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'react-bootstrap';
+import { openModal } from '../../redux/modalSlice';
 
 export const NavUser: FC = () => {
   const dispatch = useDispatch();
@@ -19,15 +21,24 @@ export const NavUser: FC = () => {
     navigate('/signin');
   };
 
+  const handleClick = () => {
+    dispatch(openModal({ name: 'addBoard', data: null }));
+  };
+
   return (
     <>
+      <li>
+        <Button className="col-auto" variant="success" onClick={handleClick}>
+          <i className="bi-plus-circle">
+            <span className="m-2">{t('dashboard.addBoard')}</span>
+          </i>
+        </Button>
+      </li>
       {userRoutes.map(({ title, path }) => (
         <li key={path} className="nav-item">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? `nav-link text-decoration-none text-${colorText}`
-                : `nav-link text-${colorText}`
+              isActive ? `nav-link fw-bold text-${colorText}` : `nav-link text-${colorText}`
             }
             to={path}
           >

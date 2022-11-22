@@ -2,16 +2,18 @@ import { FC } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { closeModal, resetModal } from '../../redux/modalSlice';
 import { RootState } from '../../redux/store';
 import { createBoard } from '../../services/board.services';
 import { Board } from '../../shared/interfaces';
-import { useTranslation } from 'react-i18next';
 
 export const AddBoard: FC = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state: RootState) => state.setting);
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
@@ -23,6 +25,7 @@ export const AddBoard: FC = () => {
   function boardData(board: Board) {
     createBoard(board).then(() => {
       dispatch(resetModal());
+      navigate('/user/dashboard');
     });
     reset();
   }

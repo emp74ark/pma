@@ -18,7 +18,7 @@ export const ColumnItem: FC<ColumnData> = (data) => {
 
   const removeColumnHandler = (e: React.MouseEvent, column: Column) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'removeColumn', data: column }));
+    dispatch(openModal({ name: 'remove', data: column }));
   };
 
   const addTaskHandler = (e: React.MouseEvent, column: Column) => {

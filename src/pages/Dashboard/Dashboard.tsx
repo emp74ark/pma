@@ -37,15 +37,6 @@ export const Dashboard: FC = () => {
     <Container fluid className="flex-fill overflow-auto">
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{t('dashboard.title')}</h2>
-        <Button
-          className="col-auto"
-          variant="success"
-          onClick={() => dispatch(openModal({ name: 'addBoard', data: null }))}
-        >
-          <i className="bi-plus-circle">
-            <span className="m-2">{t('dashboard.addBoard')}</span>
-          </i>
-        </Button>
       </div>
       <div className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1">
         {boards && boards.map((board) => <BoardItem key={board.id} {...board} />)}

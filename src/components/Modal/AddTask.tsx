@@ -11,9 +11,11 @@ import { useTranslation } from 'react-i18next';
 
 export const AddTask: FC = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state: RootState) => state.modal);
-  const { users } = useSelector((state: RootState) => state);
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const {
+    users,
+    modal: { data },
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
 

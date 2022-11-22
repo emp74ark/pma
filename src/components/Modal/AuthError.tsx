@@ -10,6 +10,7 @@ export const AuthError: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
+
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>

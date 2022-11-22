@@ -19,7 +19,7 @@ export const BoardItem: FC<Board> = (board) => {
 
   const removeHandler = (e: React.MouseEvent, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'removeBoard', data: board }));
+    dispatch(openModal({ name: 'remove', data: board }));
   };
 
   const editHandler = (e: React.MouseEvent, board: Board) => {

@@ -8,10 +8,12 @@ import { useTranslation } from 'react-i18next';
 
 export const ModalSession: FC = () => {
   const navigate = useNavigate();
-  const { exp, login } = useSelector((state: RootState) => state.auth);
-  const { theme } = useSelector((state: RootState) => state.setting);
-  const colorText = theme === 'dark' ? 'white' : 'black';
   const dispatch = useDispatch();
+  const {
+    auth: { exp, login },
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
+  const colorText = theme === 'dark' ? 'white' : 'black';
   const { t } = useTranslation();
 
   const buttonHandler = () => {

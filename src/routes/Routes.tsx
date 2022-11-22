@@ -1,5 +1,4 @@
 import { About } from '../pages/About/About';
-import { Auth } from '../pages/Auth/Auth';
 import { BoardPage } from '../pages/Board/Board';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
 import { SignIn } from '../pages/SignIn/SignIn';
@@ -11,6 +10,11 @@ import { Welcome } from '../pages/Welcome/Welcome';
 export const commonRoutes = [
   { title: 'welcome', path: '/', element: <Welcome /> },
   { title: 'about', path: '/about', element: <About /> },
+];
+
+export const authRoutes = [
+  { title: 'signIn', path: '/signin', element: <SignIn /> },
+  { title: 'signUp', path: '/signup', element: <SignUp /> },
 ];
 
 export const userRoutes = [
@@ -28,9 +32,8 @@ const taskRoutes = [
 
 export const appRoutes = [
   ...commonRoutes,
+  ...authRoutes,
   { title: 'ufo', path: '/*', element: <UFO /> },
-  { title: 'signUp', path: '/signup', element: <SignUp /> },
-  { title: 'signIn', path: '/signIn', element: <SignIn /> },
 ];
 
 export const protectedRoutes = [...userRoutes, ...taskRoutes];
