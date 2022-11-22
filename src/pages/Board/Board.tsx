@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { ReactSortable, SortableEvent } from 'react-sortablejs';
@@ -12,7 +12,7 @@ import { editColumn, getAllColumns } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
 import { ColumnItem } from '../../components/ColumnItem/ColumnItem';
-import { useTranslation } from 'react-i18next';
+import { ItemActions } from '../../components/ItemActions/ItemAction';
 
 export const BoardPage: FC = () => {
   const params = useParams();
@@ -21,11 +21,11 @@ export const BoardPage: FC = () => {
   const [boardData, setBoardData] = useState<Board>();
   const [columnData, setColumnData] = useState<ColumnData[]>([]);
   const { modal } = useSelector((state: RootState) => state);
-  const { t } = useTranslation();
 
   useEffect(() => {
     setColumnData([]);
     dispatch(toggleLoading(true));
+
     getAllColumns(boardId!).then((reposnse) => {
       if (reposnse.status === 200) {
         dispatch(toggleLoading(false));
@@ -46,6 +46,7 @@ export const BoardPage: FC = () => {
         });
       });
     });
+
     getBoardById(boardId!).then((response) => setBoardData(response.data));
   }, [modal]);
 
@@ -57,6 +58,10 @@ export const BoardPage: FC = () => {
     });
   };
 
+  const addColumnHandler = () => {
+    dispatch(openModal({ name: 'addColumn', data: { id: boardId, title: '' } }));
+  };
+
   useEffect(() => {
     if (document.querySelector('.columns')?.clientHeight)
       dispatch(setMaxHeight(document.querySelector('.columns')?.clientHeight as number));
@@ -64,19 +69,9 @@ export const BoardPage: FC = () => {
 
   return (
     <Container fluid className="flex-fill d-flex flex-column mb-3">
+      <ItemActions item="column" callback={addColumnHandler} />
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{boardData?.title}</h2>
-        <Button
-          className="col-auto"
-          variant="success"
-          onClick={() =>
-            dispatch(openModal({ name: 'addColumn', data: { id: boardId, title: '' } }))
-          }
-        >
-          <i className="bi-plus-circle">
-            <span className="m-2">{t('board.addColumn')}</span>
-          </i>
-        </Button>
       </div>
       <div className="row m-3">
         <h3 className="col text-center text-secondary">{boardData?.description}</h3>
@@ -89,7 +84,7 @@ export const BoardPage: FC = () => {
         animation={200}
         delayOnTouchOnly={true}
         delay={2}
-        className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto"
+        className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto p-2"
       >
         {columnData.map((data) => (
           <ColumnItem {...data} key={data.column.id} />

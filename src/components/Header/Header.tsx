@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/kanban.png';
 
 import { RootState } from '../../redux/store';
 import { NavCommon } from './Header.common';
@@ -51,8 +50,7 @@ export const Header: FC = () => {
       <Container fluid>
         <Navbar.Brand className={`text-${colorText} nav-link`}>
           <NavLink className={`text-decoration-none text-${colorText}`} to="/">
-            <img src={logo} alt="PMA" className="pe-2" style={{ width: '3rem' }} />
-            PMA
+            <i className="bi-kanban fs-4" />
           </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle className={`bg-light`} aria-controls="responsive-navbar-nav" />

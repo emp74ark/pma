@@ -36,7 +36,7 @@ export const ColumnItem: FC<ColumnData> = (columnData) => {
 
   return (
     <Card
-      className="flex-grow-0 flex-shrink-0"
+      className="flex-grow-0 flex-shrink-0 shadow-sm"
       style={{ width: '20rem', height: 'fit-content' }}
       bg={theme}
       text={theme === 'dark' ? 'white' : 'dark'}

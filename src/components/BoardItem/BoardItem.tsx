@@ -30,7 +30,7 @@ export const BoardItem: FC<Board> = (board) => {
   return (
     <Card
       style={{ width: '20rem' }}
-      className="col-2 p-0"
+      className="col-2 p-0 shadow"
       onClick={() => openBoard(board.id!)}
       bg={theme}
       text={theme === 'dark' ? 'white' : 'dark'}

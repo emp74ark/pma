@@ -12,11 +12,19 @@ body{
   display: flex;
 }
 
-.spinner{
+.spinner {
   z-index: 9999;
 }
 
-[data-theme="dark"]{
+[data-theme="dark"] {
   background-color: #303030;
-  color:#fff;
+  color: #fff;
+}
+
+.card {
+  transition: all .2s ease-in-out;
+}
+
+.card:hover {
+  translate: -.2rem -.2rem;
 }
