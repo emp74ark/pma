@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, Suspense } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -26,15 +26,17 @@ const App: FC = () => {
       <ModalCommon />
       <Container fluid className="h-100 d-flex flex-column">
         <Header />
-        <Routes>
-          {appRoutes.map(({ path, element }) => (
-            <Route key={path} path={path} element={element} />
-          ))}
-          {auth.login &&
-            protectedRoutes.map(({ path, element }) => (
+        <Suspense>
+          <Routes>
+            {appRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
-        </Routes>
+            {auth.login &&
+              protectedRoutes.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+          </Routes>
+        </Suspense>
         <Footer />
       </Container>
     </BrowserRouter>

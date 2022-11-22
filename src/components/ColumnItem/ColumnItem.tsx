@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Button, ButtonGroup, Card } from 'react-bootstrap';
-import { TasksList } from '../TasksList/TasksList';
+const TasksList = React.lazy(() => import('../TasksList/TasksList'));
 import { Column, ColumnData } from '../../shared/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/modalSlice';
 import { EditColumn } from '../EditColumn/EditColumn';
 
-export const ColumnItem: FC<ColumnData> = (columnData) => {
+const ColumnItem: FC<ColumnData> = (columnData) => {
   const dispatch = useDispatch();
   const {
     modal: { visible, data },
@@ -77,3 +77,5 @@ export const ColumnItem: FC<ColumnData> = (columnData) => {
     </Card>
   );
 };
+
+export default ColumnItem;

@@ -4,7 +4,7 @@ import { ReactSortable, SortableEvent } from 'react-sortablejs';
 import { useState } from 'react';
 import { editTask, getTaskById } from '../../services/task.service';
 
-export const TasksList = (props: { data: ColumnData }) => {
+const TasksList = (props: { data: ColumnData }) => {
   const { data } = props;
   const [tasks, setTasks] = useState<Task[]>(data.tasks.sort((a, b) => a.order! - b.order!));
 
@@ -38,3 +38,5 @@ export const TasksList = (props: { data: ColumnData }) => {
     </ReactSortable>
   );
 };
+
+export default TasksList;
