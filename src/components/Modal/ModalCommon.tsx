@@ -17,6 +17,7 @@ import { RemoveModal } from './RemoveModal';
 
 export const ModalCommon: FC = () => {
   const { modal, setting } = useSelector((state: RootState) => state);
+
   return (
     <>
       {setting.loading && <SpinnerComponent />}

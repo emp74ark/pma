@@ -9,10 +9,13 @@ import { Task } from '../../shared/interfaces';
 import { useTranslation } from 'react-i18next';
 
 export const EditTask: FC = () => {
-  const { data } = useSelector((state: RootState) => state.modal);
+  const dispatch = useDispatch();
+  const {
+    modal: { data },
+    setting: { theme },
+    users,
+  } = useSelector((state: RootState) => state);
   const { id, title, order, description, userId, boardId, columnId } = data as Task;
-  const { theme } = useSelector((state: RootState) => state.setting);
-  const { users } = useSelector((state: RootState) => state);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
 
@@ -22,7 +25,6 @@ export const EditTask: FC = () => {
     formState: { errors, isValid },
   } = useForm<Task>({ mode: 'all' });
 
-  const dispatch = useDispatch();
   function taskData(task: Task) {
     const newData = {
       id,
@@ -39,6 +41,7 @@ export const EditTask: FC = () => {
       });
     }
   }
+
   return (
     <Modal className={`text-${colorText}`} size="lg" centered show={true}>
       <Modal.Header className={`bg-${theme}`}>

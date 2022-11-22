@@ -11,18 +11,19 @@ import { User } from '../../shared/interfaces';
 import { useTranslation } from 'react-i18next';
 
 export const EditUser: FC = () => {
-  const { users } = useSelector((state: RootState) => state);
-  const { theme } = useSelector((state: RootState) => state.setting);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    users,
+    setting: { theme },
+  } = useSelector((state: RootState) => state);
   const { t } = useTranslation();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
   } = useForm<User>({ mode: 'all' });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const formData = (data: Omit<User, 'id'>) => {
     const userData = {

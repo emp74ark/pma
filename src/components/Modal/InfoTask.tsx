@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Task } from '../../shared/interfaces';
 import { useTranslation } from 'react-i18next';
+
 export const InfoTask: FC = () => {
   const dispatch = useDispatch();
   const {
