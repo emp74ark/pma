@@ -10,6 +10,7 @@
 - [RS School REST service](https://github.com/vitaly-sazonov/kanban-rest)
 - Favicon: [Feather icons](https://iconer.app/feather/)
 - [react-sortablejs](https://github.com/SortableJS/react-sortablejs)
+- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary)
 
 ## Documentation:
 - [Swagger](https://hidden-spire-47117.herokuapp.com/docs/static/index.html)
