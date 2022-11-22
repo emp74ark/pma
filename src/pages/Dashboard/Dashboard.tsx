@@ -8,7 +8,7 @@ import { allUsers, currentUser } from '../../redux/usersSlice';
 import { getAllBoards } from '../../services/board.services';
 import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
-import { BoardItem } from '../../components/BoardItem/BoardItem';
+const BoardItem = React.lazy(() => import('../../components/BoardItem/BoardItem'));
 import { useTranslation } from 'react-i18next';
 import { ItemActions } from '../../components/ItemActions/ItemAction';
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
 
-export const BoardItem: FC<Board> = (board) => {
+const BoardItem: FC<Board> = (board) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -58,3 +58,5 @@ export const BoardItem: FC<Board> = (board) => {
     </Card>
   );
 };
+
+export default BoardItem;
