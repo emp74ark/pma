@@ -25,9 +25,7 @@ export const NavUser: FC = () => {
         <li key={path} className="nav-item">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? `nav-link text-decoration-none text-${colorText}`
-                : `nav-link text-${colorText}`
+              isActive ? `nav-link fw-bold text-${colorText}` : `nav-link text-${colorText}`
             }
             to={path}
           >
