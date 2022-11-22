@@ -8,7 +8,7 @@ export const Footer: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
 
   return (
-    <footer className={`bg-${theme} d-flex justify-content-center`}>
+    <footer className={`bg-${theme} d-flex justify-content-center rounded shadow-sm mt-3 mb-2`}>
       <ul className="nav d-flex flex-wrap justify-content-center">
         {contacts.map((contact) => (
           <li key={contact.title} className="nav-item">
