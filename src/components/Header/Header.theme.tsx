@@ -13,5 +13,5 @@ export const ThemeSelector = () => {
     dispatch(toggleTheme(value));
   };
 
-  return <i className="bi-circle-half fs-3" role="button" onClick={themeToggler}></i>;
+  return <i className="bi-circle-half fs-4" role="button" onClick={themeToggler}></i>;
 };

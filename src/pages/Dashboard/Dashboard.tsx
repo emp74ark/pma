@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../redux/modalSlice';
 
 import { toggleLoading } from '../../redux/settingsSlice';
 import { RootState } from '../../redux/store';
@@ -11,6 +10,7 @@ import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
 import { BoardItem } from '../../components/BoardItem/BoardItem';
 import { useTranslation } from 'react-i18next';
+import { ItemActions } from '../../components/ItemActions/ItemAction';
 
 export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
@@ -35,6 +35,7 @@ export const Dashboard: FC = () => {
 
   return (
     <Container fluid className="flex-fill overflow-auto">
+      <ItemActions item="board" />
       <div className="row d-flex justify-content-between m-3">
         <h2 className="col-auto">{t('dashboard.title')}</h2>
       </div>

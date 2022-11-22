@@ -50,7 +50,7 @@ export const Header: FC = () => {
       <Container fluid>
         <Navbar.Brand className={`text-${colorText} nav-link`}>
           <NavLink className={`text-decoration-none text-${colorText}`} to="/">
-            <i className="bi-kanban fs-3" />
+            <i className="bi-kanban fs-4" />
           </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle className={`bg-light`} aria-controls="responsive-navbar-nav" />

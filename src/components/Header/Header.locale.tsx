@@ -24,7 +24,8 @@ export const LocaleSelector: FC = () => {
       variant="secondary"
       onSelect={(key) => selectLocaleHandler(key)}
       title={locale.toUpperCase()}
-      className="pe-3"
+      className="pe-3 pt-1 mt-0"
+      size="sm"
     >
       <DropdownItem eventKey={'en'}>{t('header.lang.english')}</DropdownItem>
       <DropdownItem eventKey={'ru'}>{t('header.lang.russian')}</DropdownItem>
