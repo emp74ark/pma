@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import { DropdownButton } from 'react-bootstrap';
-import { toggleLocale } from '../../redux/settingsSlice';
+import { closeOffcanvas, toggleLocale } from '../../redux/settingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/store';
@@ -16,6 +16,7 @@ export const LocaleSelector: FC = () => {
   const selectLocaleHandler = (key: string | null) => {
     const value = key ? key : 'en';
     dispatch(toggleLocale(value));
+    dispatch(closeOffcanvas());
   };
 
   return (

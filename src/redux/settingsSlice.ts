@@ -7,6 +7,7 @@ const initialState: SettingsState = {
   theme: 'light',
   loading: false,
   maxHeight: 0,
+  showOffcanvas: false,
 };
 
 const localeSlice = createSlice({
@@ -26,8 +27,21 @@ const localeSlice = createSlice({
     setMaxHeight: (state, action: PayloadAction<number>) => {
       state.maxHeight = action.payload;
     },
+    closeOffcanvas: (state) => {
+      state.showOffcanvas = false;
+    },
+    openOffcanvas: (state) => {
+      state.showOffcanvas = true;
+    },
   },
 });
 
-export const { toggleLocale, toggleTheme, toggleLoading, setMaxHeight } = localeSlice.actions;
+export const {
+  toggleLocale,
+  toggleTheme,
+  toggleLoading,
+  setMaxHeight,
+  closeOffcanvas,
+  openOffcanvas,
+} = localeSlice.actions;
 export default localeSlice.reducer;

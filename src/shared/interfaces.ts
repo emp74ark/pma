@@ -45,6 +45,7 @@ export interface SettingsState {
   theme: string;
   loading: boolean;
   maxHeight: number;
+  showOffcanvas: boolean;
 }
 
 export interface ModalState {

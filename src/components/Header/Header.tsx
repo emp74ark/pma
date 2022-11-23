@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { RootState } from '../../redux/store';
@@ -9,12 +9,15 @@ import { NavUser } from './Header.user';
 import { NavAuth } from './Header.auth';
 import { LocaleSelector } from './Header.locale';
 import { ThemeSelector } from './Header.theme';
+import { closeModal } from '../../redux/modalSlice';
+import { closeOffcanvas, openOffcanvas } from '../../redux/settingsSlice';
 
 export const Header: FC = () => {
   const {
     auth: { login },
-    setting: { theme },
+    setting: { theme, showOffcanvas },
   } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
   const colorText = theme === 'dark' ? 'white' : 'black';
   const [isScrolling, setScrolling] = useState<boolean>(false);
   const scrollingTheme = theme === 'dark' ? 'secondary' : 'warning';
@@ -53,14 +56,26 @@ export const Header: FC = () => {
             <i className="bi-kanban fs-4" />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle className={`bg-light`} aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          onClick={() => dispatch(openOffcanvas())}
+          className={`bg-light`}
+          aria-controls="responsive-navbar-nav"
+        />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-lg"
           className={`bg-${theme} text-${colorText}`}
           aria-labelledby="offcanvasNavbarLabel-expand-lg"
           placement="end"
+          show={showOffcanvas}
         >
-          <Offcanvas.Header closeButton></Offcanvas.Header>
+          <Offcanvas.Header>
+            <Button
+              className="btn-close"
+              aria-label="Close"
+              variant="light"
+              onClick={() => dispatch(closeOffcanvas())}
+            ></Button>
+          </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="gap-3 justify-content-center w-100">
               <NavCommon />
