@@ -52,7 +52,7 @@ export const RemoveModal: FC = () => {
         <Button variant="danger" onClick={() => removeHandler()}>
           {t('remove.yes')}
         </Button>
-        <Button variant="warning" onClick={() => dispatch(closeModal('removeColumn'))}>
+        <Button variant="warning" onClick={() => dispatch(closeModal('remove'))}>
           {t('remove.no')}
         </Button>
       </Modal.Footer>

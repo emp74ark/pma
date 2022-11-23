@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { Board } from '../../shared/interfaces';
 import { Button, ButtonGroup, Card } from 'react-bootstrap';
 import { openModal } from '../../redux/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
+import { BoardButtons } from './ButtonItem.config';
 
 const BoardItem: FC<Board> = (board) => {
   const dispatch = useDispatch();
@@ -17,14 +18,9 @@ const BoardItem: FC<Board> = (board) => {
     navigate(`/user/board/${boardId}`);
   };
 
-  const removeHandler = (e: React.MouseEvent, board: Board) => {
+  const buttonHandler = (e: MouseEvent, id: string, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'remove', data: board }));
-  };
-
-  const editHandler = (e: React.MouseEvent, board: Board) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'editBoard', data: board }));
+    dispatch(openModal({ name: id, data: board }));
   };
 
   return (
@@ -39,16 +35,14 @@ const BoardItem: FC<Board> = (board) => {
         <div className="row">
           <Card.Title className="col">{board.title}</Card.Title>
           <ButtonGroup className="col float-right" size="sm">
-            <Button
-              className="bi-pencil text-success"
-              variant="link"
-              onClick={(e) => editHandler(e, board)}
-            />
-            <Button
-              className="bi-trash text-danger"
-              variant="link"
-              onClick={(e) => removeHandler(e, board)}
-            />
+            {BoardButtons.map(({name, icon, color}) => (
+              <Button
+                key={name}
+                className={`${icon} ${color}`}
+                variant="link"
+                onClick={(e) => buttonHandler(e, name, board)}
+              />
+            ))}
           </ButtonGroup>
         </div>
       </Card.Header>
