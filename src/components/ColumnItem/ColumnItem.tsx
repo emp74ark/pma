@@ -22,19 +22,9 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
 
   const buttonHandler = (e: MouseEvent, name: string, column: Column) => {
     e.stopPropagation();
-    switch (name) {
-      case 'addTask':
-        dispatch(
-          openModal({
-            name,
-            data: { boardId: column.boardId, columnId: column.id, title: '' },
-          })
-        );
-        break;
-      case 'remove':
-        dispatch(openModal({ name, data: column }));
-        break;
-    }
+    const data =
+      name === 'addTask' ? { boardId: column.boardId, columnId: column.id, title: '' } : column;
+    dispatch(openModal({ name, data }));
   };
 
   return (
