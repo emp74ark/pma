@@ -15,11 +15,6 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
     setting: { theme, maxHeight },
   } = useSelector((state: RootState) => state);
 
-  const editColumnHandler = (e: MouseEvent, column: Column) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'editColumn', data: column }));
-  };
-
   const buttonHandler = (e: MouseEvent, name: string, column: Column) => {
     e.stopPropagation();
     const data =
@@ -40,7 +35,7 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
             <EditColumn />
           ) : (
             <Card.Title
-              onClick={(e: MouseEvent) => editColumnHandler(e, columnData.column)}
+              onClick={(e: MouseEvent) => buttonHandler(e, 'editColumn', columnData.column)}
               className="col"
             >
               {columnData.column.title}
