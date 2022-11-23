@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/pma/static/css/main.e05a5fb0.css",
-    "main.js": "/pma/static/js/main.043905a9.js",
-    "static/js/611.c30ed7bf.chunk.js": "/pma/static/js/611.c30ed7bf.chunk.js",
-    "static/js/738.9f44e68f.chunk.js": "/pma/static/js/738.9f44e68f.chunk.js",
+    "main.js": "/pma/static/js/main.061da33a.js",
+    "static/js/754.13ac4c3a.chunk.js": "/pma/static/js/754.13ac4c3a.chunk.js",
+    "static/js/218.23f60d8a.chunk.js": "/pma/static/js/218.23f60d8a.chunk.js",
     "static/js/787.89576599.chunk.js": "/pma/static/js/787.89576599.chunk.js",
-    "static/js/937.c9889648.chunk.js": "/pma/static/js/937.c9889648.chunk.js",
+    "static/js/828.4a2b1950.chunk.js": "/pma/static/js/828.4a2b1950.chunk.js",
     "static/media/bootstrap-icons.woff?": "/pma/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
     "static/media/bootstrap-icons.woff2?": "/pma/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
     "static/media/toyota.jpeg": "/pma/static/media/toyota.b6c06110b1f5dc72aa24.jpeg",
@@ -16,14 +16,14 @@
     "static/media/kanban.png": "/pma/static/media/kanban.399df6f6be1facdc938d.png",
     "index.html": "/pma/index.html",
     "main.e05a5fb0.css.map": "/pma/static/css/main.e05a5fb0.css.map",
-    "main.043905a9.js.map": "/pma/static/js/main.043905a9.js.map",
-    "611.c30ed7bf.chunk.js.map": "/pma/static/js/611.c30ed7bf.chunk.js.map",
-    "738.9f44e68f.chunk.js.map": "/pma/static/js/738.9f44e68f.chunk.js.map",
+    "main.061da33a.js.map": "/pma/static/js/main.061da33a.js.map",
+    "754.13ac4c3a.chunk.js.map": "/pma/static/js/754.13ac4c3a.chunk.js.map",
+    "218.23f60d8a.chunk.js.map": "/pma/static/js/218.23f60d8a.chunk.js.map",
     "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map",
-    "937.c9889648.chunk.js.map": "/pma/static/js/937.c9889648.chunk.js.map"
+    "828.4a2b1950.chunk.js.map": "/pma/static/js/828.4a2b1950.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e05a5fb0.css",
-    "static/js/main.043905a9.js"
+    "static/js/main.061da33a.js"
   ]
 }
