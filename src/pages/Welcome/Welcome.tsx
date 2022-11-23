@@ -9,12 +9,18 @@ export const Welcome: FC = () => {
   return (
     <Container className="flex-fill">
       <h2>{t('welcome.title')}</h2>
-      <img src={kanban} alt="Kanban" />
+      <img src={kanban} className="img-fluid" alt="Kanban" />
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod dolor temporibus sed quasi
         repudiandae dignissimos quis suscipit assumenda dolore quae!
       </p>
-      <img src={monitoring} alt="Monitoring" />
+      <img src={monitoring} className="img-fluid" alt="Monitoring" />
+      <img src={kanban} className="img-fluid" alt="Kanban" />
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod dolor temporibus sed quasi
+        repudiandae dignissimos quis suscipit assumenda dolore quae!
+      </p>
+      <img src={monitoring} className="img-fluid" alt="Monitoring" />
     </Container>
   );
 };
