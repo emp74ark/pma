@@ -19,7 +19,7 @@ export const UserProfile: FC = () => {
 
   const removeUserHandler = (e: React.MouseEvent, user: User) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'removeUser', data: user }));
+    dispatch(openModal({ name: 'remove', data: user }));
   };
 
   return (
