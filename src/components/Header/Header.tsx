@@ -70,9 +70,8 @@ export const Header: FC = () => {
         >
           <Offcanvas.Header>
             <Button
-              className="btn-close"
+              className="bi-x-lg"
               aria-label="Close"
-              variant="light"
               onClick={() => dispatch(closeOffcanvas())}
             ></Button>
           </Offcanvas.Header>
@@ -82,8 +81,10 @@ export const Header: FC = () => {
               {!login && <NavAuth />}
               {login && <NavUser />}
             </Nav>
-            <LocaleSelector />
-            <ThemeSelector />
+            <div className="d-flex">
+              <LocaleSelector />
+              <ThemeSelector />
+            </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

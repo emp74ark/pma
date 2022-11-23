@@ -26,7 +26,7 @@ const App: FC = () => {
   return (
     <BrowserRouter basename={'/pma'}>
       <ModalCommon />
-      <Container fluid className="h-100 d-flex flex-column flex-fill">
+      <Container fluid className="h-100 d-flex flex-column">
         <Header />
         <Suspense>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
