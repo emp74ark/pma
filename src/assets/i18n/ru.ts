@@ -159,6 +159,10 @@ export const dict_ru = {
         title: 'Доски',
         addBoard: 'Добавить доску',
       },
+      errorFallback: {
+        wrong: 'Что-то пошло не так',
+        tryAgain: 'Попробуйте снова',
+      },
     },
   },
 };

@@ -152,6 +152,10 @@ export const dict_en = {
         title: 'Dashboard',
         addBoard: 'Add board',
       },
+      errorFallback: {
+        wrong: 'Something went wrong',
+        tryAgain: 'Try again',
+      },
     },
   },
 };
