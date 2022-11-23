@@ -33,3 +33,12 @@ body{
 .card:hover {
   translate: -.2rem -.2rem;
 }
+
+.column-card{
+  width: 20rem; 
+  height: fit-content;
+
+  @media (max-width: 410px) {
+    width: 15rem;
+  }
+}

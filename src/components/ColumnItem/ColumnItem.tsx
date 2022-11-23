@@ -36,8 +36,7 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
 
   return (
     <Card
-      className="flex-grow-0 flex-shrink-0 shadow-sm"
-      style={{ width: '20rem', height: 'fit-content' }}
+      className="column-card flex-grow-0 flex-shrink-0 shadow-sm"
       bg={theme}
       text={theme === 'dark' ? 'white' : 'dark'}
     >
@@ -69,7 +68,7 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
         </div>
       </Card.Header>
       <Card.Body
-        style={{ maxHeight: `${maxHeight - 52}px` }}
+        style={{ maxHeight: `${maxHeight - 100}px` }}
         className="d-flex w-100 h-auto flex-column flex-grow-0 flex-shrink-0 gap-3 overflow-auto"
       >
         {<TasksList data={columnData} />}
