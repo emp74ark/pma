@@ -26,17 +26,17 @@ export const RemoveModal: FC = () => {
       deleteUser(data as User).then(() => {
         dispatch(resetModal());
         signout();
-        navigate('/auth');
+        navigate('/signin');
       });
-    if (data?.hasOwnProperty('columnId'))
+    else if (data?.hasOwnProperty('columnId'))
       deleteTask(data as Task).then(() => {
         dispatch(resetModal());
       });
-    if (data?.hasOwnProperty('boardId'))
+    else if (data?.hasOwnProperty('boardId'))
       deleteColumn(data as Column).then(() => {
         dispatch(resetModal());
       });
-    if (data?.id)
+    else if (data?.id)
       deleteBoard(data?.id).then(() => {
         dispatch(resetModal());
       });
