@@ -5,7 +5,7 @@ import { openModal } from '../../redux/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
-import { BoardButtons } from './ButtonItem.config';
+import { BoardButtons } from './ButtonItem.buttons';
 
 const BoardItem: FC<Board> = (board) => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const BoardItem: FC<Board> = (board) => {
     navigate(`/user/board/${boardId}`);
   };
 
-  const buttonHandler = (e: MouseEvent, id: string, board: Board) => {
+  const buttonHandler = (e: MouseEvent, name: string, board: Board) => {
     e.stopPropagation();
-    dispatch(openModal({ name: id, data: board }));
+    dispatch(openModal({ name: name, data: board }));
   };
 
   return (
@@ -35,7 +35,7 @@ const BoardItem: FC<Board> = (board) => {
         <div className="row">
           <Card.Title className="col">{board.title}</Card.Title>
           <ButtonGroup className="col float-right" size="sm">
-            {BoardButtons.map(({name, icon, color}) => (
+            {BoardButtons.map(({ name, icon, color }) => (
               <Button
                 key={name}
                 className={`${icon} ${color}`}

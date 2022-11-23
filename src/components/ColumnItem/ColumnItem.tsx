@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import { FC, MouseEvent, lazy } from 'react';
 import { Button, ButtonGroup, Card } from 'react-bootstrap';
-const TasksList = React.lazy(() => import('../TasksList/TasksList'));
+const TasksList = lazy(() => import('../TasksList/TasksList'));
 import { Column, ColumnData } from '../../shared/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/modalSlice';
 import { EditColumn } from '../EditColumn/EditColumn';
+import { ColumnButtons } from './ColumnItem.buttons';
 
 const ColumnItem: FC<ColumnData> = (columnData) => {
   const dispatch = useDispatch();
@@ -14,24 +15,26 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
     setting: { theme, maxHeight },
   } = useSelector((state: RootState) => state);
 
-  const editColumnHandler = (e: React.MouseEvent, column: Column) => {
+  const editColumnHandler = (e: MouseEvent, column: Column) => {
     e.stopPropagation();
     dispatch(openModal({ name: 'editColumn', data: column }));
   };
 
-  const removeColumnHandler = (e: React.MouseEvent, column: Column) => {
+  const buttonHandler = (e: MouseEvent, name: string, column: Column) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'remove', data: column }));
-  };
-
-  const addTaskHandler = (e: React.MouseEvent, column: Column) => {
-    e.stopPropagation();
-    dispatch(
-      openModal({
-        name: 'addTask',
-        data: { boardId: column.boardId, columnId: column.id, title: '' },
-      })
-    );
+    switch (name) {
+      case 'addTask':
+        dispatch(
+          openModal({
+            name,
+            data: { boardId: column.boardId, columnId: column.id, title: '' },
+          })
+        );
+        break;
+      case 'remove':
+        dispatch(openModal({ name, data: column }));
+        break;
+    }
   };
 
   return (
@@ -47,24 +50,21 @@ const ColumnItem: FC<ColumnData> = (columnData) => {
             <EditColumn />
           ) : (
             <Card.Title
-              onClick={(e: React.MouseEvent) => editColumnHandler(e, columnData.column)}
+              onClick={(e: MouseEvent) => editColumnHandler(e, columnData.column)}
               className="col"
             >
               {columnData.column.title}
             </Card.Title>
           )}
-
           <ButtonGroup className="col-4 float-right" size="sm">
-            <Button
-              className="bi-plus-circle text-primary"
-              variant="link"
-              onClick={(e) => addTaskHandler(e, columnData.column)}
-            />
-            <Button
-              className="bi-trash text-danger"
-              variant="link"
-              onClick={(e) => removeColumnHandler(e, columnData.column)}
-            />
+            {ColumnButtons.map(({ name, icon, color }) => (
+              <Button
+                key={name}
+                className={`${icon} ${color}`}
+                variant="link"
+                onClick={(e) => buttonHandler(e, name, columnData.column)}
+              />
+            ))}
           </ButtonGroup>
         </div>
       </Card.Header>
