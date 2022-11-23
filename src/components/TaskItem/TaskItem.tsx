@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { Task } from '../../shared/interfaces';
 import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
 import { openModal } from '../../redux/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { TaskButtons } from './TaskItem.buttons';
 
 export const TaskItem: FC<Task> = (task) => {
   const dispatch = useDispatch();
@@ -12,17 +13,9 @@ export const TaskItem: FC<Task> = (task) => {
     setting: { theme },
   } = useSelector((state: RootState) => state);
 
-  const editHandler = (e: React.MouseEvent, task: Task) => {
+  const buttonHandler = (e: MouseEvent, name: string, task: Task) => {
     e.stopPropagation();
-    dispatch(openModal({ name: 'editTask', data: task }));
-  };
-  const deleteHandler = (e: React.MouseEvent, task: Task) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'remove', data: task }));
-  };
-  const infoHandler = (e: React.MouseEvent, task: Task) => {
-    e.stopPropagation();
-    dispatch(openModal({ name: 'infoTask', data: task }));
+    dispatch(openModal({ name, data: task }));
   };
 
   function defineName(userId: string) {
@@ -34,16 +27,24 @@ export const TaskItem: FC<Task> = (task) => {
   }
 
   return (
-    <ListGroup.Item variant={theme} className="w-100" onClick={(e) => infoHandler(e, task)}>
+    <ListGroup.Item
+      variant={theme}
+      className="w-100"
+      onClick={(e) => buttonHandler(e, 'infoTask', task)}
+    >
       <div className="row align-middle">
         <h6 className="col">{task.title}</h6>
         <ButtonGroup className="col float-right">
-          <Button onClick={(e) => editHandler(e, task)} variant="secondary" size="sm">
-            <i className="bi-pencil"></i>
-          </Button>
-          <Button onClick={(e) => deleteHandler(e, task)} variant="secondary" size="sm">
-            <i className="bi-trash"></i>
-          </Button>
+          {TaskButtons.map(({ name, icon }) => (
+            <Button
+              key={name}
+              variant="secondary"
+              size="sm"
+              onClick={(e) => buttonHandler(e, name, task)}
+            >
+              <i className={icon} />
+            </Button>
+          ))}
         </ButtonGroup>
       </div>
       <div className="row p-2">{task.description}</div>
