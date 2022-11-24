@@ -37,8 +37,25 @@ body{
 .column-card{
   width: 20rem; 
   height: fit-content;
+}
 
-  @media (max-width: 410px) {
+@media (max-width: 410px) {
+  #root {
+    font-size: .8rem;
+  }
+  .column-card {
     width: 15rem;
+  }
+  footer {
+    img {
+      display: none;
+    }
+  }
+  .toolbar {
+    position: fixed;
+    bottom: 3rem;
+    left: 2rem;
+    right: 2rem;
+    justify-content: space-between;
   }
 }

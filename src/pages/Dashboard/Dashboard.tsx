@@ -39,8 +39,8 @@ export const Dashboard: FC = () => {
   return (
     <Container fluid className="flex-fill overflow-auto">
       <ItemActions item="board" />
-      <div className="row d-flex justify-content-between m-3">
-        <h2 className="col-auto">{t('dashboard.title')}</h2>
+      <div className="row d-flex justify-content-between m-2">
+        <h2 className="col text-center">{t('dashboard.title')}</h2>
       </div>
       <div className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1">
         {boards && boards.map((board) => <BoardItem key={board.id} {...board} />)}

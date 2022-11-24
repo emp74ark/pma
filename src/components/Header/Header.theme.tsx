@@ -14,5 +14,5 @@ export const ThemeSelector = () => {
     dispatch(closeOffcanvas());
   };
 
-  return <i className="bi-circle-half fs-4" role="button" onClick={themeToggler}></i>;
+  return <div className="bi-circle-half fs-4" role="button" onClick={themeToggler}></div>;
 };

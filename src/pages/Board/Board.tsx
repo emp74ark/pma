@@ -64,18 +64,17 @@ export const BoardPage: FC = () => {
 
   useEffect(() => {
     const containerHeight = document.querySelector('.columns')?.clientHeight;
-    console.log('first', containerHeight);
     if (containerHeight) dispatch(setMaxHeight(containerHeight));
   }, [document.querySelector('.columns')?.clientHeight]);
 
   return (
     <Container fluid className="flex-fill d-flex flex-column mb-3">
       <ItemActions item="column" callback={addColumnHandler} />
-      <div className="row d-flex justify-content-between m-3">
-        <h2 className="col-auto">{boardData?.title}</h2>
+      <div className="row d-flex justify-content-between m-2">
+        <h2 className="col text-center">{boardData?.title}</h2>
       </div>
-      <div className="row m-3">
-        <h3 className="col text-center text-secondary">{boardData?.description}</h3>
+      <div className="row">
+        <h5 className="col text-center text-secondary">{boardData?.description}</h5>
       </div>
       <ReactSortable
         list={columnData}
