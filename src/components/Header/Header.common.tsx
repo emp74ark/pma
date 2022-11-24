@@ -6,6 +6,7 @@ import { commonRoutes } from '../../routes/Routes';
 import { RootState } from '../../redux/store';
 import { resetAuth } from '../../redux/authSlice';
 import { useTranslation } from 'react-i18next';
+import { closeOffcanvas } from '../../redux/settingsSlice';
 
 export const NavCommon: FC = () => {
   const { setting } = useSelector((state: RootState) => state);
@@ -21,7 +22,10 @@ export const NavCommon: FC = () => {
           className={({ isActive }) =>
             isActive ? `nav-link fw-bold text-${colorText}` : `nav-link text-${colorText}`
           }
-          onClick={() => dispatch(resetAuth())}
+          onClick={() => {
+            dispatch(resetAuth());
+            dispatch(closeOffcanvas());
+          }}
           to={path}
         >
           {t(`routes.${title}`)}

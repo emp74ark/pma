@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store';
 import { resetAuth } from '../../redux/authSlice';
 import { useTranslation } from 'react-i18next';
 import { authRoutes } from '../../routes/Routes';
+import { closeOffcanvas } from '../../redux/settingsSlice';
 
 export const NavAuth: FC = () => {
   const { setting } = useSelector((state: RootState) => state);
@@ -20,7 +21,9 @@ export const NavAuth: FC = () => {
           className={({ isActive }) =>
             isActive ? `nav-link fw-bold text-${colorText}` : `nav-link text-${colorText}`
           }
-          onClick={() => dispatch(resetAuth())}
+          onClick={() => {
+            dispatch(resetAuth()), dispatch(closeOffcanvas());
+          }}
           to={path}
         >
           {t(`routes.${title}`)}

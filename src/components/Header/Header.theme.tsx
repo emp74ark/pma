@@ -1,4 +1,4 @@
-import { toggleTheme } from '../../redux/settingsSlice';
+import { closeOffcanvas, toggleTheme } from '../../redux/settingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
@@ -11,6 +11,7 @@ export const ThemeSelector = () => {
   const themeToggler = () => {
     const value = theme === 'light' ? 'dark' : 'light';
     dispatch(toggleTheme(value));
+    dispatch(closeOffcanvas());
   };
 
   return <i className="bi-circle-half fs-4" role="button" onClick={themeToggler}></i>;
