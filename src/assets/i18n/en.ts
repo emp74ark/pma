@@ -44,11 +44,14 @@ export const dict_en = {
           dark: 'Dark',
         },
       },
-      about: {
-        title: 'About',
-      },
       welcome: {
-        title: 'Welcome',
+        title: 'Kanban',
+        description:
+          'A tool for managing your projects. Provides a visual representation of tasks and allows you to determine the amount of work, thereby increasing the efficiency of the team',
+        interface: 'Simple, intuitive interface',
+        dragNDrop: 'Convenient board management with Drag-n-drop',
+        infinityBoards: 'Ability to create an infinite number of boards, columns and tasks',
+        advantages: 'Advantages',
       },
       user: {
         title: 'User Profile',
