@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { Button, Col, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -9,7 +9,6 @@ import { NavUser } from './Header.user';
 import { NavAuth } from './Header.auth';
 import { LocaleSelector } from './Header.locale';
 import { ThemeSelector } from './Header.theme';
-import { closeModal } from '../../redux/modalSlice';
 import { closeOffcanvas, openOffcanvas } from '../../redux/settingsSlice';
 
 export const Header: FC = () => {
@@ -81,10 +80,10 @@ export const Header: FC = () => {
               {!login && <NavAuth />}
               {login && <NavUser />}
             </Nav>
-            <div className="d-flex">
+            <Col className="d-flex align-items-center toolbar">
               <LocaleSelector />
               <ThemeSelector />
-            </div>
+            </Col>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

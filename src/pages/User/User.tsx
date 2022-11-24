@@ -24,11 +24,11 @@ export const UserProfile: FC = () => {
 
   return (
     <Container className="flex-fill d-flex flex-column gap-2 justify-content-center align-items-center">
-      <h1>{t('user.title')}</h1>
-      <h5>{t('user.nameInput')}</h5>
-      <h3>{users.current?.name}</h3>
-      <h5>{t('user.emailInput')}</h5>
-      <h3>{users.current?.login}</h3>
+      <h2>{t('user.title')}</h2>
+      <h6>{t('user.nameInput')}</h6>
+      <h5>{users.current?.name}</h5>
+      <h6>{t('user.emailInput')}</h6>
+      <h5>{users.current?.login}</h5>
       <div className="d-flex flex-column gap-2 align-self-center">
         <button className="btn btn-primary" onClick={editUserHandler}>
           {t('user.edit')}

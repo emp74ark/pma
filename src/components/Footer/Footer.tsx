@@ -8,10 +8,10 @@ export const Footer: FC = () => {
   const { theme } = useSelector((state: RootState) => state.setting);
 
   return (
-    <footer className={`bg-${theme} d-flex justify-content-center rounded shadow-sm mt-3 mb-2`}>
-      <ul className="nav d-flex flex-wrap justify-content-center">
+    <footer className={`bg-${theme} rounded shadow-sm mt-3 mb-2`}>
+      <ul className="nav justify-content-center">
         {contacts.map((contact) => (
-          <li key={contact.title} className="nav-item">
+          <li key={contact.title} className="nav-item col-auto small">
             <a href={contact.url} className="nav-link">
               <img src={contact.icon} alt={contact.title} className="icon" />
               {contact.title}
