@@ -59,3 +59,34 @@ body{
     justify-content: space-between;
   }
 }
+
+.developer,.developer-body{
+  position: relative;
+  z-index: 1;
+}
+
+.developer:hover .developer-body,
+.developer:hover .developer-image::after{
+  transition-duration: 500ms;
+  background-color: #070a57;
+  color: white;
+}
+
+.developer-image{
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: inherit;
+
+  &::after{
+    position: absolute;
+    width: 150%;
+    height: 80px;
+    bottom: -45px;
+    left: -25%;
+    content: "";
+    background-color: inherit;
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+  }
+}

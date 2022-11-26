@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import dashboard from './../../assets/images/welcomeDashboard.png';
@@ -9,39 +8,12 @@ import infinityBoards from './../../assets/animations/infinity.gif';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { motion } from 'framer-motion';
-
-const fromLeft = {
-  hidden: {
-    x: -100,
-    opacity: 0,
-  },
-  visible: {
-    x: 0,
-    opacity: 1,
-  },
-};
-
-const fromAbove = {
-  hidden: {
-    y: -100,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-};
-
-const fromRight = {
-  hidden: {
-    x: 100,
-    opacity: 0,
-  },
-  visible: {
-    x: 0,
-    opacity: 1,
-  },
-};
+import { DeveloperCard } from '../../components/DeveloperCard/DeveloperCard';
+import andrey_gudin from '../../assets/images/developers/andrey_gudin.jpg';
+import andrei_yurkouski from '../../assets/images/developers/andrei_yurkouski.jpg';
+import steglaset from '../../assets/images/ufo.png';
+import { info } from './developersInfo';
+import { fromAbove, fromLeft, fromRight } from './animations';
 
 export const Welcome: FC = () => {
   const {
@@ -99,6 +71,14 @@ export const Welcome: FC = () => {
           <img className="w-100 ms-md-2" src={infinityBoards} alt="Infinity Boards" />
         </motion.div>
       </motion.div>
+      <div className="d-flex flex-column align-items-center gap-1">
+        <h3 className="mb-4 mt-5 mb-md-5">Our Team</h3>
+        <div className="d-flex justify-content-lg-around gap-2 w-100">
+          <DeveloperCard name={'SteGlaset'} text={info.SteGlaset} src={steglaset} />
+          <DeveloperCard name={'Andrei Yurkouski'} text={info.yurkouski} src={andrei_yurkouski} />
+          <DeveloperCard name={'Andrey Gudin'} text={info.gudin} src={andrey_gudin} />
+        </div>
+      </div>
     </motion.div>
   );
 };
