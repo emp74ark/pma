@@ -159,6 +159,14 @@ export const dict_en = {
         wrong: 'Something went wrong',
         tryAgain: 'Try again',
       },
+      info: {
+        gudin_name: 'Andrey Gudin',
+        gudin_info: 'Frontend Developer, Love cats. Design, dashboard, columns, tasks',
+        yurkouski_name: 'Andrei Yurkouski',
+        yurkouski_info: "Frontend Developer. Network, redux, components interactions, drag'n'drop",
+        SteGlaset_name: 'Daniil Khlybov',
+        SteGlaset_info: 'Frontend Developer. Team lead. Content, l18n',
+      },
     },
   },
 };

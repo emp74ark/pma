@@ -12,7 +12,6 @@ import { DeveloperCard } from '../../components/DeveloperCard/DeveloperCard';
 import andrey_gudin from '../../assets/images/developers/andrey_gudin.jpg';
 import andrei_yurkouski from '../../assets/images/developers/andrei_yurkouski.jpg';
 import steglaset from '../../assets/images/ufo.png';
-import { info } from './developersInfo';
 import { fromAbove, fromBelow, fromLeft, fromRight } from './animations';
 
 export const Welcome: FC = () => {
@@ -94,9 +93,21 @@ export const Welcome: FC = () => {
           Our Team
         </motion.h3>
         <motion.div variants={fromBelow} className="d-flex justify-content-lg-around gap-2 w-100">
-          <DeveloperCard name={'SteGlaset'} text={info.SteGlaset} src={steglaset} />
-          <DeveloperCard name={'Andrei Yurkouski'} text={info.yurkouski} src={andrei_yurkouski} />
-          <DeveloperCard name={'Andrey Gudin'} text={info.gudin} src={andrey_gudin} />
+          <DeveloperCard
+            name={t('info.SteGlaset_name')}
+            text={t('info.SteGlaset_info')}
+            src={steglaset}
+          />
+          <DeveloperCard
+            name={t('info.yurkouski_name')}
+            text={t('info.yurkouski_info')}
+            src={andrei_yurkouski}
+          />
+          <DeveloperCard
+            name={t('info.gudin_name')}
+            text={t('info.gudin_info')}
+            src={andrey_gudin}
+          />
         </motion.div>
       </motion.div>
     </motion.div>
