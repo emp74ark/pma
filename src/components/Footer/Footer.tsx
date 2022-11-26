@@ -12,7 +12,12 @@ export const Footer: FC = () => {
       <ul className="nav justify-content-center">
         {contacts.map((contact) => (
           <li key={contact.title} className="nav-item col-auto small">
-            <a href={contact.url} className="nav-link">
+            <a
+              href={contact.url}
+              target={'_blank'}
+              rel={'noopener noreferrer'}
+              className="nav-link"
+            >
               <img src={contact.icon} alt={contact.title} className="icon" />
               {contact.title}
             </a>
