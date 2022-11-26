@@ -31,4 +31,15 @@ const fromRight = {
   },
 };
 
-export { fromLeft, fromAbove, fromRight };
+const fromBelow = {
+  hidden: {
+    y: 100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+export { fromLeft, fromAbove, fromRight, fromBelow };
