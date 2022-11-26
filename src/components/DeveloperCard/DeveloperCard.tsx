@@ -17,8 +17,8 @@ export const DeveloperCard = (props: { name: string; text: string; src: string }
         <Card.Img src={src} />
       </div>
       <Card.Body className="developer-body">
-        <Card.Title>{name}</Card.Title>
-        <Card.Text>{text}</Card.Text>
+        <Card.Title className="developer-title">{name}</Card.Title>
+        <Card.Text className="developer-text">{text}</Card.Text>
       </Card.Body>
     </Card>
   );
