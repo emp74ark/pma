@@ -1,4 +1,3 @@
-import { About } from '../pages/About/About';
 import { BoardPage } from '../pages/Board/Board';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
 import { SignIn } from '../pages/SignIn/SignIn';
@@ -7,10 +6,7 @@ import { UFO } from '../pages/UFO/UFO';
 import { UserProfile } from '../pages/User/User';
 import { Welcome } from '../pages/Welcome/Welcome';
 
-export const commonRoutes = [
-  { title: 'welcome', path: '/', element: <Welcome /> },
-  { title: 'about', path: '/about', element: <About /> },
-];
+export const commonRoutes = [{ title: 'welcome', path: '/', element: <Welcome /> }];
 
 export const authRoutes = [
   { title: 'signIn', path: '/signin', element: <SignIn /> },
