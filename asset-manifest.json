@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pma/static/css/main.b1b7c303.css",
-    "main.js": "/pma/static/js/main.cde367c1.js",
+    "main.css": "/pma/static/css/main.9ba5a212.css",
+    "main.js": "/pma/static/js/main.176802b3.js",
     "static/js/754.c6d06c1e.chunk.js": "/pma/static/js/754.c6d06c1e.chunk.js",
     "static/js/218.d93d3023.chunk.js": "/pma/static/js/218.d93d3023.chunk.js",
     "static/js/787.89576599.chunk.js": "/pma/static/js/787.89576599.chunk.js",
@@ -17,15 +17,15 @@
     "static/media/ufo.png": "/pma/static/media/ufo.2621455a5538ba7cfe08.png",
     "static/media/andrey_gudin.jpg": "/pma/static/media/andrey_gudin.dcb6c000ab29306f917c.jpg",
     "index.html": "/pma/index.html",
-    "main.b1b7c303.css.map": "/pma/static/css/main.b1b7c303.css.map",
-    "main.cde367c1.js.map": "/pma/static/js/main.cde367c1.js.map",
+    "main.9ba5a212.css.map": "/pma/static/css/main.9ba5a212.css.map",
+    "main.176802b3.js.map": "/pma/static/js/main.176802b3.js.map",
     "754.c6d06c1e.chunk.js.map": "/pma/static/js/754.c6d06c1e.chunk.js.map",
     "218.d93d3023.chunk.js.map": "/pma/static/js/218.d93d3023.chunk.js.map",
     "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map",
     "828.4a2b1950.chunk.js.map": "/pma/static/js/828.4a2b1950.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b1b7c303.css",
-    "static/js/main.cde367c1.js"
+    "static/css/main.9ba5a212.css",
+    "static/js/main.176802b3.js"
   ]
 }
