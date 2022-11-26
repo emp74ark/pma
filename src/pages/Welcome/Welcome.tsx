@@ -37,7 +37,7 @@ export const Welcome: FC = () => {
           className="d-flex col-lg-7 col-sm-12 justify-content-center"
         >
           <img
-            className="w-100 ms-2"
+            className="w-100 ms-2 mt-4 shadow rounded"
             src={theme === 'light' ? dashboard : darkDashboard}
             alt="Dashboard"
           />
@@ -51,7 +51,11 @@ export const Welcome: FC = () => {
         style={{ height: 'auto' }}
       >
         <motion.div variants={fromLeft} className="col-md-8 col-12">
-          <img className="w-100 ms-md-2" src={simpleInterface} alt="Simple Interface" />
+          <img
+            className="w-100 ms-md-2 shadow rounded"
+            src={simpleInterface}
+            alt="Simple Interface"
+          />
         </motion.div>
         <motion.div
           variants={fromRight}
@@ -73,7 +77,11 @@ export const Welcome: FC = () => {
           <h5>{t('welcome.infinityBoards')}</h5>
         </motion.div>
         <motion.div variants={fromRight} className="col-md-8 col-12">
-          <img className="w-100 ms-md-2" src={infinityBoards} alt="Infinity Boards" />
+          <img
+            className="w-100 ms-md-2 shadow rounded"
+            src={infinityBoards}
+            alt="Infinity Boards"
+          />
         </motion.div>
       </motion.div>
       <motion.div
