@@ -90,7 +90,7 @@ export const Welcome: FC = () => {
         className="d-flex flex-column align-items-center gap-1"
       >
         <motion.h3 variants={fromAbove} className="mb-4 mt-5 mb-md-5">
-          Our Team
+          {t('info.team')}
         </motion.h3>
         <motion.div variants={fromBelow} className="d-flex justify-content-lg-around gap-2 w-100">
           <DeveloperCard

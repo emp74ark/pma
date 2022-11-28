@@ -160,8 +160,9 @@ export const dict_en = {
         tryAgain: 'Try again',
       },
       info: {
+        team: 'Our Team',
         gudin_name: 'Andrey Gudin',
-        gudin_info: 'Frontend Developer, Love cats. Design, dashboard, columns, tasks',
+        gudin_info: 'Frontend Developer, love cats. Design, dashboard, columns, tasks',
         yurkouski_name: 'Andrei Yurkouski',
         yurkouski_info: "Frontend Developer. Network, redux, components interactions, drag'n'drop",
         SteGlaset_name: 'Daniil Khlybov',
