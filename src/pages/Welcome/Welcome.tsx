@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { DeveloperCard } from '../../components/DeveloperCard/DeveloperCard';
 import andrey_gudin from '../../assets/images/developers/andrey_gudin.jpg';
 import andrei_yurkouski from '../../assets/images/developers/andrei_yurkouski.jpg';
-import steglaset from '../../assets/images/ufo.png';
+import daniil_khlybov from '../../assets/images/developers/daniil_khlybov.jpg';
 import { fromAbove, fromBelow, fromLeft, fromRight } from './animations';
 
 export const Welcome: FC = () => {
@@ -96,7 +96,7 @@ export const Welcome: FC = () => {
           <DeveloperCard
             name={t('info.SteGlaset_name')}
             text={t('info.SteGlaset_info')}
-            src={steglaset}
+            src={daniil_khlybov}
           />
           <DeveloperCard
             name={t('info.yurkouski_name')}
