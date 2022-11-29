@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pma/static/css/main.b473cce0.css",
-    "main.js": "/pma/static/js/main.c2f19d33.js",
+    "main.js": "/pma/static/js/main.fc7fb664.js",
     "static/js/754.c6d06c1e.chunk.js": "/pma/static/js/754.c6d06c1e.chunk.js",
     "static/js/218.d93d3023.chunk.js": "/pma/static/js/218.d93d3023.chunk.js",
     "static/js/787.89576599.chunk.js": "/pma/static/js/787.89576599.chunk.js",
@@ -12,13 +12,14 @@
     "static/media/welcomeDashboardDark.png": "/pma/static/media/welcomeDashboardDark.37f6f582fda4701ee4c2.png",
     "static/media/bootstrap-icons.woff?": "/pma/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
     "static/media/bootstrap-icons.woff2?": "/pma/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
+    "static/media/daniil_khlybov.jpg": "/pma/static/media/daniil_khlybov.4c954a912fc638782a47.jpg",
     "static/media/andrei_yurkouski.jpg": "/pma/static/media/andrei_yurkouski.2645384793bfbbed0172.jpg",
+    "static/media/andrey_gudin.jpg": "/pma/static/media/andrey_gudin.bc9a8c5500f793d32d74.jpg",
     "static/media/rsschool.png": "/pma/static/media/rsschool.24b53f4b24b1890ec5dc.png",
     "static/media/ufo.png": "/pma/static/media/ufo.2621455a5538ba7cfe08.png",
-    "static/media/andrey_gudin.jpg": "/pma/static/media/andrey_gudin.dcb6c000ab29306f917c.jpg",
     "index.html": "/pma/index.html",
     "main.b473cce0.css.map": "/pma/static/css/main.b473cce0.css.map",
-    "main.c2f19d33.js.map": "/pma/static/js/main.c2f19d33.js.map",
+    "main.fc7fb664.js.map": "/pma/static/js/main.fc7fb664.js.map",
     "754.c6d06c1e.chunk.js.map": "/pma/static/js/754.c6d06c1e.chunk.js.map",
     "218.d93d3023.chunk.js.map": "/pma/static/js/218.d93d3023.chunk.js.map",
     "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map",
@@ -26,6 +27,6 @@
   },
   "entrypoints": [
     "static/css/main.b473cce0.css",
-    "static/js/main.c2f19d33.js"
+    "static/js/main.fc7fb664.js"
   ]
 }
