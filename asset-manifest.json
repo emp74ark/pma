@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/pma/static/css/main.b473cce0.css",
-    "main.js": "/pma/static/js/main.fc7fb664.js",
+    "main.css": "/pma/static/css/main.b1f3d1c7.css",
+    "main.js": "/pma/static/js/main.815130ae.js",
     "static/js/754.c6d06c1e.chunk.js": "/pma/static/js/754.c6d06c1e.chunk.js",
     "static/js/218.d93d3023.chunk.js": "/pma/static/js/218.d93d3023.chunk.js",
     "static/js/787.89576599.chunk.js": "/pma/static/js/787.89576599.chunk.js",
-    "static/js/828.4a2b1950.chunk.js": "/pma/static/js/828.4a2b1950.chunk.js",
+    "static/js/828.94f1e71c.chunk.js": "/pma/static/js/828.94f1e71c.chunk.js",
     "static/media/interface.gif": "/pma/static/media/interface.3d68f57207176c780213.gif",
     "static/media/infinity.gif": "/pma/static/media/infinity.30c3c6e721607e1f7574.gif",
     "static/media/welcomeDashboard.png": "/pma/static/media/welcomeDashboard.9a2c40e9f8d25eb26ba0.png",
@@ -18,15 +18,15 @@
     "static/media/rsschool.png": "/pma/static/media/rsschool.24b53f4b24b1890ec5dc.png",
     "static/media/ufo.png": "/pma/static/media/ufo.2621455a5538ba7cfe08.png",
     "index.html": "/pma/index.html",
-    "main.b473cce0.css.map": "/pma/static/css/main.b473cce0.css.map",
-    "main.fc7fb664.js.map": "/pma/static/js/main.fc7fb664.js.map",
+    "main.b1f3d1c7.css.map": "/pma/static/css/main.b1f3d1c7.css.map",
+    "main.815130ae.js.map": "/pma/static/js/main.815130ae.js.map",
     "754.c6d06c1e.chunk.js.map": "/pma/static/js/754.c6d06c1e.chunk.js.map",
     "218.d93d3023.chunk.js.map": "/pma/static/js/218.d93d3023.chunk.js.map",
     "787.89576599.chunk.js.map": "/pma/static/js/787.89576599.chunk.js.map",
-    "828.4a2b1950.chunk.js.map": "/pma/static/js/828.4a2b1950.chunk.js.map"
+    "828.94f1e71c.chunk.js.map": "/pma/static/js/828.94f1e71c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b473cce0.css",
-    "static/js/main.fc7fb664.js"
+    "static/css/main.b1f3d1c7.css",
+    "static/js/main.815130ae.js"
   ]
 }
