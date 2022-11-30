@@ -11,8 +11,9 @@ import { getBoardById } from '../../services/board.services';
 import { editColumn, getAllColumns } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
-const ColumnItem = React.lazy(() => import('../../components/ColumnItem/ColumnItem'));
 import { ItemActions } from '../../components/ItemActions/ItemAction';
+
+const ColumnItem = React.lazy(() => import('../../components/ColumnItem/ColumnItem'));
 
 export const BoardPage: FC = () => {
   const params = useParams();

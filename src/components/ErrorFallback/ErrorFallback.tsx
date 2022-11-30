@@ -8,9 +8,9 @@ export const ErrorFallback: FC<FallbackProps> = (props) => {
   const { error, resetErrorBoundary } = props;
   return (
     <Alert>
-      <h2>(t{'errorFallback.wrong'})</h2>
+      <h2>{t('errorFallback.wrong')}</h2>
       <pre>{error.message}</pre>
-      <Button onClick={resetErrorBoundary}>(t{'errorFallback.tryAgain'})</Button>
+      <Button onClick={resetErrorBoundary}>{t('errorFallback.tryAgain')}</Button>
     </Alert>
   );
 };
