@@ -84,7 +84,7 @@ export const BoardPage: FC = () => {
         direction={'horizontal'}
         animation={200}
         delayOnTouchOnly={true}
-        delay={2}
+        delay={0}
         ghostClass={'ghost'}
         className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto p-2"
       >

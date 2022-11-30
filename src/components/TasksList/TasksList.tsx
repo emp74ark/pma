@@ -30,6 +30,7 @@ const TasksList = (props: { data: ColumnData }) => {
       delay={2}
       group="shared"
       className="list-group shadow-sm"
+      ghostClass={'ghost'}
       id={data.id}
     >
       {tasks.map((task) => (
