@@ -8,9 +8,11 @@ import { allUsers, currentUser } from '../../redux/usersSlice';
 import { getAllBoards } from '../../services/board.services';
 import { getAllUsers } from '../../services/user.service';
 import { Board } from '../../shared/interfaces';
-const BoardItem = React.lazy(() => import('../../components/BoardItem/BoardItem'));
 import { useTranslation } from 'react-i18next';
 import { ItemActions } from '../../components/ItemActions/ItemAction';
+import { motion } from 'framer-motion';
+
+const BoardItem = React.lazy(() => import('../../components/BoardItem/BoardItem'));
 
 export const Dashboard: FC = () => {
   const [boards, setBoards] = useState<Board[]>([]);
@@ -42,9 +44,17 @@ export const Dashboard: FC = () => {
       <div className="row d-flex justify-content-between m-2">
         <h2 className="col text-center">{t('dashboard.title')}</h2>
       </div>
-      <div className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1">
-        {boards && boards.map((board) => <BoardItem key={board.id} {...board} />)}
-      </div>
+      {boards && (
+        <motion.div
+          className="row d-flex flex-wrap justify-content-center gap-3 flex-grow-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          {boards.map((board) => (
+            <BoardItem key={board.id} {...board} />
+          ))}
+        </motion.div>
+      )}
     </Container>
   );
 };

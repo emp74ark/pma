@@ -12,6 +12,7 @@ import { editColumn, getAllColumns } from '../../services/column.service';
 import { getAllTasks } from '../../services/task.service';
 import { Board, ColumnData } from '../../shared/interfaces';
 import { ItemActions } from '../../components/ItemActions/ItemAction';
+import { motion } from 'framer-motion';
 
 const ColumnItem = React.lazy(() => import('../../components/ColumnItem/ColumnItem'));
 
@@ -89,7 +90,9 @@ export const BoardPage: FC = () => {
         className="columns flex-fill w-100 min-vh-80 d-flex gap-5 overflow-auto p-2"
       >
         {columnData.map((data) => (
-          <ColumnItem {...data} key={data.column.id} />
+          <motion.div key={data.column.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <ColumnItem {...data} />
+          </motion.div>
         ))}
       </ReactSortable>
     </Container>
