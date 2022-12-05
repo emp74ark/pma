@@ -29,7 +29,7 @@ const taskRoutes = [
 export const appRoutes = [
   ...commonRoutes,
   ...authRoutes,
-  { title: 'ufo', path: '/*', element: <UFO /> },
+  { title: 'ufo', path: '*', element: <UFO /> },
 ];
 
 export const protectedRoutes = [...userRoutes, ...taskRoutes];
