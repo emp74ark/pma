@@ -1,4 +1,4 @@
-import { FC, useEffect, Suspense } from 'react';
+import { FC, Suspense, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
 import { ModalCommon } from './components/Modal/ModalCommon';
 import { RootState } from './redux/store';
-import { appRoutes, protectedRoutes } from './routes/Routes';
+import { appRoutes } from './routes/Routes';
 import { sessionIsExpired } from './services/session.service';
 import { sessionCheckInterval } from './shared/environment';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -34,10 +34,6 @@ const App: FC = () => {
               {appRoutes.map(({ path, element }) => (
                 <Route key={path} path={path} element={element} />
               ))}
-              {auth.login &&
-                protectedRoutes.map(({ path, element }) => (
-                  <Route key={path} path={path} element={element} />
-                ))}
             </Routes>
           </ErrorBoundary>
         </Suspense>
