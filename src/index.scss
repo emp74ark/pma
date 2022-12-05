@@ -1,0 +1,114 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+// used for icons in footer
+.icon {
+  height: 1em;
+  margin: 1em;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: auto;
+  width: 95vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+.spinner {
+  z-index: 9999;
+}
+
+[data-theme='dark'] {
+  background-color: #303030;
+  color: #fff;
+}
+
+.column-card {
+  width: 20rem;
+  height: fit-content;
+}
+
+@media (max-width: 410px) {
+
+  body {
+    overflow: hidden;
+  }
+
+  #root {
+    font-size: 0.8rem;
+  }
+  .column-card {
+    width: 15rem;
+  }
+  footer {
+    img {
+      display: none;
+    }
+  }
+  .toolbar {
+    position: fixed;
+    bottom: 6rem;
+    left: 2rem;
+    right: 2rem;
+    justify-content: space-between;
+  }
+}
+
+.developer,
+.developer-body {
+  position: relative;
+  z-index: 1;
+}
+
+.developer {
+  width: 20rem;
+  height: auto;
+}
+
+.developer:hover .developer-body,
+.developer:hover .developer-image::after {
+  transition-duration: 500ms;
+  background-color: #070a57;
+  color: white;
+}
+
+.developer-image {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: inherit;
+
+  &::after {
+    position: absolute;
+    width: 150%;
+    height: 80px;
+    bottom: -45px;
+    left: -25%;
+    content: '';
+    background-color: inherit;
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+  }
+}
+
+.developer-title {
+
+  @media (max-width: 410px) {
+    font-size: 0.8rem;
+  }
+}
+
+.developer-text {
+
+  @media (max-width: 410px) {
+    display: none;
+  }
+}
+
+.ghost {
+  visibility: hidden;
+}
