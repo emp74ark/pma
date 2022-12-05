@@ -33,6 +33,11 @@ body {
 }
 
 @media (max-width: 410px) {
+
+  body {
+    overflow: hidden;
+  }
+
   #root {
     font-size: 0.8rem;
   }
@@ -46,7 +51,7 @@ body {
   }
   .toolbar {
     position: fixed;
-    bottom: 3rem;
+    bottom: 6rem;
     left: 2rem;
     right: 2rem;
     justify-content: space-between;
