@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pma/static/css/main.a0ee8cb6.css",
+    "main.css": "/pma/static/css/main.9f069240.css",
     "main.js": "/pma/static/js/main.a38b5d8e.js",
     "static/js/754.c6d06c1e.chunk.js": "/pma/static/js/754.c6d06c1e.chunk.js",
     "static/js/218.d93d3023.chunk.js": "/pma/static/js/218.d93d3023.chunk.js",
@@ -18,7 +18,7 @@
     "static/media/rsschool.png": "/pma/static/media/rsschool.24b53f4b24b1890ec5dc.png",
     "static/media/ufo.png": "/pma/static/media/ufo.2621455a5538ba7cfe08.png",
     "index.html": "/pma/index.html",
-    "main.a0ee8cb6.css.map": "/pma/static/css/main.a0ee8cb6.css.map",
+    "main.9f069240.css.map": "/pma/static/css/main.9f069240.css.map",
     "main.a38b5d8e.js.map": "/pma/static/js/main.a38b5d8e.js.map",
     "754.c6d06c1e.chunk.js.map": "/pma/static/js/754.c6d06c1e.chunk.js.map",
     "218.d93d3023.chunk.js.map": "/pma/static/js/218.d93d3023.chunk.js.map",
@@ -26,7 +26,7 @@
     "828.94f1e71c.chunk.js.map": "/pma/static/js/828.94f1e71c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0ee8cb6.css",
+    "static/css/main.9f069240.css",
     "static/js/main.a38b5d8e.js"
   ]
 }
